@@ -1,4 +1,5 @@
 ﻿using CompanyManagement.Entities.Abstract;
+using CompanyManagement.Entities.Enum;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace CompanyManagement.Entities.Concrete
         public string? SecondName { get; set; }
         public string LastName { get; set; }
         public string? SecondLastName { get; set; }
+        public Gender Gender { get; set; }
         public string Address { get; set; }
         public DateTime BirthDate { get; set; }
         public string BirthLocation { get; set; }
@@ -28,13 +30,10 @@ namespace CompanyManagement.Entities.Concrete
         public bool IsActıve { get; set; }
         public DateTime JobEnterDate { get; set; }
         public DateTime? JobExitDate { get; set; }
-        
         public string Job { get; set; }
         public string Department { get; set; }
-        
         public decimal Salary { get; set; }
-        public Gender Gender { get; set; }
-        public int? YillikIzinSayisi { get; set; }
+        public int? TotalLeaveDay { get; set; }
         public string PersonelMail { get; set; }
     }
 }
