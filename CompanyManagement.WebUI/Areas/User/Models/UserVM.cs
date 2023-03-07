@@ -27,6 +27,6 @@ namespace CompanyManagement.WebUI.Areas.User.Models
         public decimal Salary { get; set; }
         public int? TotalLeaveDay { get; set; }
         public string PersonelMail { get; set; }
-
+        public string ErrorMessage { get; set; }
     }
 }

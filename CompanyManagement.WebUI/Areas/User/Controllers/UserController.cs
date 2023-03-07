@@ -16,6 +16,36 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
 
         }
 
+        [HttpGet("{area}/Register")]
+        public async Task<IActionResult> Register()
+        {
+            return View();
+        }
+
+        [HttpPost("{area}/Register")]
+        public async Task<IActionResult> Register(UserVM user)
+        {
+            if (ModelState.IsValid)
+            {
+                var newUser = new UserEntity();
+                newUser.UserName = user.UserName;
+                newUser.Email = user.Email;
+                newUser.PhoneNumber = user.PhoneNumber;
+
+                var result = await _userManager.CreateAsync(newUser, user.Password);
+
+                if (result.Succeeded)
+                {
+                    ModelState.AddModelError(nameof(UserVM.ErrorMessage), "Personel başarılı bir şekilde eklendi.");
+                }
+                else if (!result.Succeeded)
+                {
+                    ModelState.AddModelError(nameof(UserVM.ErrorMessage), "Personel eklenirken bir hata oluştu.");
+                }
+            }
+            return View();
+        }
+
         [HttpGet("{area}/Login")]
         public IActionResult Login()
         {
@@ -48,30 +78,10 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
             return RedirectToAction("Login", "User", new { area = "User" });
         }
 
-        [HttpGet("{area}/Register")]
-        public async Task<IActionResult> Register()
-        {
-            return View();
+        public IActionResult AccessDenied()
+        { 
+            return View(); 
         }
 
-        [HttpPost("{area}/Register")]
-        public async Task<IActionResult> Register(UserVM user)
-        {
-            if (ModelState.IsValid)
-            {
-                var newUser = new UserEntity();
-                newUser.UserName = user.UserName;
-                newUser.Email = user.Email;
-                newUser.PhoneNumber = user.PhoneNumber;
-
-                var result = await _userManager.CreateAsync(newUser, user.Password);
-
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Login", "User", new { area = "User" });
-                }
-            }
-            return View();
-        }
     }
 }
