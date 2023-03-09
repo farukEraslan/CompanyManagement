@@ -11,9 +11,10 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
         private readonly UserManager<UserEntity> _userManager;
         private readonly SignInManager<UserEntity> _signInManager;
 
-        public UserController()
+        public UserController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager)
         {
-
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         [HttpGet("{area}/Register")]
@@ -53,6 +54,7 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
         }
 
         [HttpPost("{area}/Login")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginDTO login)
         {
             if (ModelState.IsValid)
