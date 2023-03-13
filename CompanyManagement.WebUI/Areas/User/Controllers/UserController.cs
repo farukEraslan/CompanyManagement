@@ -55,7 +55,7 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
 
         [HttpPost("{area}/Login")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginDTO login)
+        public async Task<IActionResult> Login(LoginVM login)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(nameof(LoginDTO.ErrorMessage), "Email veya şifre hatalı. Lütfen kontrol ediniz.");
+                    ModelState.AddModelError(nameof(LoginVM.ErrorMessage), "Email veya şifre hatalı. Lütfen kontrol ediniz.");
                     return View(login);
                 }
             }

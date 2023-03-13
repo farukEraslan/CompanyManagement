@@ -1,4 +1,5 @@
-﻿using CompanyManagement.Entities.Enum;
+﻿
+using CompanyManagement.Entities.Enum;
 
 namespace CompanyManagement.WebUI.Areas.User.Models
 {
