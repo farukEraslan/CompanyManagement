@@ -13,7 +13,7 @@ namespace CompanyManagement.DAL.Context
     {
         public CompanyContext(DbContextOptions<CompanyContext> options) : base(options)
         {
-            
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
