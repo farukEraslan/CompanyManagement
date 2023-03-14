@@ -13,7 +13,7 @@ namespace CompanyManagement.Entities.AutoMapper
     {
         public EntityMapper() 
         {
-            CreateMap<UserEntity, UserVM>();
+            CreateMap<UserVM, UserEntity>();
         }
     }
 }

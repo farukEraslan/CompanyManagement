@@ -1,4 +1,5 @@
-﻿@model UserVM
+﻿
+@model UserVM
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,13 +16,16 @@
                     <div asp-validation-summary="ModelOnly"></div>
 
                     <!-- Error Message -->
-                    @*@if (Html.ValidationMessageFor(msg => msg.ErrorMessage) != null)
+                    @if (Html.ValidationMessageFor(msg => msg.ErrorMessage) != null)
                     {
                     <div class="mb-2 text-danger">
                     @Html.ValidationMessageFor(msg => msg.ErrorMessage)
                     </div>
-                    }*@
+                    }
                     <!-- Error Message -->
+
+                    <!-- Password -->
+                    <input asp-for="Password" type="hidden" class="form-control" value="Company_123">
 
                     <div class="row">
                         <!-- Identity Number -->
@@ -87,7 +91,9 @@
                             @Html.ValidationMessageFor(msg => msg.Email)
                             </div>*@
                             <label>Gender</label>
-                            <input asp-for="Gender" type="text" class="form-control" placeholder="Gender">
+                            <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-control" placeholder="Gender">
+                                <option>Seçin Yapınız...</option>
+                            </select>
                         </div>
                     </div>
 

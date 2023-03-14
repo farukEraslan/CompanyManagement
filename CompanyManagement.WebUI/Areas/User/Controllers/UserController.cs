@@ -1,4 +1,5 @@
-﻿using CompanyManagement.Entities.Concrete;
+﻿using AutoMapper;
+using CompanyManagement.Entities.Concrete;
 using CompanyManagement.WebUI.Areas.User.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,11 +11,13 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
     {
         private readonly UserManager<UserEntity> _userManager;
         private readonly SignInManager<UserEntity> _signInManager;
+        private readonly IMapper _mapper;
 
-        public UserController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager)
+        public UserController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _mapper = mapper;
         }
 
         [HttpGet("{area}/Register")]
@@ -29,9 +32,11 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
             if (ModelState.IsValid)
             {
                 var newUser = new UserEntity();
-                newUser.UserName = user.UserName;
-                newUser.Email = user.Email;
-                newUser.PhoneNumber = user.PhoneNumber;
+                newUser = _mapper.Map<UserEntity>(user);
+                Random rnd = new Random();
+                newUser.Email = $"{user.FirstName}{user.LastName}{rnd.Next(0, 10000)}@company.com";
+                newUser.UserName = newUser.Email;
+                newUser.ImageURL = "~/Uploads/defaultImage.png";
 
                 var result = await _userManager.CreateAsync(newUser, user.Password);
 
