@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CompanyManagement.BL.Helper;
 using CompanyManagement.Entities.Concrete;
 using CompanyManagement.WebUI.Areas.User.Models;
 using Microsoft.AspNetCore.Identity;
@@ -34,7 +35,7 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
                 var newUser = new UserEntity();
                 newUser = _mapper.Map<UserEntity>(user);
                 Random rnd = new Random();
-                newUser.Email = $"{user.FirstName}{user.LastName}{rnd.Next(0, 10000)}@company.com";
+                newUser.Email = $"{user.FirstName.ToLower()}{user.LastName.ToLower()}{rnd.Next(0, 10000)}@company.com";
                 newUser.UserName = newUser.Email;
                 newUser.ImageURL = "~/Uploads/defaultImage.png";
 
@@ -42,6 +43,9 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
 
                 if (result.Succeeded)
                 {
+                    Helper.SendEmail(newUser.FirstName, newUser.LastName, newUser.Email, newUser.PersonelMail);
+                    _userManager.AddToRoleAsync(newUser, user.Role.ToString());
+
                     ModelState.AddModelError(nameof(UserVM.ErrorMessage), "Personel başarılı bir şekilde eklendi.");
                 }
                 else if (!result.Succeeded)

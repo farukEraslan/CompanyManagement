@@ -29,5 +29,6 @@ namespace CompanyManagement.WebUI.Areas.User.Models
         public int? TotalLeaveDay { get; set; }
         public string PersonelMail { get; set; }
         public string? ErrorMessage { get; set; }
+        public Roles Role { get; set; }
     }
 }

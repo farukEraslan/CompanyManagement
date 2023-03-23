@@ -8,8 +8,8 @@ namespace CompanyManagement.Entities.Enum
 {
     public enum Roles
     {
-        Employee = 0,
-        Manager = 1,
-        Admin = 2
+        Admin = 1,
+        Manager = 2,
+        Employee = 3
     }
 }
