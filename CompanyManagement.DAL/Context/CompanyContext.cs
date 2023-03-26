@@ -11,10 +11,10 @@ namespace CompanyManagement.DAL.Context
 {
     public class CompanyContext : IdentityDbContext<UserEntity, RoleEntity, int>
     {
-        public CompanyContext(DbContextOptions<CompanyContext> options) : base(options)
-        {
+        //public CompanyContext(DbContextOptions<CompanyContext> options) : base(options)
+        //{
 
-        }
+        //}
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -26,5 +26,12 @@ namespace CompanyManagement.DAL.Context
         {
             base.OnModelCreating(builder);
         }
+
+        private readonly DbSet<CustomerEntity> Customers;
+        private readonly DbSet<OrderEntity> Orders;
+        private readonly DbSet<OrderDetail> OrderDetails;
+        private readonly DbSet<ProductEntity> Products;
+        private readonly DbSet<ProjectEntity> Projects;
+        private readonly DbSet<SupplierEntity> Suppliers;
     }
 }

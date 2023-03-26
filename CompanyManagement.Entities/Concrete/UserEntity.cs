@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CompanyManagement.Entities.Concrete
 {
-    public class UserEntity : IdentityUser<int>, IBaseEntity
+    public class UserEntity : IdentityUser<int>
     {
         public UserEntity()
         {
