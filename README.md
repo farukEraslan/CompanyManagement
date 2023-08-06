@@ -6,6 +6,6 @@
 
 Veritabanı İlişki Diyagramı
 
-![Company Management Stock Record Database Relations](https://github.com/farukEraslan/CompanyManagement/assets/106863120/c40628ce-c691-4b77-bacc-94bebf53955d)
+<img width="2020" alt="Company Management Stock Record Module" src="https://github.com/farukEraslan/CompanyManagement/assets/106863120/c40628ce-c691-4b77-bacc-94bebf53955d">
 
 
