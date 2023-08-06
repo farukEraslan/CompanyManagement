@@ -3,7 +3,7 @@ using CompanyManagement.Entities.Enum;
 
 namespace CompanyManagement.WebUI.Areas.User.Models
 {
-    public class UserVM
+    public class UserDto
     {
         public int Id { get; set; }
         public string? UserName { get; set; }

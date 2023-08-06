@@ -7,19 +7,22 @@ using System.Threading.Tasks;
 
 namespace CompanyManagement.Entities.Concrete
 {
-    public class SupplierEntity : IBaseEntity
+    public class SupplierEntity : BaseEntity
     {
-        public int Id { get; set; }
-        public DateTime CreateDate { get; set; }
-        public DateTime UpdateDate { get; set; }
-        public string SupplierName { get; set; }
-        public string SupplierEmail { get; set; }
-        public string? SupplierPhone { get; set; }
-        public string SupplierCity { get; set; }
-        public string? SupplierRegion { get; set; }
-        public string SupplierPostalCode { get; set; }
-        public string SupplierCountry { get; set; }
-        public string? SupplierState { get; set; }
-        public string? SupplierZipCode { get; set; }
+        public SupplierEntity()
+        {
+            SupplierProduct = new List<SupplierProduct>();
+        }
+
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string? City { get; set; }
+        public string? Country { get; set; }
+        public string? PostalCode { get; set; }
+        public string? Address { get; set; }
+
+        public Guid SupplierProductId { get; set; }
+        public List<SupplierProduct> SupplierProduct { get; set; }
     }
 }

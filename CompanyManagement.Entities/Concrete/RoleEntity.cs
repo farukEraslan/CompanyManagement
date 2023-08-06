@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CompanyManagement.Entities.Concrete
 {
-    public class RoleEntity : IdentityRole<int>
+    public class RoleEntity : IdentityRole<Guid>
     {
         public RoleEntity()
         {

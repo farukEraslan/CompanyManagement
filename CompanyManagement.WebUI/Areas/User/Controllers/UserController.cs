@@ -28,7 +28,7 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
         }
 
         [HttpPost("{area}/Register")]
-        public async Task<IActionResult> Register(UserVM user)
+        public async Task<IActionResult> Register(UserDto user)
         {
             if (ModelState.IsValid)
             {
@@ -46,11 +46,11 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
                     Helper.SendEmail(newUser.FirstName, newUser.LastName, newUser.Email, newUser.PersonelMail);
                     _userManager.AddToRoleAsync(newUser, user.Role.ToString());
 
-                    ModelState.AddModelError(nameof(UserVM.ErrorMessage), "Personel başarılı bir şekilde eklendi.");
+                    ModelState.AddModelError(nameof(UserDto.ErrorMessage), "Personel başarılı bir şekilde eklendi.");
                 }
                 else if (!result.Succeeded)
                 {
-                    ModelState.AddModelError(nameof(UserVM.ErrorMessage), "Personel eklenirken bir hata oluştu.");
+                    ModelState.AddModelError(nameof(UserDto.ErrorMessage), "Personel eklenirken bir hata oluştu.");
                 }
             }
             return View();
@@ -64,7 +64,7 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
 
         [HttpPost("{area}/Login")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginVM login)
+        public async Task<IActionResult> Login(LoginDto login)
         {
             if (ModelState.IsValid)
             {
@@ -75,7 +75,7 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(nameof(LoginVM.ErrorMessage), "Email veya şifre hatalı. Lütfen kontrol ediniz.");
+                    ModelState.AddModelError(nameof(LoginDto.ErrorMessage), "Email veya şifre hatalı. Lütfen kontrol ediniz.");
                     return View(login);
                 }
             }

@@ -9,7 +9,6 @@ namespace CompanyManagement.Entities.Enum
     public enum Roles
     {
         Admin = 1,
-        Manager = 2,
-        Employee = 3
+        Operator = 2
     }
 }

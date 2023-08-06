@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CompanyManagement.DAL.Config
 {
-    public class RolesConfig : IEntityTypeConfiguration<RoleEntity>
+    public class RoleConfig : IEntityTypeConfiguration<RoleEntity>
     {
         public void Configure(EntityTypeBuilder<RoleEntity> builder)
         {
@@ -22,14 +22,8 @@ namespace CompanyManagement.DAL.Config
 
             builder.HasData(new RoleEntity
             {
-                Name = "Manager",
-                NormalizedName = "MANAGER"
-            });
-
-            builder.HasData(new RoleEntity
-            {
-                Name = "Employee",
-                NormalizedName = "EMPLOYEE"
+                Name = "Operator",
+                NormalizedName = "OPERATOR"
             });
         }
     }

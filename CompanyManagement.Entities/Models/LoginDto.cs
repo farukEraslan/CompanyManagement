@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace CompanyManagement.WebUI.Areas.User.Models
 {
-    public class LoginVM
+    public class LoginDto
     {
         [Required(ErrorMessage = "Email kısmı boş bırakılamaz.")]
         [EmailAddress]

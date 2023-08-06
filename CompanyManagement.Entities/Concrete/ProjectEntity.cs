@@ -7,13 +7,20 @@ using System.Threading.Tasks;
 
 namespace CompanyManagement.Entities.Concrete
 {
-    public class ProjectEntity : IBaseEntity
+    public class ProjectEntity : BaseEntity
     {
-        public int Id { get; set; }
-        public DateTime CreateDate { get; set; }
-        public DateTime UpdateDate { get; set; }
+        public ProjectEntity()
+        {
+            CustomerProject = new List<CustomerProject>();
+            ProjectProduct = new List<ProjectProduct>();
+        }
+
+        public string Name { get; set; }
         public string ProjectNumber { get; set; }
-        public string ProjectName { get; set; }
-        public CustomerEntity CustomerId { get; set; }
+
+        public Guid CustomerProjectId { get; set; }
+        public List<CustomerProject> CustomerProject { get; set; }
+        public Guid ProjectProductId { get; set; }
+        public List<ProjectProduct> ProjectProduct { get; set; }
     }
 }
