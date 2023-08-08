@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompanyManagement.Entities.Enum
+﻿namespace CompanyManagement.Entities.Enum
 {
     public enum Gender
     {

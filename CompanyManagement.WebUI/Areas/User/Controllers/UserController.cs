@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CompanyManagement.BL.Helper;
+using CompanyManagement.Dtos.Account;
 using CompanyManagement.Entities.Concrete;
-using CompanyManagement.WebUI.Areas.User.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 

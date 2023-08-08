@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
-
-namespace CompanyManagement.WebUI.Areas.User.Models
+﻿namespace CompanyManagement.Dtos.Account
 {
     public class LoginDto
     {

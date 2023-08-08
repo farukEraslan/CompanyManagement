@@ -1,11 +1,4 @@
-﻿using CompanyManagement.Entities.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompanyManagement.Entities.Concrete
+﻿namespace CompanyManagement.Entities.Concrete
 {
     public class CustomerEntity : BaseEntity
     {

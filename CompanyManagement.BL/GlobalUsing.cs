@@ -1,1 +1,10 @@
 ﻿global using AutoMapper;
+global using MailKit.Security;
+global using MailKit.Net.Smtp;
+global using MimeKit;
+global using CompanyManagement.Core.Utilities.Results;
+global using CompanyManagement.Dtos.Customer;
+global using CompanyManagement.Dtos.CustomerProject;
+global using CompanyManagement.Dtos.Product;
+global using CompanyManagement.Dtos.Project;
+global using CompanyManagement.Dtos.ProjectProduct;

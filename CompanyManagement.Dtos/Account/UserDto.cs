@@ -1,7 +1,7 @@
-﻿
-using CompanyManagement.Entities.Enum;
+﻿using System.Data;
+using System.Reflection;
 
-namespace CompanyManagement.WebUI.Areas.User.Models
+namespace CompanyManagement.Dtos.Account
 {
     public class UserDto
     {

@@ -12,10 +12,10 @@ namespace CompanyManagement.DAL.Context
 {
     public class CompanyManagementContext : IdentityDbContext<UserEntity, RoleEntity, Guid>
     {
-        //public CompanyManagementContext(DbContextOptions<CompanyManagementContext> options) : base(options)
-        //{
+        public CompanyManagementContext(DbContextOptions<CompanyManagementContext> options) : base(options)
+        {
 
-        //}
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
