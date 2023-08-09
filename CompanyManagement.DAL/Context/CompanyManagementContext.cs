@@ -1,14 +1,4 @@
-﻿using CompanyManagement.DAL.Config;
-using CompanyManagement.Entities.Concrete;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompanyManagement.DAL.Context
+﻿namespace CompanyManagement.DataAccess.Context
 {
     public class CompanyManagementContext : IdentityDbContext<UserEntity, RoleEntity, Guid>
     {
@@ -35,9 +25,9 @@ namespace CompanyManagement.DAL.Context
             base.OnModelCreating(builder);
         }
 
-        private readonly DbSet<CustomerEntity> Customers;
-        private readonly DbSet<ProductEntity> Products;
-        private readonly DbSet<ProjectEntity> Projects;
-        private readonly DbSet<SupplierEntity> Suppliers;
+        private readonly DbSet<Customer> Customers;
+        private readonly DbSet<Product> Products;
+        private readonly DbSet<Project> Projects;
+        private readonly DbSet<Supplier> Suppliers;
     }
 }

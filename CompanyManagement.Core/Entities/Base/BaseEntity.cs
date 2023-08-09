@@ -1,5 +1,4 @@
 ﻿using CompanyManagement.Core.Entities.Interfaces;
-using CompanyManagement.Core.Enums;
 
 namespace CompanyManagement.Core.Entities.Base;
 

@@ -1,4 +1,4 @@
-﻿namespace CompanyManagement.BL.AutoMapper
+﻿namespace CompanyManagement.Business.AutoMapper
 {
     public class EntityMapper : Profile
     {

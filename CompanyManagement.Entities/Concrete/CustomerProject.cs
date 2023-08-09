@@ -1,6 +1,6 @@
 ﻿namespace CompanyManagement.Entities.Concrete
 {
-    public class CustomerProject : BaseEntity
+    public class CustomerProject : AuditableEntity
     {
         public CustomerProject()
         {
@@ -8,8 +8,8 @@
         }
 
         public Guid ProjectId { get; set; }
-        public ProjectEntity Project { get; set; }
+        public Project Project { get; set; }
         public Guid CustomerId { get; set; }
-        public CustomerEntity Customer { get; set; }
+        public Customer Customer { get; set; }
     }
 }

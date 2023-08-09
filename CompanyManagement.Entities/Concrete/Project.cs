@@ -1,8 +1,8 @@
 ﻿namespace CompanyManagement.Entities.Concrete
 {
-    public class ProjectEntity : BaseEntity
+    public class Project : AuditableEntity
     {
-        public ProjectEntity()
+        public Project()
         {
             CustomerProject = new List<CustomerProject>();
             ProjectProduct = new List<ProjectProduct>();

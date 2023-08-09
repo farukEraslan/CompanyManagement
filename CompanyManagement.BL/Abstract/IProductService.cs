@@ -1,4 +1,4 @@
-﻿namespace CompanyManagement.BL.Abstract
+﻿namespace CompanyManagement.Business.Abstract
 {
     public interface IProductService
     {
@@ -7,45 +7,45 @@
         /// </summary>
         /// <param name="productCreateDto"></param>
         /// <returns></returns>
-        Task<IResult> Create(ProductCreateDto productCreateDto);
+        Task<IResult> CreateAsync(ProductCreateDto productCreateDto);
 
         /// <summary>
         /// Ürün güncelleme işlemini yapar.
         /// </summary>
         /// <param name="productUpdateDto"></param>
         /// <returns></returns>
-        Task<IResult> Update(ProductUpdateDto productUpdateDto);
+        Task<IResult> UpdateAsync(ProductUpdateDto productUpdateDto);
 
         /// <summary>
         /// Ürün sime işlemini yapar.
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
-        Task<IResult> Delete(Guid productId);
+        Task<IResult> DeleteAsync(Guid productId);
 
         /// <summary>
         /// Id'si verilen ürünün bilgilerini getirir.
         /// </summary>
         /// <param name="productId"></param>
         /// <returns></returns>
-        Task<IResult> GetById(Guid productId);
+        Task<IResult> GetByIdAsync(Guid productId);
 
         /// <summary>
         /// Tüm ürünlerin bilgilerini getirir.
         /// </summary>
         /// <returns></returns>
-        Task<IResult> GetAll();
+        Task<IResult> GetAllAsync();
 
         /// <summary>
         /// Tüm aktif ürünlerin bilgilerini getirir.
         /// </summary>
         /// <returns></returns>
-        Task<IResult> GetActive();
+        Task<IResult> GetActiveAsync();
 
         /// <summary>
         /// Tüm pasif ürünlerin bilgilerini getirir.
         /// </summary>
         /// <returns></returns>
-        Task<IResult> GetPassive();
+        Task<IResult> GetPassiveAsync();
     }
 }

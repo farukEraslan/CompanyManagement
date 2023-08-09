@@ -1,8 +1,8 @@
 ﻿namespace CompanyManagement.Entities.Concrete
 {
-    public class SupplierEntity : BaseEntity
+    public class Supplier : AuditableEntity
     {
-        public SupplierEntity()
+        public Supplier()
         {
             SupplierProduct = new List<SupplierProduct>();
         }

@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompanyManagement.DAL.Config
+﻿namespace CompanyManagement.DataAccess.Config
 {
-    public class SupplierConfig : IEntityTypeConfiguration<SupplierEntity>
+    public class SupplierConfig : IEntityTypeConfiguration<Supplier>
     {
-        public void Configure(EntityTypeBuilder<SupplierEntity> builder)
+        public void Configure(EntityTypeBuilder<Supplier> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x=> x.Name).IsRequired().HasMaxLength(256);

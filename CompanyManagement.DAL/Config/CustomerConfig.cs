@@ -1,8 +1,8 @@
-﻿namespace CompanyManagement.DAL.Config
+﻿namespace CompanyManagement.DataAccess.Config
 {
-    public class CustomerConfig : IEntityTypeConfiguration<CustomerEntity>
+    public class CustomerConfig : IEntityTypeConfiguration<Customer>
     {
-        public void Configure(EntityTypeBuilder<CustomerEntity> builder)
+        public void Configure(EntityTypeBuilder<Customer> builder)
         {
             builder.HasKey(x=>x.Id);
             builder.Property(x => x.Name).IsRequired().HasMaxLength(128);

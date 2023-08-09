@@ -8,3 +8,7 @@ global using CompanyManagement.Dtos.CustomerProject;
 global using CompanyManagement.Dtos.Product;
 global using CompanyManagement.Dtos.Project;
 global using CompanyManagement.Dtos.ProjectProduct;
+global using CompanyManagement.Dtos.Supplier;
+global using CompanyManagement.Dtos.SupplierProduct;
+global using CompanyManagement.Dtos.UserDto;
+global using CompanyManagement.Dtos.RoleDto;

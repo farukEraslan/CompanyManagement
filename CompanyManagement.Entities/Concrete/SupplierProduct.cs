@@ -1,6 +1,6 @@
 ﻿namespace CompanyManagement.Entities.Concrete
 {
-    public class SupplierProduct : BaseEntity
+    public class SupplierProduct : AuditableEntity
     {
         public SupplierProduct()
         {
@@ -8,8 +8,8 @@
         }
 
         public Guid ProductId { get; set; }
-        public ProductEntity Product { get; set; }
+        public Product Product { get; set; }
         public Guid SupplierId { get; set; }
-        public SupplierEntity Supplier { get; set; }
+        public Supplier Supplier { get; set; }
     }
 }

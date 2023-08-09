@@ -1,7 +1,4 @@
-﻿using System.Data;
-using System.Reflection;
-
-namespace CompanyManagement.Dtos.Account
+﻿namespace CompanyManagement.Dtos.Account
 {
     public class UserDto
     {
@@ -15,7 +12,7 @@ namespace CompanyManagement.Dtos.Account
         public string? SecondName { get; set; }
         public string LastName { get; set; }
         public string? SecondLastName { get; set; }
-        public Gender Gender { get; set; }
+        //public Gender Gender { get; set; }
         public string Address { get; set; }
         public DateTime BirthDate { get; set; }
         public string BirthLocation { get; set; }
@@ -29,6 +26,6 @@ namespace CompanyManagement.Dtos.Account
         public int? TotalLeaveDay { get; set; }
         public string PersonelMail { get; set; }
         public string? ErrorMessage { get; set; }
-        public Roles Role { get; set; }
+        //public Roles Role { get; set; }
     }
 }

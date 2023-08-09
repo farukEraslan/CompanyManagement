@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompanyManagement.DAL.Config
+﻿namespace CompanyManagement.DataAccess.Config
 {
-    public class ProductConfig : IEntityTypeConfiguration<ProductEntity>
+    public class ProductConfig : IEntityTypeConfiguration<Product>
     {
-        public void Configure(EntityTypeBuilder<ProductEntity> builder)
+        public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.SerialNo).HasMaxLength(256);

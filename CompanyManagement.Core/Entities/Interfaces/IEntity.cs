@@ -1,6 +1,4 @@
-﻿using CompanyManagement.Core.Enums;
-
-namespace CompanyManagement.Core.Entities.Interfaces;
+﻿namespace CompanyManagement.Core.Entities.Interfaces;
 
 public interface IEntity
 {

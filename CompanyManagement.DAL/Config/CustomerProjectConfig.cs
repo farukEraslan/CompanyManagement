@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompanyManagement.DAL.Config
+﻿namespace CompanyManagement.DataAccess.Config
 {
     public class CustomerProjectConfig : IEntityTypeConfiguration<CustomerProject>
     {

@@ -1,4 +1,4 @@
-﻿namespace CompanyManagement.BL.Helper
+﻿namespace CompanyManagement.Business.Helper
 {
     public class Helper
     {

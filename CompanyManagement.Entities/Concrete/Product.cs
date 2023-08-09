@@ -1,8 +1,8 @@
 ﻿namespace CompanyManagement.Entities.Concrete
 {
-    public class ProductEntity : BaseEntity
+    public class Product : AuditableEntity
     {
-        public ProductEntity()
+        public Product()
         {
             ProjectProduct = new List<ProjectProduct>();
             SupplierProduct = new List<SupplierProduct>();

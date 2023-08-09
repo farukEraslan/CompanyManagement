@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CompanyManagement.DAL\CompanyManagement.DAL.csproj" />
+    <ProjectReference Include="..\CompanyManagement.DAL\CompanyManagement.DataAccess.csproj" />
     <ProjectReference Include="..\CompanyManagement.Entities\CompanyManagement.Entities.csproj" />
   </ItemGroup>
 

@@ -13,7 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CompanyManagement.BL\CompanyManagement.BL.csproj" />
+    <ProjectReference Include="..\CompanyManagement.BL\CompanyManagement.Business.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Abstract\" />
   </ItemGroup>
 
 </Project>

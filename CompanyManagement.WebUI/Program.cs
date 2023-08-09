@@ -1,7 +1,6 @@
-using CompanyManagement.DAL.Context;
+using CompanyManagement.DataAccess.Context;
 using CompanyManagement.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 
 namespace CompanyManagement.WebUI
 {
