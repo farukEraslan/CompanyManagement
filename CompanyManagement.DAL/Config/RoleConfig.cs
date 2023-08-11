@@ -6,12 +6,14 @@
         {
             builder.HasData(new RoleEntity
             {
+                Id = Guid.NewGuid(),
                 Name = "Admin",
                 NormalizedName = "ADMIN"
             });
 
             builder.HasData(new RoleEntity
             {
+                Id = Guid.NewGuid(),
                 Name = "Operator",
                 NormalizedName = "OPERATOR"
             });

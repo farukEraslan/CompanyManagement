@@ -1,6 +1,6 @@
 ﻿namespace CompanyManagement.DataAccess.Config
 {
-    public class SupplierConfig : IEntityTypeConfiguration<Supplier>
+    public class SupplierConfig : AuditableEntityTypeConfiguration<Supplier>
     {
         public void Configure(EntityTypeBuilder<Supplier> builder)
         {

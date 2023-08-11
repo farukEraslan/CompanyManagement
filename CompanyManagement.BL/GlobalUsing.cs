@@ -12,3 +12,4 @@ global using CompanyManagement.Dtos.Supplier;
 global using CompanyManagement.Dtos.SupplierProduct;
 global using CompanyManagement.Dtos.UserDto;
 global using CompanyManagement.Dtos.RoleDto;
+global using CompanyManagement.Business.Abstract;

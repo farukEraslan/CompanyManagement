@@ -1,7 +1,3 @@
-using CompanyManagement.DataAccess.Context;
-using CompanyManagement.Entities.Concrete;
-using Microsoft.EntityFrameworkCore;
-
 namespace CompanyManagement.WebUI
 {
     public class Program

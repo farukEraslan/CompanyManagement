@@ -1,6 +1,8 @@
-﻿namespace CompanyManagement.DataAccess.Config
+﻿using CompanyManagement.Core.Entities.EntityTypeConfigurations;
+
+namespace CompanyManagement.DataAccess.Config
 {
-    public class CustomerConfig : IEntityTypeConfiguration<Customer>
+    public class CustomerConfig : AuditableEntityTypeConfiguration<Customer>
     {
         public void Configure(EntityTypeBuilder<Customer> builder)
         {

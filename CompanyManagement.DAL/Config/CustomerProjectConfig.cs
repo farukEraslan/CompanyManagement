@@ -1,6 +1,6 @@
 ﻿namespace CompanyManagement.DataAccess.Config
 {
-    public class CustomerProjectConfig : IEntityTypeConfiguration<CustomerProject>
+    public class CustomerProjectConfig : AuditableEntityTypeConfiguration<CustomerProject>
     {
         public void Configure(EntityTypeBuilder<CustomerProject> builder)
         {

@@ -15,9 +15,9 @@
         public double? Height { get; set; }
         public double? Width { get; set; }
         public double? Lenght { get; set; }
-        public float Quantity { get; set; }
+        public double Quantity { get; set; }
         public string QuantityUnit { get; set; }
-        public float? EstWeight { get; set; }
+        public double? EstWeight { get; set; }
         public string? WeightUnit { get; set; }
         public DateTime? ExpiryDate { get; set; }
         public string? QualityGrade { get; set; }

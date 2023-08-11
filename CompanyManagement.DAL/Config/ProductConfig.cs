@@ -1,10 +1,9 @@
 ﻿namespace CompanyManagement.DataAccess.Config
 {
-    public class ProductConfig : IEntityTypeConfiguration<Product>
+    public class ProductConfig : AuditableEntityTypeConfiguration<Product>
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.HasKey(x => x.Id);
             builder.Property(x => x.SerialNo).HasMaxLength(256);
             builder.Property(x => x.Name).IsRequired().HasMaxLength(256);
             builder.Property(x => x.Description).IsRequired().HasMaxLength(1024);
@@ -20,11 +19,6 @@
             builder.Property(x => x.QualityGrade);
             builder.Property(x => x.LastBoughtPrice);
             builder.Property(x => x.UnitPrice);
-            builder.Property(x => x.CreatedBy);
-            builder.Property(x => x.CreatedDate);
-            builder.Property(x => x.ModifiedBy);
-            builder.Property(x => x.ModifiedDate);
-
         }
     }
 }
