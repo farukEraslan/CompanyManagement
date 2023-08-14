@@ -1,6 +1,6 @@
 ﻿namespace CompanyManagement.DataAccess.Context
 {
-    public class CompanyManagementContext : IdentityDbContext<UserEntity, RoleEntity, Guid>
+    public class CompanyManagementDbContext : IdentityDbContext<UserEntity, RoleEntity, Guid>
     {
         //public CompanyManagementContext(DbContextOptions<CompanyManagementContext> options) : base(options)
         //{

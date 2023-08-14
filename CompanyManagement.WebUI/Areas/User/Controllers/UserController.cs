@@ -1,11 +1,4 @@
-﻿using AutoMapper;
-using CompanyManagement.Business.Helper;
-using CompanyManagement.Dtos.Account;
-using CompanyManagement.Entities.Concrete;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-
-namespace CompanyManagement.WebUI.Areas.User.Controllers
+﻿namespace CompanyManagement.WebUI.Areas.User.Controllers
 {
     [Area("User")]
     public class UserController : Controller
@@ -43,7 +36,7 @@ namespace CompanyManagement.WebUI.Areas.User.Controllers
 
                 if (result.Succeeded)
                 {
-                    Helper.SendEmail(newUser.FirstName, newUser.LastName, newUser.Email, newUser.PersonelMail);
+                    EmailSenderHelper.SendEmail(newUser.FirstName, newUser.LastName, newUser.Email, newUser.PersonelMail);
                     //_userManager.AddToRoleAsync(newUser, user.Role.ToString());
 
                     ModelState.AddModelError(nameof(UserDto.ErrorMessage), "Personel başarılı bir şekilde eklendi.");

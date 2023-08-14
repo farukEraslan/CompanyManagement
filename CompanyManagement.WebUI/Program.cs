@@ -1,3 +1,5 @@
+using System.Configuration;
+
 namespace CompanyManagement.WebUI
 {
     public class Program
@@ -9,7 +11,7 @@ namespace CompanyManagement.WebUI
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddDbContext<CompanyManagementContext>( options =>
+            builder.Services.AddDbContext<CompanyManagementDbContext>( options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Db"));
             });
@@ -18,7 +20,7 @@ namespace CompanyManagement.WebUI
             builder.Services.AddDefaultIdentity<UserEntity>(options =>
             {
 
-            }).AddRoles<RoleEntity>().AddEntityFrameworkStores<CompanyManagementContext>();
+            }).AddRoles<RoleEntity>().AddEntityFrameworkStores<CompanyManagementDbContext>();
 
             // Login 
             builder.Services.ConfigureApplicationCookie(config =>
