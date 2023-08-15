@@ -2,10 +2,10 @@
 {
     public class CompanyManagementDbContext : IdentityDbContext<UserEntity, RoleEntity, Guid>
     {
-        //public CompanyManagementContext(DbContextOptions<CompanyManagementContext> options) : base(options)
-        //{
+        public CompanyManagementDbContext(DbContextOptions<CompanyManagementDbContext> options) : base(options)
+        {
 
-        //}
+        }
 
         private readonly DbSet<Customer> Customers;
         private readonly DbSet<CustomerProject> CustomerProjects;

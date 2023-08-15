@@ -40,7 +40,7 @@
                         <span class="nav-link-text ms-1">Anasayfa</span>
                     </a>
                 </li>
-                @{
+                @*@{
                     var user = await UserManager.GetUserAsync(User);
                     var userRole = await UserManager.IsInRoleAsync(user, "admin");
 
@@ -53,7 +53,7 @@
                             </a>
                         </li>
                     }
-                }
+                }*@
             </ul>
         </div>
     </aside>
