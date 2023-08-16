@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CompanyManagement.Entities.Enums
+namespace CompanyManagement.Core.Enums
 {
     public enum FileCategory
     {
