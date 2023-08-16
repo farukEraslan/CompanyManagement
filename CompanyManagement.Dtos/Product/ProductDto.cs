@@ -1,6 +1,12 @@
-﻿namespace CompanyManagement.Dtos.Product
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CompanyManagement.Dtos.Product
 {
-    public class ProductUpdateDto
+    public class ProductDto
     {
         public string? SerialNo { get; set; }
         public string Name { get; set; }

@@ -16,4 +16,8 @@
     <Folder Include="Abstract\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CompanyManagement.Core\CompanyManagement.Core.csproj" />
+  </ItemGroup>
+
 </Project>

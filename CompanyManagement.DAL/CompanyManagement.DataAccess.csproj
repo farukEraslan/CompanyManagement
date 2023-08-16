@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CompanyManagement.Core\CompanyManagement.Core.csproj" />
     <ProjectReference Include="..\CompanyManagement.Entities\CompanyManagement.Entities.csproj" />
   </ItemGroup>
 

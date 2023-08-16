@@ -11,3 +11,5 @@ global using CompanyManagement.Dtos.UserDto;
 global using CompanyManagement.Dtos.RoleDto;
 global using CompanyManagement.Business.Abstract;
 global using CompanyManagement.Entities.Concrete;
+global using CompanyManagement.DataAccess.Interfaces;
+global using CompanyManagement.Core.Enums;

@@ -1,51 +1,71 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompanyManagement.Business.Concrete
+﻿namespace CompanyManagement.Business.Concrete
 {
     public class CustomerManager : ICustomerService
     {
-        public CustomerManager()
+        private readonly IMapper _mapper;
+        private readonly ICustomerRepository _customerRepository;
+
+        public CustomerManager(IMapper mapper, ICustomerRepository customerRepository)
         {
-            
+            _mapper = mapper;
+            _customerRepository = customerRepository;
         }
 
-        public Task<IResult> CreateAsync(CustomerCreateDto customerCreateDto)
+        public async Task<IResult> CreateAsync(CustomerCreateDto customerCreateDto)
         {
-            throw new NotImplementedException();
+            bool hasCustomer = await _customerRepository.AnyAsync(x=>x.Name.ToLower() == customerCreateDto.Name.ToLower());
+            if (hasCustomer)
+            {
+                return new ErrorDataResult<CustomerDto>("Müşteri zaten var.");
+            }
+            var newCustomer = await _customerRepository.AddAsync(_mapper.Map<Customer>(customerCreateDto));
+            await _customerRepository.SaveChangesAsync();
+            return new SuccessResult("Müşteri başarı ile eklendi.");
         }
 
-        public Task<IResult> DeleteAsync(Guid customerId)
+        public async Task<IResult> UpdateAsync(CustomerUpdateDto customerUpdateDto)
         {
-            throw new NotImplementedException();
+            var customer = await _customerRepository.GetByIdAsync(customerUpdateDto.Id);
+            if (customer == null)
+            {
+                return new ErrorResult("Müşteri bulunamadı.");
+            }
+            var updatedCustomer = await _customerRepository.UpdateAsync(_mapper.Map(customerUpdateDto, customer));
+            await _customerRepository.SaveChangesAsync();
+            return new SuccessResult("Müşteri başarı ile güncellendi.");
         }
 
-        public Task<IResult> GetActiveAsync()
+        public async Task<IResult> DeleteAsync(Guid customerId)
         {
-            throw new NotImplementedException();
+            var customer = await _customerRepository.GetByIdAsync(customerId);
+            await _customerRepository.DeleteAsync(customer);
+            await _customerRepository.SaveChangesAsync();
+            return new SuccessResult("Müşteri başarı ile silindi.");
         }
 
-        public Task<IResult> GetAllAsync()
+        public async Task<IResult> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var customers = await _customerRepository.GetAllAsync();
+            return new SuccessDataResult<CustomerDto>(_mapper.Map<CustomerDto>(customers), "Müşteriler başarı ile listelendi.");
         }
 
-        public Task<IResult> GetByIdAsync(Guid customerId)
+        public async Task<IResult> GetActiveAsync()
         {
-            throw new NotImplementedException();
+            var activeCustomers = await _customerRepository.GetAllAsync(x=>x.Status == Status.Deleted!);
+            return new SuccessDataResult<CustomerDto>(_mapper.Map<CustomerDto>(activeCustomers), "Aktif müşteriler başarı ile listelendi.");
         }
 
-        public Task<IResult> GetPassiveAsync()
+        public async Task<IResult> GetPassiveAsync()
         {
-            throw new NotImplementedException();
+            var activeCustomers = await _customerRepository.GetAllAsync(x => x.Status == Status.Deleted);
+            return new SuccessDataResult<CustomerDto>(_mapper.Map<CustomerDto>(activeCustomers), "Pasif müşteriler başarı ile listelendi.");
         }
 
-        public Task<IResult> UpdateAsync(CustomerUpdateDto customerUpdateDto)
+        public async Task<IResult> GetByIdAsync(Guid customerId)
         {
-            throw new NotImplementedException();
-        }
+            var customer = await _customerRepository.GetByIdAsync(customerId);
+            return new SuccessDataResult<CustomerDto>(_mapper.Map<CustomerDto>(customer), "Müşteri başarı ile listelendi.");
+        }     
+
     }
 }

@@ -4,10 +4,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyManagement.DataAccess", "CompanyManagement.DAL\CompanyManagement.DataAccess.csproj", "{F50BF3A1-9224-4F4F-8450-552420773032}"
+	ProjectSection(ProjectDependencies) = postProject
+		{306287EE-F36E-4ABE-B6F0-9A8E89382EA6} = {306287EE-F36E-4ABE-B6F0-9A8E89382EA6}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyManagement.Business", "CompanyManagement.BL\CompanyManagement.Business.csproj", "{2B41C0F2-ACE7-45AD-A241-EF2DCDEEFD40}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyManagement.WebUI", "CompanyManagement.WebUI\CompanyManagement.WebUI.csproj", "{53BDA0BB-D320-44FE-B151-C9316AC80165}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2B41C0F2-ACE7-45AD-A241-EF2DCDEEFD40} = {2B41C0F2-ACE7-45AD-A241-EF2DCDEEFD40}
+		{306287EE-F36E-4ABE-B6F0-9A8E89382EA6} = {306287EE-F36E-4ABE-B6F0-9A8E89382EA6}
+		{6B57B767-33EB-4BC8-BF04-5D93B484163C} = {6B57B767-33EB-4BC8-BF04-5D93B484163C}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyManagement.Entities", "CompanyManagement.Entities\CompanyManagement.Entities.csproj", "{625B8A8C-F082-4653-9B4F-9D05BFB4E174}"
 EndProject
