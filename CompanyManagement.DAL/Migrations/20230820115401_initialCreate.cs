@@ -35,7 +35,6 @@ namespace CompanyManagement.DataAccess.Migrations
                     BirthDate = table.Column<DateTime>(type: "datetime2", maxLength: 255, nullable: false),
                     ImageURL = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     IsActıve = table.Column<bool>(type: "bit", maxLength: 255, nullable: false),
-                    PersonelMail = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -370,12 +369,12 @@ namespace CompanyManagement.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("6ce35fb9-578f-47a0-ab17-c167fbdb1bb8"), "9f675b89-028e-4c0b-919a-96d7d7be7ae2", "Operator", "OPERATOR" });
+                values: new object[] { new Guid("bd3f8bb0-f3da-4c0a-a9bd-ea332084fe85"), "677909c7-9071-48f9-8df3-73d54631c6e9", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("c42fc736-40c9-4406-9c18-da56b3c1c36d"), "3aa4fad5-27ec-4457-8517-68c118441257", "Admin", "ADMIN" });
+                values: new object[] { new Guid("f0a94af7-f453-4222-81aa-13da9b223fe5"), "f515412b-ba6d-4f62-9eb6-9f1833362e27", "Operator", "OPERATOR" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

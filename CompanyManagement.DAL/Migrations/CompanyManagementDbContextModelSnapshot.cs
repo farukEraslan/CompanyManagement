@@ -352,15 +352,15 @@ namespace CompanyManagement.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c42fc736-40c9-4406-9c18-da56b3c1c36d"),
-                            ConcurrencyStamp = "3aa4fad5-27ec-4457-8517-68c118441257",
+                            Id = new Guid("bd3f8bb0-f3da-4c0a-a9bd-ea332084fe85"),
+                            ConcurrencyStamp = "677909c7-9071-48f9-8df3-73d54631c6e9",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("6ce35fb9-578f-47a0-ab17-c167fbdb1bb8"),
-                            ConcurrencyStamp = "9f675b89-028e-4c0b-919a-96d7d7be7ae2",
+                            Id = new Guid("f0a94af7-f453-4222-81aa-13da9b223fe5"),
+                            ConcurrencyStamp = "f515412b-ba6d-4f62-9eb6-9f1833362e27",
                             Name = "Operator",
                             NormalizedName = "OPERATOR"
                         });
@@ -544,11 +544,6 @@ namespace CompanyManagement.DataAccess.Migrations
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PersonelMail")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");

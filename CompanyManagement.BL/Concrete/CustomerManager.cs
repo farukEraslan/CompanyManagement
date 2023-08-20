@@ -16,7 +16,7 @@
             bool hasCustomer = await _customerRepository.AnyAsync(x=>x.Name.ToLower() == customerCreateDto.Name.ToLower());
             if (hasCustomer)
             {
-                return new ErrorDataResult<CustomerDto>("Müşteri zaten var.");
+                return new ErrorResult("Müşteri zaten var.");
             }
             var newCustomer = await _customerRepository.AddAsync(_mapper.Map<Customer>(customerCreateDto));
             await _customerRepository.SaveChangesAsync();
@@ -43,6 +43,12 @@
             return new SuccessResult("Müşteri başarı ile silindi.");
         }
 
+        public async Task<IResult> GetByIdAsync(Guid customerId)
+        {
+            var customer = await _customerRepository.GetByIdAsync(customerId);
+            return new SuccessDataResult<CustomerDto>(_mapper.Map<CustomerDto>(customer), "Müşteri başarı ile listelendi.");
+        }
+
         public async Task<IResult> GetAllAsync()
         {
             var customers = await _customerRepository.GetAllAsync();
@@ -59,13 +65,7 @@
         {
             var activeCustomers = await _customerRepository.GetAllAsync(x => x.Status == Status.Deleted);
             return new SuccessDataResult<CustomerDto>(_mapper.Map<CustomerDto>(activeCustomers), "Pasif müşteriler başarı ile listelendi.");
-        }
-
-        public async Task<IResult> GetByIdAsync(Guid customerId)
-        {
-            var customer = await _customerRepository.GetByIdAsync(customerId);
-            return new SuccessDataResult<CustomerDto>(_mapper.Map<CustomerDto>(customer), "Müşteri başarı ile listelendi.");
-        }     
+        }             
 
     }
 }

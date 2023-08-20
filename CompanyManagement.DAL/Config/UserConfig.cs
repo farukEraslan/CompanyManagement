@@ -12,7 +12,6 @@
             builder.Property(x => x.BirthDate).HasMaxLength(255);
             builder.Property(x => x.ImageURL).HasMaxLength(255);
             builder.Property(x => x.IsActıve).HasMaxLength(255);
-            builder.Property(x => x.PersonelMail).HasMaxLength(500);
         }
     }
 }

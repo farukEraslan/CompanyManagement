@@ -16,6 +16,9 @@
             CreateMap<ProjectProductUpdateDto, ProjectProduct>().ReverseMap();
             CreateMap<SupplierCreateDto, Supplier>().ReverseMap();
             CreateMap<SupplierUpdateDto, Supplier>().ReverseMap();
+            CreateMap<UserCreateDto, UserEntity>().ReverseMap();
+            CreateMap<UserUpdateDto, UserEntity>().ReverseMap();
+            CreateMap<UserDto, UserEntity>().ReverseMap();
         }
     }
 }

@@ -13,3 +13,4 @@ global using CompanyManagement.Business.Abstract;
 global using CompanyManagement.Entities.Concrete;
 global using CompanyManagement.DataAccess.Interfaces;
 global using CompanyManagement.Core.Enums;
+global using Microsoft.Extensions.DependencyInjection;

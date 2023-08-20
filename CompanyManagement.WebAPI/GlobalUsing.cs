@@ -1,0 +1,9 @@
+﻿global using CompanyManagement.Business.Abstract;
+global using CompanyManagement.Dtos.Customer;
+global using Microsoft.AspNetCore.Mvc;
+global using CompanyManagement.Business.Extensions;
+global using CompanyManagement.DataAccess.Context;
+global using CompanyManagement.DataAccess.Extensions;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Identity.Web;

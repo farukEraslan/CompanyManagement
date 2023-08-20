@@ -1,91 +1,93 @@
-﻿namespace CompanyManagement.WebUI.Areas.User.Controllers
-{
-    [Area("User")]
-    public class UserController : Controller
-    {
-        private readonly UserManager<UserEntity> _userManager;
-        private readonly SignInManager<UserEntity> _signInManager;
-        private readonly IMapper _mapper;
+﻿//using CompanyManagement.Dtos.UserDto;
 
-        public UserController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, IMapper mapper)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _mapper = mapper;
-        }
+//namespace CompanyManagement.WebUI.Areas.User.Controllers
+//{
+//    [Area("User")]
+//    public class UserController : Controller
+//    {
+//        private readonly UserManager<UserEntity> _userManager;
+//        private readonly SignInManager<UserEntity> _signInManager;
+//        private readonly IMapper _mapper;
 
-        [HttpGet("{area}/Register")]
-        public async Task<IActionResult> Register()
-        {
-            return View();
-        }
+//        public UserController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, IMapper mapper)
+//        {
+//            _userManager = userManager;
+//            _signInManager = signInManager;
+//            _mapper = mapper;
+//        }
 
-        [HttpPost("{area}/Register")]
-        public async Task<IActionResult> Register(UserDto user)
-        {
-            if (ModelState.IsValid)
-            {
-                var newUser = new UserEntity();
-                newUser = _mapper.Map<UserEntity>(user);
-                Random rnd = new Random();
-                newUser.Email = $"{user.FirstName.ToLower()}{user.LastName.ToLower()}{rnd.Next(0, 10000)}@company.com";
-                newUser.UserName = newUser.Email;
-                newUser.ImageURL = "~/Uploads/defaultImage.png";
+//        [HttpGet("{area}/Register")]
+//        public async Task<IActionResult> Register()
+//        {
+//            return View();
+//        }
 
-                var result = await _userManager.CreateAsync(newUser, user.Password);
+//        [HttpPost("{area}/Register")]
+//        public async Task<IActionResult> Register(UserDto user)
+//        {
+//            if (ModelState.IsValid)
+//            {
+//                var newUser = new UserEntity();
+//                newUser = _mapper.Map<UserEntity>(user);
+//                Random rnd = new Random();
+//                newUser.Email = $"{user.FirstName.ToLower()}{user.LastName.ToLower()}{rnd.Next(0, 10000)}@company.com";
+//                newUser.UserName = newUser.Email;
+//                newUser.ImageURL = "~/Uploads/defaultImage.png";
 
-                if (result.Succeeded)
-                {
-                    EmailSenderHelper.SendEmail(newUser.FirstName, newUser.LastName, newUser.Email, newUser.PersonelMail);
-                    //_userManager.AddToRoleAsync(newUser, user.Role.ToString());
+//                var result = await _userManager.CreateAsync(newUser, user.Password);
 
-                    ModelState.AddModelError(nameof(UserDto.ErrorMessage), "Personel başarılı bir şekilde eklendi.");
-                }
-                else if (!result.Succeeded)
-                {
-                    ModelState.AddModelError(nameof(UserDto.ErrorMessage), "Personel eklenirken bir hata oluştu.");
-                }
-            }
-            return View();
-        }
+//                if (result.Succeeded)
+//                {
+//                    EmailSenderHelper.SendEmail(newUser.FirstName, newUser.LastName, newUser.Email, newUser.PersonelMail);
+//                    //_userManager.AddToRoleAsync(newUser, user.Role.ToString());
 
-        [HttpGet("{area}/Login")]
-        public IActionResult Login()
-        {
-            return View();
-        }
+//                    ModelState.AddModelError(nameof(UserDto.ErrorMessage), "Personel başarılı bir şekilde eklendi.");
+//                }
+//                else if (!result.Succeeded)
+//                {
+//                    ModelState.AddModelError(nameof(UserDto.ErrorMessage), "Personel eklenirken bir hata oluştu.");
+//                }
+//            }
+//            return View();
+//        }
 
-        [HttpPost("{area}/Login")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginDto login)
-        {
-            if (ModelState.IsValid)
-            {
-                var result = await _signInManager.PasswordSignInAsync(login.Email, login.Password, login.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
-                {
-                    return RedirectToAction("Index", "Home", new { area = "" });
-                }
-                else
-                {
-                    ModelState.AddModelError(nameof(LoginDto.ErrorMessage), "Email veya şifre hatalı. Lütfen kontrol ediniz.");
-                    return View(login);
-                }
-            }
+//        [HttpGet("{area}/Login")]
+//        public IActionResult Login()
+//        {
+//            return View();
+//        }
 
-            return View();
-        }
+//        [HttpPost("{area}/Login")]
+//        [ValidateAntiForgeryToken]
+//        public async Task<IActionResult> Login(LoginDto login)
+//        {
+//            if (ModelState.IsValid)
+//            {
+//                var result = await _signInManager.PasswordSignInAsync(login.Email, login.Password, login.RememberMe, lockoutOnFailure: false);
+//                if (result.Succeeded)
+//                {
+//                    return RedirectToAction("Index", "Home", new { area = "" });
+//                }
+//                else
+//                {
+//                    ModelState.AddModelError(nameof(LoginDto.ErrorMessage), "Email veya şifre hatalı. Lütfen kontrol ediniz.");
+//                    return View(login);
+//                }
+//            }
 
-        public async Task<IActionResult> Logout()
-        {
-            await _signInManager.SignOutAsync();
-            return RedirectToAction("Login", "User", new { area = "User" });
-        }
+//            return View();
+//        }
 
-        public IActionResult AccessDenied()
-        { 
-            return View(); 
-        }
+//        public async Task<IActionResult> Logout()
+//        {
+//            await _signInManager.SignOutAsync();
+//            return RedirectToAction("Login", "User", new { area = "User" });
+//        }
 
-    }
-}
+//        public IActionResult AccessDenied()
+//        { 
+//            return View(); 
+//        }
+
+//    }
+//}
