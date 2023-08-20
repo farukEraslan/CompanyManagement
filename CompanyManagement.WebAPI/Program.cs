@@ -35,6 +35,16 @@ namespace CompanyManagement.WebAPI
 
             }).AddRoles<RoleEntity>().AddEntityFrameworkStores<CompanyManagementDbContext>();
 
+            // Login 
+            builder.Services.ConfigureApplicationCookie(config =>
+            {
+                //Login Path
+                config.LoginPath = new PathString("/api/Account/Login");
+                config.AccessDeniedPath = new PathString("/api/Account/AccesDenied");
+                config.Cookie.HttpOnly = true;
+                config.SlidingExpiration = true;
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

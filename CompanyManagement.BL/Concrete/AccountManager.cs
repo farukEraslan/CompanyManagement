@@ -60,7 +60,8 @@ namespace CompanyManagement.Business.Concrete
 
         public async Task<IResult> GetActiveAsync()
         {
-            throw new NotImplementedException();
+            var users = _userManager.Users.GroupBy(x => x.IsActıve == true).ToList();
+            return null;
         }       
 
         public Task<IResult> GetPassiveAsync()

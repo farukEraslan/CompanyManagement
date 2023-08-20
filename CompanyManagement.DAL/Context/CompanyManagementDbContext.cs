@@ -1,10 +1,18 @@
-﻿namespace CompanyManagement.DataAccess.Context
+﻿using CompanyManagement.Core.Entities.Base;
+using CompanyManagement.Core.Enums;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Security.Claims;
+
+namespace CompanyManagement.DataAccess.Context
 {
     public class CompanyManagementDbContext : IdentityDbContext<UserEntity, RoleEntity, Guid>
     {
-        public CompanyManagementDbContext(DbContextOptions<CompanyManagementDbContext> options) : base(options)
-        {
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
+        public CompanyManagementDbContext(DbContextOptions<CompanyManagementDbContext> options, IHttpContextAccessor httpContextAccessor) : base(options)
+        {
+            _httpContextAccessor = httpContextAccessor;
         }
 
         private readonly DbSet<Customer> Customers;
@@ -32,6 +40,75 @@
             //builder.ApplyConfiguration(new SupplierConfig());
             //builder.ApplyConfiguration(new SupplierProductConfig());
             base.OnModelCreating(builder);
+        }
+
+        public override int SaveChanges()
+        {
+            SetBaseProperties();
+            return base.SaveChanges();
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            SetBaseProperties();
+            return base.SaveChangesAsync(cancellationToken);
+        }
+
+        private void SetBaseProperties()
+        {
+            var entries = ChangeTracker.Entries<BaseEntity>();
+
+            var user = _httpContextAccessor.HttpContext!.User;
+            var userId = user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            foreach (var entry in entries)
+            {
+                SetIfAdded(entry, userId);
+                SetIfModified(entry, userId);
+                SetIfDeleted(entry, userId);
+            }
+        }
+
+        private void SetIfDeleted(EntityEntry<BaseEntity> entry, string userId)
+        {
+            if (entry.State is not EntityState.Deleted)
+            {
+                return;
+            }
+
+            if (entry.Entity is not AuditableEntity entity)
+            {
+                return;
+            }
+
+            entry.State = EntityState.Modified;
+
+            entity.Status = Status.Deleted;
+            entity.DeletedDate = DateTime.Now;
+            entity.DeletedBy = userId;
+        }
+
+        private void SetIfModified(EntityEntry<BaseEntity> entry, string userId)
+        {
+            if (entry.State == EntityState.Modified)
+            {
+                entry.Entity.Status = Status.Modified;
+            }
+
+            entry.Entity.ModifiedBy = userId;
+            entry.Entity.ModifiedDate = DateTime.Now;
+        }
+
+        private void SetIfAdded(EntityEntry<BaseEntity> entry, string userId)
+        {
+            if (entry.State != EntityState.Added)
+            {
+                return;
+            }
+
+            entry.Entity.Status = Status.Added;
+            entry.Entity.CreatedBy = userId;
+            entry.Entity.CreatedDate = DateTime.Now;
         }
     }
 }

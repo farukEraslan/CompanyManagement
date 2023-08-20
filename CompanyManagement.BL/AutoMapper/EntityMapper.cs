@@ -1,4 +1,6 @@
-﻿namespace CompanyManagement.Business.AutoMapper
+﻿using CompanyManagement.Dtos.Account;
+
+namespace CompanyManagement.Business.AutoMapper
 {
     public class EntityMapper : Profile
     {
@@ -19,6 +21,7 @@
             CreateMap<UserCreateDto, UserEntity>().ReverseMap();
             CreateMap<UserUpdateDto, UserEntity>().ReverseMap();
             CreateMap<UserDto, UserEntity>().ReverseMap();
+            CreateMap<LoginDto, UserEntity>().ReverseMap();
         }
     }
 }

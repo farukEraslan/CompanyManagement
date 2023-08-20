@@ -26,8 +26,8 @@ namespace CompanyManagement.WebAPI.Areas.User.Controllers
             {
                 return BadRequest("Kullanıcı zaten var.");
             }
-            var result = _userManager.CreateAsync(_mapper.Map<UserEntity>(userCreateDto), userCreateDto.Password);
-            return result.IsCompletedSuccessfully == true ? Ok(result.ToString()) : BadRequest(result.ToString());
+            var result = await _userManager.CreateAsync(_mapper.Map<UserEntity>(userCreateDto), userCreateDto.Password);
+            return result.Succeeded == true ? Ok(result) : BadRequest(result);
         }
     }
 }
