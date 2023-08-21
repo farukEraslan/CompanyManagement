@@ -23,41 +23,55 @@ namespace CompanyManagement.Business.Concrete
             bool hasProduct = await _productRepository.AnyAsync(x => x.Name.ToLower() == productCreateDto.Name.ToLower());
             if (hasProduct)
             {
-                return new ErrorDataResult<ProductDto>("Ürün zaten var.");
+                return new ErrorResult("Ürün zaten var.");
             }
             var newProduct = await _productRepository.AddAsync(_mapper.Map<Product>(productCreateDto));
             await _productRepository.SaveChangesAsync();
             return new SuccessResult("Ürün başarı ile eklendi.");
         }
 
-        public Task<IResult> DeleteAsync(Guid productId)
+        public async Task<IResult> UpdateAsync(ProductUpdateDto productUpdateDto)
         {
-            throw new NotImplementedException();
+            var product = await _productRepository.GetByIdAsync(productUpdateDto.Id);
+            if (product == null)
+            {
+                return new ErrorResult("Ürün bulunamadı.");
+            }
+            var updatedProduct = await _productRepository.UpdateAsync(_mapper.Map(productUpdateDto, product));
+            await _productRepository.SaveChangesAsync();
+            return new SuccessResult("Ürün başarı ile güncellendi.");
         }
 
-        public Task<IResult> GetActiveAsync()
+        public async Task<IResult> DeleteAsync(Guid productId)
         {
-            throw new NotImplementedException();
+            var product = await _productRepository.GetByIdAsync(productId);
+            await _productRepository.DeleteAsync(product);
+            await _productRepository.SaveChangesAsync();
+            return new SuccessResult("Ürün başarı ile silindi.");
         }
 
-        public Task<IResult> GetAllAsync()
+        public async Task<IResult> GetByIdAsync(Guid productId)
         {
-            throw new NotImplementedException();
+            var product = await _productRepository.GetByIdAsync(productId);
+            return new SuccessDataResult<ProductDto>(_mapper.Map<ProductDto>(product), "Ürün başarı ile listelendi.");
         }
 
-        public Task<IResult> GetByIdAsync(Guid productId)
+        public async Task<IResult> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var products = await _productRepository.GetAllAsync();
+            return new SuccessDataResult<List<ProductDto>>(_mapper.Map<List<ProductDto>>(products), "Ürünler başarı ile listelendi.");
         }
 
-        public Task<IResult> GetPassiveAsync()
+        public async Task<IResult> GetActiveAsync()
         {
-            throw new NotImplementedException();
+            var activeProducts = await _productRepository.GetAllAsync();
+            return new SuccessDataResult<List<ProductDto>>(_mapper.Map<List<ProductDto>>(activeProducts), "Aktif ürünler başarı ile listelendi.");
         }
 
-        public Task<IResult> UpdateAsync(ProductUpdateDto productUpdateDto)
+        public async Task<IResult> GetPassiveAsync()
         {
-            throw new NotImplementedException();
+            var passiveProducts = await _productRepository.GetAllDeletedAsync();
+            return new SuccessDataResult<List<ProductDto>>(_mapper.Map<List<ProductDto>>(passiveProducts), "Pasif ürünler başarı ile listelendi.");
         }
     }
 }

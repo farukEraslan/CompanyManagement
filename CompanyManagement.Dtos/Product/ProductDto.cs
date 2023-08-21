@@ -8,6 +8,7 @@ namespace CompanyManagement.Dtos.Product
 {
     public class ProductDto
     {
+        public Guid Id { get; set; }
         public string? SerialNo { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -23,7 +24,5 @@ namespace CompanyManagement.Dtos.Product
         public string? QualityGrade { get; set; }
         public decimal? LastBoughtPrice { get; set; }
         public decimal? UnitPrice { get; set; }
-        public Guid ProjectProductId { get; set; }
-        public Guid SupplierProductId { get; set; }
     }
 }

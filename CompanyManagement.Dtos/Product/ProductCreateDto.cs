@@ -17,7 +17,5 @@
         public string? QualityGrade { get; set; }
         public decimal? LastBoughtPrice { get; set; }
         public decimal? UnitPrice { get; set; }
-        public Guid ProjectProductId { get; set; }
-        public Guid SupplierProductId { get; set; }
     }
 }
