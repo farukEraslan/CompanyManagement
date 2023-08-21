@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-
-namespace CompanyManagement.Business.Concrete
+﻿namespace CompanyManagement.Business.Concrete
 {
     public class AccountManager
     {
