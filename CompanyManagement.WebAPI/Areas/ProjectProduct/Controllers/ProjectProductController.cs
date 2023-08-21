@@ -2,14 +2,12 @@
 {
     public class ProjectProductController : Controller
     {
-        private readonly IMapper _mapper;
         private readonly IProjectProductService _projectProductService;
         private readonly IProjectService _projectService;
         private readonly IProductService _productService;
 
-        public ProjectProductController(IMapper mapper, IProjectProductService projectProductService, IProjectService projectService, IProductService productService)
+        public ProjectProductController(IProjectProductService projectProductService, IProjectService projectService, IProductService productService)
         {
-            _mapper = mapper;
             _projectProductService = projectProductService;
             _projectService = projectService;
             _productService = productService;

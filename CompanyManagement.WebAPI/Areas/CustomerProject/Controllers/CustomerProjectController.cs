@@ -2,14 +2,12 @@
 {
     [Area("CustomerProject")]
     [ApiController]
-    public class CustomerProjectProjectController : Controller
+    public class CustomerProjectController : Controller
     {
-        private readonly IMapper _mapper;
         private readonly ICustomerProjectService _customerProjectService;
 
-        public CustomerProjectProjectController(IMapper mapper, ICustomerProjectService customerProjectService)
+        public CustomerProjectController(ICustomerProjectService customerProjectService)
         {
-            _mapper = mapper;
             _customerProjectService = customerProjectService;
         }
 

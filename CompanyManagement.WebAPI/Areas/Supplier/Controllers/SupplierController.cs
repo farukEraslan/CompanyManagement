@@ -4,12 +4,10 @@
     [ApiController]
     public class SupplierController : Controller
     {
-        private readonly IMapper _mapper;
         private readonly ISupplierService _supplierService;
 
-        public SupplierController(IMapper mapper, ISupplierService supplierService)
+        public SupplierController(ISupplierService supplierService)
         {
-            _mapper = mapper;
             _supplierService = supplierService;
         }
 

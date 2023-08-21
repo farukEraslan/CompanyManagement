@@ -4,12 +4,10 @@
     [ApiController]
     public class ProjectController : Controller
     {
-        private readonly IMapper _mapper;
         private readonly IProjectService _projectService;
 
-        public ProjectController(IMapper mapper, IProjectService projectService)
+        public ProjectController(IProjectService projectService)
         {
-            _mapper = mapper;
             _projectService = projectService;
         }
 

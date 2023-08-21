@@ -2,14 +2,12 @@
 {
     public class SupplierProductController : Controller
     {
-        private readonly IMapper _mapper;
         private readonly ISupplierProductService _supplierProductService;
         private readonly ISupplierService _supplierService;
         private readonly IProductService _productService;
 
-        public SupplierProductController(IMapper mapper, ISupplierProductService supplierProductService, ISupplierService supplierService, IProductService productService)
+        public SupplierProductController(ISupplierProductService supplierProductService, ISupplierService supplierService, IProductService productService)
         {
-            _mapper = mapper;
             _supplierProductService = supplierProductService;
             _supplierService = supplierService;
             _productService = productService;
