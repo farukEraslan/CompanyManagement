@@ -20,6 +20,9 @@
     <Folder Include="Areas\Account\Data\" />
     <Folder Include="Areas\Account\Models\" />
     <Folder Include="Areas\Account\Views\" />
+    <Folder Include="Areas\CustomerProject\Data\" />
+    <Folder Include="Areas\CustomerProject\Models\" />
+    <Folder Include="Areas\CustomerProject\Views\" />
     <Folder Include="Areas\Customer\Data\" />
     <Folder Include="Areas\Customer\Models\" />
     <Folder Include="Areas\Customer\Views\" />
@@ -29,6 +32,9 @@
     <Folder Include="Areas\Project\Data\" />
     <Folder Include="Areas\Project\Models\" />
     <Folder Include="Areas\Project\Views\" />
+    <Folder Include="Areas\Supplier\Data\" />
+    <Folder Include="Areas\Supplier\Models\" />
+    <Folder Include="Areas\Supplier\Views\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Models\" />
     <Folder Include="Areas\User\Views\" />

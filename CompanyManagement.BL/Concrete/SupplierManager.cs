@@ -8,44 +8,69 @@ namespace CompanyManagement.Business.Concrete
 {
     public class SupplierManager : ISupplierService
     {
-        public SupplierManager()
+        private readonly IMapper _mapper;
+        private readonly ISupplierRepository _supplierRepository;
+
+        public SupplierManager(IMapper mapper, ISupplierRepository supplierRepository)
         {
-            
+            _mapper = mapper;
+            _supplierRepository = supplierRepository;
         }
 
-        public Task<IResult> CreateAsync(SupplierCreateDto supplierCreateDto)
+        public async Task<IResult> CreateAsync(SupplierCreateDto supplierCreateDto)
         {
-            throw new NotImplementedException();
+            bool hasSupplier = await _supplierRepository.AnyAsync(x => x.Name.ToLower() == supplierCreateDto.Name.ToLower());
+            if (hasSupplier)
+            {
+                return new ErrorResult("Proje zaten var.");
+            }
+            var newSupplier = await _supplierRepository.AddAsync(_mapper.Map<Supplier>(supplierCreateDto));
+            await _supplierRepository.SaveChangesAsync();
+            return new SuccessResult("Proje başarı ile eklendi.");
         }
 
-        public Task<IResult> DeleteAsync(Guid supplierId)
+        public async Task<IResult> UpdateAsync(SupplierUpdateDto supplierUpdateDto)
         {
-            throw new NotImplementedException();
+            var supplier = await _supplierRepository.GetByIdAsync(supplierUpdateDto.Id);
+            if (supplier == null)
+            {
+                return new ErrorResult("Proje bulunamadı.");
+            }
+            var updatedSupplier = await _supplierRepository.UpdateAsync(_mapper.Map(supplierUpdateDto, supplier));
+            await _supplierRepository.SaveChangesAsync();
+            return new SuccessResult("Proje başarı ile güncellendi.");
         }
 
-        public Task<IResult> GetActiveAsync()
+        public async Task<IResult> DeleteAsync(Guid supplierId)
         {
-            throw new NotImplementedException();
+            var supplier = await _supplierRepository.GetByIdAsync(supplierId);
+            await _supplierRepository.DeleteAsync(supplier);
+            await _supplierRepository.SaveChangesAsync();
+            return new SuccessResult("Proje başarı ile silindi.");
         }
 
-        public Task<IResult> GetAllAsync()
+        public async Task<IResult> GetByIdAsync(Guid supplierId)
         {
-            throw new NotImplementedException();
+            var supplier = await _supplierRepository.GetByIdAsync(supplierId);
+            return new SuccessDataResult<SupplierDto>(_mapper.Map<SupplierDto>(supplier), "Proje başarı ile listelendi.");
         }
 
-        public Task<IResult> GetByIdAsync(Guid supplierId)
+        public async Task<IResult> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var suppliers = await _supplierRepository.GetAllAsync();
+            return new SuccessDataResult<List<SupplierDto>>(_mapper.Map<List<SupplierDto>>(suppliers), "Projeler başarı ile listelendi.");
         }
 
-        public Task<IResult> GetPassiveAsync()
+        public async Task<IResult> GetActiveAsync()
         {
-            throw new NotImplementedException();
+            var activeSuppliers = await _supplierRepository.GetAllAsync();
+            return new SuccessDataResult<List<SupplierDto>>(_mapper.Map<List<SupplierDto>>(activeSuppliers), "Aktif projeler başarı ile listelendi.");
         }
 
-        public Task<IResult> UpdateAsync(SupplierUpdateDto supplierUpdateDto)
+        public async Task<IResult> GetPassiveAsync()
         {
-            throw new NotImplementedException();
+            var passiveSuppliers = await _supplierRepository.GetAllDeletedAsync();
+            return new SuccessDataResult<List<SupplierDto>>(_mapper.Map<List<SupplierDto>>(passiveSuppliers), "Pasif projeler başarı ile listelendi.");
         }
     }
 }

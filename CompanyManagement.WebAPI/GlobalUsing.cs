@@ -15,3 +15,5 @@ global using CompanyManagement.Dtos.Account;
 global using CompanyManagement.Dtos.Project;
 global using Microsoft.AspNetCore.Authorization;
 global using CompanyManagement.Dtos.Product;
+global using CompanyManagement.Dtos.Supplier;
+global using CompanyManagement.Dtos.CustomerProject;

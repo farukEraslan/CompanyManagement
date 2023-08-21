@@ -1,49 +1,49 @@
-﻿namespace CompanyManagement.WebAPI.Areas.Product.Controllers
+﻿namespace CompanyManagement.WebAPI.Areas.CustomerProjectProject.Controllers
 {
-    [Area("Product")]
+    [Area("CustomerProject")]
     [ApiController]
-    public class ProductController : Controller
+    public class CustomerProjectProjectController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly IProductService _productService;
+        private readonly ICustomerProjectService _customerProjectService;
 
-        public ProductController(IMapper mapper, IProductService productService)
+        public CustomerProjectProjectController(IMapper mapper, ICustomerProjectService customerProjectService)
         {
             _mapper = mapper;
-            _productService = productService;
+            _customerProjectService = customerProjectService;
         }
 
         [Authorize]
         [HttpPost("api/[controller]/Create")]
-        public async Task<IActionResult> Create(ProductCreateDto productCreateDto)
+        public async Task<IActionResult> Create(CustomerProjectCreateDto customerProjectCreateDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest("Yanlış veri girişi yapıldı.");
             }
 
-            var result = await _productService.CreateAsync(productCreateDto);
+            var result = await _customerProjectService.CreateAsync(customerProjectCreateDto);
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
 
         [Authorize]
         [HttpPut("api/[controller]/Update")]
-        public async Task<IActionResult> Update(ProductUpdateDto productUpdateDto)
+        public async Task<IActionResult> Update(CustomerProjectUpdateDto customerProjectUpdateDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest("Yanlış veri girişi yapıldı.");
             }
 
-            var result = await _productService.UpdateAsync(productUpdateDto);
+            var result = await _customerProjectService.UpdateAsync(customerProjectUpdateDto);
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
 
         [Authorize]
         [HttpDelete("api/[controller]/Delete")]
-        public async Task<IActionResult> Delete(Guid productId)
+        public async Task<IActionResult> Delete(Guid customerProjectId)
         {
-            var result = await _productService.DeleteAsync(productId);
+            var result = await _customerProjectService.DeleteAsync(customerProjectId);
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
 
@@ -51,7 +51,7 @@
         [HttpGet("api/[controller]/GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _productService.GetAllAsync();
+            var result = await _customerProjectService.GetAllAsync();
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
 
@@ -59,7 +59,7 @@
         [HttpGet("api/[controller]/GetActive")]
         public async Task<IActionResult> GetActive()
         {
-            var result = await _productService.GetActiveAsync();
+            var result = await _customerProjectService.GetActiveAsync();
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
 
@@ -67,7 +67,7 @@
         [HttpGet("api/[controller]/GetPassive")]
         public async Task<IActionResult> GetPassive()
         {
-            var result = await _productService.GetPassiveAsync();
+            var result = await _customerProjectService.GetPassiveAsync();
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
     }

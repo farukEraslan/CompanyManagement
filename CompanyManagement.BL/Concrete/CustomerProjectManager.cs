@@ -7,11 +7,15 @@ namespace CompanyManagement.Business.Concrete
     {
         private readonly IMapper _mapper;
         private readonly ICustomerProjectRepository _customerProjectRepository;
+        private readonly ICustomerRepository _customerRepository;
+        private readonly IProjectRepository _projectRepository;
 
-        public CustomerProjectManager(IMapper mapper, ICustomerProjectRepository customerProjectRepository)
+        public CustomerProjectManager(IMapper mapper, ICustomerProjectRepository customerProjectRepository, ICustomerRepository customerRepository, IProjectRepository projectRepository)
         {
             _mapper = mapper;
             _customerProjectRepository = customerProjectRepository;
+            _customerRepository = customerRepository;
+            _projectRepository = projectRepository;
         }
 
         public async Task<IResult> CreateAsync(CustomerProjectCreateDto customerProjectCreateDto)
@@ -49,25 +53,45 @@ namespace CompanyManagement.Business.Concrete
         public async Task<IResult> GetAllAsync()
         {
             var customerProjects = await _customerProjectRepository.GetAllAsync();
-            return new SuccessDataResult<CustomerProjectDto>(_mapper.Map<CustomerProjectDto>(customerProjects), "Müşterilerin projeleri başarı ile listelendi.");
+            //foreach (var customerProject in customerProjects)
+            //{
+            //    var customer = await _customerRepository.GetByIdAsync(customerProject.CustomerId);
+            //    var project = await _projectRepository.GetByIdAsync(customerProject.ProjectId);
+            //    var customerProjectDto = new CustomerProjectDto();
+            //    customerProjectDto.Project = project.Name;
+            //    customerProjectDto.Customer = customer.Name;
+            //}
+            return new SuccessDataResult<List<CustomerProjectDto>>(_mapper.Map<List<CustomerProjectDto>>(customerProjects), "Müşterilerin projeleri başarı ile listelendi.");
         }
 
         public async Task<IResult> GetActiveAsync()
         {
-            var activeCustomerProjects = await _customerProjectRepository.GetAllAsync(x => x.Status == Status.Deleted!);
-            return new SuccessDataResult<CustomerProjectDto>(_mapper.Map<CustomerProjectDto>(activeCustomerProjects), "Aktif müşterilerin projeleri başarı ile listelendi.");
+            var activeCustomerProjects = await _customerProjectRepository.GetAllAsync();
+            //foreach (var activeCustomerProject in activeCustomerProjects)
+            //{
+            //    activeCustomerProject.Customer = await _customerRepository.GetByIdAsync(activeCustomerProject.CustomerId);
+            //    activeCustomerProject.Project = await _projectRepository.GetByIdAsync(activeCustomerProject.ProjectId);
+            //}
+            return new SuccessDataResult<List<CustomerProjectDto>>(_mapper.Map<List<CustomerProjectDto>>(activeCustomerProjects), "Aktif müşterilerin projeleri başarı ile listelendi.");
         }
 
         public async Task<IResult> GetPassiveAsync()
         {
-            var passiveCustomerProjects = await _customerProjectRepository.GetAllAsync(x => x.Status == Status.Deleted);
-            return new SuccessDataResult<CustomerProjectDto>(_mapper.Map<CustomerProjectDto>(passiveCustomerProjects), "Pasif müşterilerin projeleri başarı ile listelendi.");
+            var passiveCustomerProjects = await _customerProjectRepository.GetAllDeletedAsync();
+            //foreach (var passiveCustomerProject in passiveCustomerProjects)
+            //{
+            //    passiveCustomerProject.Customer = await _customerRepository.GetByIdAsync(passiveCustomerProject.CustomerId);
+            //    passiveCustomerProject.Project = await _projectRepository.GetByIdAsync(passiveCustomerProject.ProjectId);
+            //}
+            return new SuccessDataResult<List<CustomerProjectDto>>(_mapper.Map<List<CustomerProjectDto>>(passiveCustomerProjects), "Pasif müşterilerin projeleri başarı ile listelendi.");
         }
 
         public async Task<IResult> GetByIdAsync(Guid customerProjectId)
         {
-            var customerProjects = await _customerProjectRepository.GetByIdAsync(customerProjectId);
-            return new SuccessDataResult<CustomerProjectDto>(_mapper.Map<CustomerProjectDto>(customerProjects), "Müşteri başarı ile listelendi.");
+            var customerProject = await _customerProjectRepository.GetByIdAsync(customerProjectId);
+            //customerProject.Customer = await _customerRepository.GetByIdAsync(customerProject.CustomerId);
+            //customerProject.Project = await _projectRepository.GetByIdAsync(customerProject.ProjectId);
+            return new SuccessDataResult<CustomerProjectDto>(_mapper.Map<CustomerProjectDto>(customerProject), "Müşteri başarı ile listelendi.");
         }       
 
     }
