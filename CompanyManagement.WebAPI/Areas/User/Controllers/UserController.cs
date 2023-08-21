@@ -1,9 +1,4 @@
-﻿using AutoMapper;
-using CompanyManagement.Dtos.UserDto;
-using CompanyManagement.Entities.Concrete;
-using Microsoft.AspNetCore.Identity;
-
-namespace CompanyManagement.WebAPI.Areas.User.Controllers
+﻿namespace CompanyManagement.WebAPI.Areas.User.Controllers
 {
     [Area("User")]
     [ApiController]
@@ -27,6 +22,30 @@ namespace CompanyManagement.WebAPI.Areas.User.Controllers
                 return BadRequest("Kullanıcı zaten var.");
             }
             var result = await _userManager.CreateAsync(_mapper.Map<UserEntity>(userCreateDto), userCreateDto.Password);
+            return result.Succeeded == true ? Ok(result) : BadRequest(result);
+        }
+
+        [HttpPut("api/[controller]/Update")]
+        public async Task<IActionResult> Update(UserUpdateDto userUpdateDto)
+        {
+            var user = await _userManager.FindByIdAsync(userUpdateDto.Id.ToString());
+            if (user == null)
+            {
+                return BadRequest("Kullanıcı bulunamadı.");
+            }
+            var result = await _userManager.UpdateAsync(_mapper.Map(userUpdateDto, user));
+            return result.Succeeded == true ? Ok(result) : BadRequest(result);
+        }
+
+        [HttpDelete("api/[controller]/Delete")]
+        public async Task<IActionResult> Delete(Guid userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+            {
+                return BadRequest("Kullanıcı bulunamadı.");
+            }
+            var result = await _userManager.DeleteAsync(user);
             return result.Succeeded == true ? Ok(result) : BadRequest(result);
         }
     }

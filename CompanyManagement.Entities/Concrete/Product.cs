@@ -24,9 +24,7 @@
         public decimal? LastBoughtPrice { get; set; }
         public decimal? UnitPrice { get; set; }
 
-        public Guid ProjectProductId { get; set; }
         public List<ProjectProduct> ProjectProduct { get; set; }
-        public Guid SupplierProductId { get; set; }
         public List<SupplierProduct> SupplierProduct { get; set; }
         
     }

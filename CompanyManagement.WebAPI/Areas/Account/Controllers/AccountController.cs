@@ -1,23 +1,18 @@
-﻿using AutoMapper;
-using CompanyManagement.Core.Utilities.Results;
-using CompanyManagement.Dtos.Account;
-using CompanyManagement.Entities.Concrete;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-
-namespace CompanyManagement.WebAPI.Areas.Account.Controllers
+﻿namespace CompanyManagement.WebAPI.Areas.Account.Controllers
 {
     [Area("Account")]
     [ApiController]
     public class AccountController : Controller
     {
         private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly UserManager<UserEntity> _userManager;
         private readonly SignInManager<UserEntity> _signInManager;
 
-        public AccountController(IMapper mapper, UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager)
+        public AccountController(IMapper mapper, IHttpContextAccessor httpContextAccessor, UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager)
         {
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -29,5 +24,28 @@ namespace CompanyManagement.WebAPI.Areas.Account.Controllers
             await _signInManager.SignInAsync(user, isPersistent: false);
             return Ok("Başarı ile giriş yapıldı.");
         }
+
+        [HttpPost("api/[controller]/Logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok("Başarı ile çıkış yapıldı.");
+        }
+
+        [HttpPut("api/[controller]/ChangePassword")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDto changePasswordDto)
+        {
+            var user = await _userManager.FindByIdAsync(changePasswordDto.UserId.ToString());
+            await _userManager.ChangePasswordAsync(user, changePasswordDto.CurrentPassword, changePasswordDto.NewPassword);
+            return Ok("Başarı ile çıkış yapıldı.");
+        }
+
+        //[HttpPost("api/[controller]/ResetPassword")]
+        //public async Task<IActionResult> ResetPassword(ResetPasswordDto resetPasswordDto)
+        //{
+        //    var user = await _userManager.FindByEmailAsync(resetPasswordDto.Email);
+        //    var resetPasswordToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+        //    EmailSenderHelper.SendEmail(user.FirstName + user.LastName, resetPasswordToken, resetPasswordDto.RecoveryEmail);
+        //}
     }
 }

@@ -11,9 +11,7 @@
         public string Name { get; set; }
         public string ProjectNumber { get; set; }
 
-        public Guid CustomerProjectId { get; set; }
         public List<CustomerProject> CustomerProject { get; set; }
-        public Guid ProjectProductId { get; set; }
         public List<ProjectProduct> ProjectProduct { get; set; }
     }
 }

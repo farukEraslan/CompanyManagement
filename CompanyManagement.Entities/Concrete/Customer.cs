@@ -15,7 +15,6 @@
         public string? PostalCode { get; set;}
         public string? Address { get; set;}
 
-        public Guid CustomerProjectId { get; set; }
         public List<CustomerProject> CustomerProject { get; set; }
     }
 }

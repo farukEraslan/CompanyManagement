@@ -15,7 +15,6 @@
         public string? PostalCode { get; set; }
         public string? Address { get; set; }
 
-        public Guid SupplierProductId { get; set; }
         public List<SupplierProduct> SupplierProduct { get; set; }
     }
 }

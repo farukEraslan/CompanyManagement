@@ -67,7 +67,6 @@ namespace CompanyManagement.DataAccess.Migrations
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CustomerProjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -101,8 +100,6 @@ namespace CompanyManagement.DataAccess.Migrations
                     QualityGrade = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastBoughtPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    ProjectProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SupplierProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -123,8 +120,6 @@ namespace CompanyManagement.DataAccess.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProjectNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CustomerProjectId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProjectProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -150,7 +145,6 @@ namespace CompanyManagement.DataAccess.Migrations
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SupplierProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -369,12 +363,12 @@ namespace CompanyManagement.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("bd3f8bb0-f3da-4c0a-a9bd-ea332084fe85"), "677909c7-9071-48f9-8df3-73d54631c6e9", "Admin", "ADMIN" });
+                values: new object[] { new Guid("54da0cd0-62c3-4a64-b619-450847450920"), "8bc456c1-4f7f-48d8-a0cc-8ea361bc21e2", "Operator", "OPERATOR" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("f0a94af7-f453-4222-81aa-13da9b223fe5"), "f515412b-ba6d-4f62-9eb6-9f1833362e27", "Operator", "OPERATOR" });
+                values: new object[] { new Guid("83fdd974-2aa1-42b5-89b5-7a2dbe2253ec"), "5c5af50e-0478-43e1-acba-1b79c7804812", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

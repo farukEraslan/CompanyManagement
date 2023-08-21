@@ -8,5 +8,7 @@ namespace CompanyManagement.Dtos.Project
 {
     public class ProjectCreateDto
     {
+        public string Name { get; set; }
+        public string ProjectNumber { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CompanyManagement.Dtos.Project
 {
-    public class ProjectUpdateDto
+    public class ProjectDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompanyManagement.Dtos.Project;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,44 +9,69 @@ namespace CompanyManagement.Business.Concrete
 {
     public class ProjectManager : IProjectService
     {
-        public ProjectManager()
+        private readonly IMapper _mapper;
+        private readonly IProjectRepository _projectRepository;
+
+        public ProjectManager(IMapper mapper, IProjectRepository projectRepository)
         {
-            
+            _mapper = mapper;
+            _projectRepository = projectRepository;
         }
 
-        public Task<IResult> CreateAsync(ProjectCreateDto projectCreateDto)
+        public async Task<IResult> CreateAsync(ProjectCreateDto projectCreateDto)
         {
-            throw new NotImplementedException();
+            bool hasProject = await _projectRepository.AnyAsync(x => x.Name.ToLower() == projectCreateDto.Name.ToLower());
+            if (hasProject)
+            {
+                return new ErrorResult("Proje zaten var.");
+            }
+            var newProject = await _projectRepository.AddAsync(_mapper.Map<Project>(projectCreateDto));
+            await _projectRepository.SaveChangesAsync();
+            return new SuccessResult("Proje başarı ile eklendi.");
         }
 
-        public Task<IResult> DeleteAsync(Guid projectId)
+        public async Task<IResult> UpdateAsync(ProjectUpdateDto projectUpdateDto)
         {
-            throw new NotImplementedException();
+            var project = await _projectRepository.GetByIdAsync(projectUpdateDto.Id);
+            if (project == null)
+            {
+                return new ErrorResult("Proje bulunamadı.");
+            }
+            var updatedProject = await _projectRepository.UpdateAsync(_mapper.Map(projectUpdateDto, project));
+            await _projectRepository.SaveChangesAsync();
+            return new SuccessResult("Proje başarı ile güncellendi.");
         }
 
-        public Task<IResult> GetActiveAsync()
+        public async Task<IResult> DeleteAsync(Guid projectId)
         {
-            throw new NotImplementedException();
+            var project = await _projectRepository.GetByIdAsync(projectId);
+            await _projectRepository.DeleteAsync(project);
+            await _projectRepository.SaveChangesAsync();
+            return new SuccessResult("Proje başarı ile silindi.");
         }
 
-        public Task<IResult> GetAllAsync()
+        public async Task<IResult> GetByIdAsync(Guid projectId)
         {
-            throw new NotImplementedException();
+            var project = await _projectRepository.GetByIdAsync(projectId);
+            return new SuccessDataResult<ProjectDto>(_mapper.Map<ProjectDto>(project), "Proje başarı ile listelendi.");
         }
 
-        public Task<IResult> GetByIdAsync(Guid projectId)
+        public async Task<IResult> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var projects = await _projectRepository.GetAllAsync();
+            return new SuccessDataResult<List<ProjectDto>>(_mapper.Map<List<ProjectDto>>(projects), "Projeler başarı ile listelendi.");
         }
 
-        public Task<IResult> GetPassiveAsync()
+        public async Task<IResult> GetActiveAsync()
         {
-            throw new NotImplementedException();
+            var activeProjects = await _projectRepository.GetAllAsync();
+            return new SuccessDataResult<List<ProjectDto>>(_mapper.Map<List<ProjectDto>>(activeProjects), "Aktif projeler başarı ile listelendi.");
         }
 
-        public Task<IResult> UpdateAsync(ProjectUpdateDto projectUpdateDto)
+        public async Task<IResult> GetPassiveAsync()
         {
-            throw new NotImplementedException();
+            var passiveProjects= await _projectRepository.GetAllDeletedAsync();
+            return new SuccessDataResult<List<ProjectDto>>(_mapper.Map<List<ProjectDto>>(passiveProjects), "Pasif projeler başarı ile listelendi.");
         }
     }
 }

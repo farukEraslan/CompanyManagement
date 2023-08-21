@@ -45,9 +45,6 @@ namespace CompanyManagement.DataAccess.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("CustomerProjectId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
@@ -188,9 +185,6 @@ namespace CompanyManagement.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ProjectProductId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("QualityGrade")
                         .HasColumnType("nvarchar(max)");
 
@@ -206,9 +200,6 @@ namespace CompanyManagement.DataAccess.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("SupplierProductId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("UnitPrice")
                         .HasColumnType("decimal(18,2)");
@@ -238,9 +229,6 @@ namespace CompanyManagement.DataAccess.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("CustomerProjectId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("DeletedBy")
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
@@ -263,9 +251,6 @@ namespace CompanyManagement.DataAccess.Migrations
                     b.Property<string>("ProjectNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ProjectProductId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -352,15 +337,15 @@ namespace CompanyManagement.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("bd3f8bb0-f3da-4c0a-a9bd-ea332084fe85"),
-                            ConcurrencyStamp = "677909c7-9071-48f9-8df3-73d54631c6e9",
+                            Id = new Guid("83fdd974-2aa1-42b5-89b5-7a2dbe2253ec"),
+                            ConcurrencyStamp = "5c5af50e-0478-43e1-acba-1b79c7804812",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("f0a94af7-f453-4222-81aa-13da9b223fe5"),
-                            ConcurrencyStamp = "f515412b-ba6d-4f62-9eb6-9f1833362e27",
+                            Id = new Guid("54da0cd0-62c3-4a64-b619-450847450920"),
+                            ConcurrencyStamp = "8bc456c1-4f7f-48d8-a0cc-8ea361bc21e2",
                             Name = "Operator",
                             NormalizedName = "OPERATOR"
                         });
@@ -421,9 +406,6 @@ namespace CompanyManagement.DataAccess.Migrations
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("SupplierProductId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 

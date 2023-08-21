@@ -52,19 +52,19 @@
         public async Task<IResult> GetAllAsync()
         {
             var customers = await _customerRepository.GetAllAsync();
-            return new SuccessDataResult<CustomerDto>(_mapper.Map<CustomerDto>(customers), "Müşteriler başarı ile listelendi.");
+            return new SuccessDataResult<List<CustomerDto>>(_mapper.Map<List<CustomerDto>>(customers), "Müşteriler başarı ile listelendi.");
         }
 
         public async Task<IResult> GetActiveAsync()
         {
-            var activeCustomers = await _customerRepository.GetAllAsync(x=>x.Status == Status.Deleted!);
-            return new SuccessDataResult<CustomerDto>(_mapper.Map<CustomerDto>(activeCustomers), "Aktif müşteriler başarı ile listelendi.");
+            var activeCustomers = await _customerRepository.GetAllAsync();
+            return new SuccessDataResult<List<CustomerDto>>(_mapper.Map<List<CustomerDto>>(activeCustomers), "Aktif müşteriler başarı ile listelendi.");
         }
 
         public async Task<IResult> GetPassiveAsync()
         {
-            var activeCustomers = await _customerRepository.GetAllAsync(x => x.Status == Status.Deleted);
-            return new SuccessDataResult<CustomerDto>(_mapper.Map<CustomerDto>(activeCustomers), "Pasif müşteriler başarı ile listelendi.");
+            var passiveCustomers = await _customerRepository.GetAllDeletedAsync();
+            return new SuccessDataResult<List<CustomerDto>>(_mapper.Map<List<CustomerDto>>(passiveCustomers), "Pasif müşteriler başarı ile listelendi.");
         }             
 
     }

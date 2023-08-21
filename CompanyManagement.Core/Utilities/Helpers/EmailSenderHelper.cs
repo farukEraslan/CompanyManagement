@@ -2,17 +2,17 @@
 {
     public class EmailSenderHelper
     {
-        public static void SendEmail(string firstName, string lastName, string personelMail, string toMail)
+        public static void SendEmail(string name, string mailBody, string toMail)
         {
             MimeMessage mail = new MimeMessage();
 
-            mail.From.Add(new MailboxAddress("Gürtaş Metal İnsan Kaynakları", "hr-ik@hotmail.com"));
-            mail.To.Add(new MailboxAddress($"{firstName} {lastName}", $"{toMail}"));
-            mail.Subject = "Gürtaş ERP Kullanıcı Bilgileriniz";
+            mail.From.Add(new MailboxAddress("Company Management", "hr-ik@hotmail.com"));
+            mail.To.Add(new MailboxAddress(name, toMail));
+            mail.Subject = "Şifre Kurtarma E-Postası";
 
             mail.Body = new TextPart("plain")
             {
-                Text = $"Şirketimize hoşgeldiniz {firstName}. \n\n Kullanıcı Adınız : {personelMail} \n\n Şifreniz : Company_123 \n\n Şifrenizi kimseyle paylaşmayın!"
+                Text = $"Şifre sıfırlama için oluşturulan kodunuz : {mailBody}"
             };
 
             var smtp = new SmtpClient();

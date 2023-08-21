@@ -14,6 +14,7 @@ namespace CompanyManagement.WebAPI
 
             builder.Services.AddEFCoreServices().AddBusinessServices();
 
+            // Database
             builder.Services.AddDbContext<CompanyManagementDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Db"));
@@ -21,6 +22,9 @@ namespace CompanyManagement.WebAPI
 
             //Automapper
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            // HttpContextAccessor
+            builder.Services.AddHttpContextAccessor();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -53,15 +57,6 @@ namespace CompanyManagement.WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
-            // Area Explanation
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllerRoute(
-            //      name: "areas",
-            //      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-            //    );
-            //});
 
             app.UseHttpsRedirection();
 
