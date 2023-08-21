@@ -29,9 +29,15 @@
     <Folder Include="Areas\Product\Data\" />
     <Folder Include="Areas\Product\Models\" />
     <Folder Include="Areas\Product\Views\" />
+    <Folder Include="Areas\ProjectProduct\Data\" />
+    <Folder Include="Areas\ProjectProduct\Models\" />
+    <Folder Include="Areas\ProjectProduct\Views\" />
     <Folder Include="Areas\Project\Data\" />
     <Folder Include="Areas\Project\Models\" />
     <Folder Include="Areas\Project\Views\" />
+    <Folder Include="Areas\SupplierProduct\Data\" />
+    <Folder Include="Areas\SupplierProduct\Models\" />
+    <Folder Include="Areas\SupplierProduct\Views\" />
     <Folder Include="Areas\Supplier\Data\" />
     <Folder Include="Areas\Supplier\Models\" />
     <Folder Include="Areas\Supplier\Views\" />

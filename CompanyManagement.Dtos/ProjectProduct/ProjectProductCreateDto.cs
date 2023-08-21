@@ -2,5 +2,7 @@
 {
     public class ProjectProductCreateDto
     {
+        public Guid ProductId { get; set; }
+        public Guid ProjectId { get; set; }
     }
 }
