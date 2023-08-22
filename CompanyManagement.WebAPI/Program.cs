@@ -1,4 +1,6 @@
+using CompanyManagement.Business.Concrete;
 using CompanyManagement.Entities.Concrete;
+using Microsoft.AspNetCore.Identity;
 
 namespace CompanyManagement.WebAPI
 {

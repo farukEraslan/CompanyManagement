@@ -47,5 +47,13 @@
         /// </summary>
         /// <returns></returns>
         Task<IResult> GetPassiveAsync();
+
+        /// <summary>
+        /// Verilen kullanıcı Id'sine rol ataması yapar.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="role"></param>
+        /// <returns></returns>
+        //public Task<IResult> GiveRole(string userId, string role);
     }
 }

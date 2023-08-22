@@ -1,10 +1,17 @@
-﻿namespace CompanyManagement.Business.Concrete
+﻿using CompanyManagement.Entities.Enum;
+using Microsoft.AspNetCore.Identity;
+
+namespace CompanyManagement.Business.Concrete
 {
     public class RoleManager : IRoleService
     {
-        public RoleManager()
+        private readonly IMapper _mapper;
+        private readonly UserManager<UserEntity> _userManager;
+
+        public RoleManager(IMapper mapper, UserManager<UserEntity> userManager)
         {
-            
+            _mapper = mapper;
+            _userManager = userManager;
         }
 
         public Task<IResult> CreateAsync(RoleCreateDto RoleCreateDto)
@@ -41,5 +48,6 @@
         {
             throw new NotImplementedException();
         }
+
     }
 }

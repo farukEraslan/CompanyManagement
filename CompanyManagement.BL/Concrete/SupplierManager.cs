@@ -52,7 +52,7 @@
         public async Task<IResult> GetAllAsync()
         {
             var suppliers = await _supplierRepository.GetAllAsync();
-            return new SuccessDataResult<List<SupplierDto>>(_mapper.Map<List<SupplierDto>>(suppliers), "Projeler başarı ile listelendi.");
+            return new SuccessDataResult<List<SupplierDto>>(_mapper.Map<List<SupplierDto>>(suppliers), "Tedarikçiler başarı ile listelendi.");
         }
 
         public async Task<IResult> GetActiveAsync()
