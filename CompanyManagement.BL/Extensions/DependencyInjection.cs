@@ -14,8 +14,8 @@ namespace CompanyManagement.Business.Extensions
             services.AddScoped<IProjectService, ProjectManager>();
             services.AddScoped<ISupplierService, SupplierManager>();
             services.AddScoped<ISupplierProductService, SupplierProductManager>();
-            //services.AddScoped<IRoleService, RoleManager>();
-            //services.AddScoped<IUserRoleService, UserRoleManager>();
+            services.AddScoped<IRoleService, RoleManager>();
+            services.AddScoped<IUserRoleService, UserRoleManager>();
             return services;
         }
     }

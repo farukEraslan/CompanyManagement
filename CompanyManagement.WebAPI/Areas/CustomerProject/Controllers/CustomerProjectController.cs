@@ -1,4 +1,4 @@
-﻿namespace CompanyManagement.WebAPI.Areas.CustomerProjectProject.Controllers
+﻿namespace CompanyManagement.WebAPI.Areas.CustomerProject.Controllers
 {
     [Area("CustomerProject")]
     [ApiController]

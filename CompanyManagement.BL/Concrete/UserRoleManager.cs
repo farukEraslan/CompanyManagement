@@ -1,19 +1,11 @@
-﻿using CompanyManagement.Dtos.UserRole;
-using CompanyManagement.Entities.Enum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CompanyManagement.Business.Concrete
+﻿namespace CompanyManagement.Business.Concrete
 {
-    public class UserRoleManager
+    public class UserRoleManager : IUserRoleService
     {
         private readonly UserManager<UserEntity> _userManager;
-        private readonly RoleManager<UserEntity> _roleManager;
+        private readonly RoleManager<RoleEntity> _roleManager;
 
-        public UserRoleManager(UserManager<UserEntity> userManager, RoleManager<UserEntity> roleManager)
+        public UserRoleManager(UserManager<UserEntity> userManager, RoleManager<RoleEntity> roleManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -42,6 +34,7 @@ namespace CompanyManagement.Business.Concrete
             {
                 result = await _userManager.AddToRoleAsync(user, Roles.Operator.ToString());
             }
+
             if (result.Succeeded != true)
             {
                 return new ErrorResult("Kullanıcının rolü atanamadı.");

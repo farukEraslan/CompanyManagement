@@ -14,3 +14,5 @@ global using CompanyManagement.Entities.Concrete;
 global using CompanyManagement.DataAccess.Interfaces;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.AspNetCore.Identity;
+global using CompanyManagement.Dtos.UserRole;
+global using CompanyManagement.Entities.Enum;
