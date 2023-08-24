@@ -1,4 +1,8 @@
-﻿namespace CompanyManagement.WebAPI.Areas.Product.Controllers
+﻿using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+
+namespace CompanyManagement.WebAPI.Areas.Product.Controllers
 {
     [Area("Product")]
     [ApiController]
@@ -68,5 +72,15 @@
             var result = await _productService.GetPassiveAsync();
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
+
+        //[Authorize]
+        //[HttpPost("api/[controller]/QRCodeCreate")]
+        //public async Task<IActionResult> QRCodeCreate(string data, int width, int height)
+        //{
+        //    var qrCode = await _productService.CreateQRCode(data, width, height);
+        //    var stream = new MemoryStream();
+        //    qrCode.Save(stream, ImageFormat.Bmp);
+        //    return Ok(new FileContentResult(stream.ToArray(), "qrCode/bmp"));
+        //}
     }
 }

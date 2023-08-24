@@ -9,3 +9,6 @@ global using Microsoft.AspNetCore.Http;
 global using MailKit.Security;
 global using MailKit.Net.Smtp;
 global using MimeKit;
+global using System.Drawing;
+global using ZXing;
+global using ZXing.QrCode;

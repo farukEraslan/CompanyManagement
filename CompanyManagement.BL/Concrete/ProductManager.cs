@@ -1,4 +1,7 @@
-﻿namespace CompanyManagement.Business.Concrete
+﻿using CompanyManagement.Core.Utilities.Helpers;
+using System.Drawing;
+
+namespace CompanyManagement.Business.Concrete
 {
     public class ProductManager : IProductService
     {
@@ -66,5 +69,11 @@
             var passiveProducts = await _productRepository.GetAllDeletedAsync();
             return new SuccessDataResult<List<ProductDto>>(_mapper.Map<List<ProductDto>>(passiveProducts), "Pasif ürünler başarı ile listelendi.");
         }
+
+        //public async Task<Bitmap> CreateQRCode(string data, int width, int height)
+        //{
+        //    var qrCode = QrCodeHelper.Create(data, width, height);
+        //    return qrCode;
+        //}
     }
 }

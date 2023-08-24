@@ -1,4 +1,6 @@
-﻿namespace CompanyManagement.Business.Abstract
+﻿using System.Drawing;
+
+namespace CompanyManagement.Business.Abstract
 {
     public interface IProductService
     {
@@ -47,5 +49,8 @@
         /// </summary>
         /// <returns></returns>
         Task<IResult> GetPassiveAsync();
+
+
+        //Task<Bitmap> CreateQRCode(string data, int width, int height);
     }
 }
