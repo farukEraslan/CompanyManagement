@@ -74,13 +74,11 @@ namespace CompanyManagement.WebAPI.Areas.Product.Controllers
         }
 
         //[Authorize]
-        //[HttpPost("api/[controller]/QRCodeCreate")]
-        //public async Task<IActionResult> QRCodeCreate(string data, int width, int height)
-        //{
-        //    var qrCode = await _productService.CreateQRCode(data, width, height);
-        //    var stream = new MemoryStream();
-        //    qrCode.Save(stream, ImageFormat.Bmp);
-        //    return Ok(new FileContentResult(stream.ToArray(), "qrCode/bmp"));
-        //}
+        [HttpPost("api/[controller]/QRCodeCreate")]
+        public async Task<IActionResult> QRCodeCreate(string data)
+        {
+            var qrCode = await _productService.CreateQRCode(data);
+            return Ok(qrCode);
+        }
     }
 }
