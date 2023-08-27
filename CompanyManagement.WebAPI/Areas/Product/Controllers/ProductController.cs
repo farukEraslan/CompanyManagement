@@ -73,12 +73,14 @@ namespace CompanyManagement.WebAPI.Areas.Product.Controllers
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost("api/[controller]/QRCodeCreate")]
         public async Task<IActionResult> QRCodeCreate(string data)
         {
             var qrCode = await _productService.CreateQRCode(data);
-            return Ok(qrCode);
+            return File(qrCode, "image/png");
         }
+
+
     }
 }

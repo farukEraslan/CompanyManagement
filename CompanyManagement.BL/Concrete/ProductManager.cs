@@ -70,10 +70,10 @@ namespace CompanyManagement.Business.Concrete
             return new SuccessDataResult<List<ProductDto>>(_mapper.Map<List<ProductDto>>(passiveProducts), "Pasif ürünler başarı ile listelendi.");
         }
 
-        public async Task<IResult> CreateQRCode(string data)
+        public async Task<Byte[]> CreateQRCode(string data)
         {
             var image = QrCodeHelper.Create(data);
-            return new SuccessDataResult<Image>(image, "Ok");
+            return image;
         }
     }
 }
