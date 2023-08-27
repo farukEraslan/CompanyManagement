@@ -8,10 +8,12 @@ namespace CompanyManagement.WebAPI.Areas.Product.Controllers
     [ApiController]
     public class ProductController : Controller
     {
+        private readonly IMapper _mapper;
         private readonly IProductService _productService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IMapper mapper, IProductService productService)
         {
+            _mapper = mapper;
             _productService = productService;
         }
 
@@ -25,7 +27,8 @@ namespace CompanyManagement.WebAPI.Areas.Product.Controllers
             }
 
             var result = await _productService.CreateAsync(productCreateDto);
-            return result.IsSuccess == true ? Ok(result) : BadRequest(result);
+            var productQRCode = await _productService.CreateQRCode(_mapper.Map<ProductQRCodeDto>(productCreateDto));
+            return result.IsSuccess == true ? File(productQRCode, "image/png") : BadRequest(result);
         }
 
         [Authorize]
@@ -75,12 +78,10 @@ namespace CompanyManagement.WebAPI.Areas.Product.Controllers
 
         [Authorize]
         [HttpPost("api/[controller]/QRCodeCreate")]
-        public async Task<IActionResult> QRCodeCreate(string data)
+        public async Task<IActionResult> QRCodeCreate(ProductQRCodeDto productQRCodeDto)
         {
-            var qrCode = await _productService.CreateQRCode(data);
+            var qrCode = await _productService.CreateQRCode(productQRCodeDto);
             return File(qrCode, "image/png");
         }
-
-
     }
 }
