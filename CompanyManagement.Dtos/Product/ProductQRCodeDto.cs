@@ -8,6 +8,7 @@ namespace CompanyManagement.Dtos.Product
 {
     public class ProductQRCodeDto
     {
+        public Guid Id { get; set; }
         public string? SerialNo { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

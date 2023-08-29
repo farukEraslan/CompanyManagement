@@ -1,8 +1,4 @@
-﻿using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-
-namespace CompanyManagement.WebAPI.Areas.Product.Controllers
+﻿namespace CompanyManagement.WebAPI.Areas.Product.Controllers
 {
     [Area("Product")]
     [ApiController]
@@ -27,7 +23,7 @@ namespace CompanyManagement.WebAPI.Areas.Product.Controllers
             }
 
             var result = await _productService.CreateAsync(productCreateDto);
-            var productQRCode = await _productService.CreateQRCode(_mapper.Map<ProductQRCodeDto>(productCreateDto));
+            var productQRCode = await _productService.CreateQRCode(_mapper.Map<ProductQRCodeDto>(result.Data));
             return result.IsSuccess == true ? File(productQRCode, "image/png") : BadRequest(result);
         }
 

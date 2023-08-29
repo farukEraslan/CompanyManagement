@@ -1,4 +1,5 @@
-﻿using CompanyManagement.Core.Utilities.Helpers;
+﻿using CompanyManagement.Business.Abstract;
+using CompanyManagement.Core.Utilities.Helpers;
 using System.Drawing;
 
 namespace CompanyManagement.Business.Concrete
@@ -14,16 +15,16 @@ namespace CompanyManagement.Business.Concrete
             _productRepository = productRepository;
         }
 
-        public async Task<IResult> CreateAsync(ProductCreateDto productCreateDto)
+        public async Task<IDataResult<ProductQRCodeDto>> CreateAsync(ProductCreateDto productCreateDto)
         {
             bool hasProduct = await _productRepository.AnyAsync(x => x.Name.ToLower() == productCreateDto.Name.ToLower());
             if (hasProduct)
             {
-                return new ErrorResult("Ürün zaten var.");
+                return new ErrorDataResult<ProductQRCodeDto>("Ürün zaten var.");
             }
             var newProduct = await _productRepository.AddAsync(_mapper.Map<Product>(productCreateDto));
             await _productRepository.SaveChangesAsync();
-            return new SuccessResult("Ürün başarı ile eklendi.");
+            return new SuccessDataResult<ProductQRCodeDto>(_mapper.Map<ProductQRCodeDto>(newProduct), "Ürün başarı ile eklendi.");
         }
 
         public async Task<IResult> UpdateAsync(ProductUpdateDto productUpdateDto)

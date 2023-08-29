@@ -16,6 +16,7 @@ namespace CompanyManagement.Business.AutoMapper
             CreateMap<ProductUpdateDto, Product>().ReverseMap();
             CreateMap<ProductDto, Product>().ReverseMap();
             CreateMap<ProductCreateDto, ProductQRCodeDto>();
+            CreateMap<Product, ProductQRCodeDto>();
             CreateMap<ProjectCreateDto, Project>();
             CreateMap<ProjectUpdateDto, Project>().ReverseMap();
             CreateMap<ProjectDto, Project>().ReverseMap();

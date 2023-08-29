@@ -9,7 +9,7 @@ namespace CompanyManagement.Business.Abstract
         /// </summary>
         /// <param name="productCreateDto"></param>
         /// <returns></returns>
-        Task<IResult> CreateAsync(ProductCreateDto productCreateDto);
+        Task<IDataResult<ProductQRCodeDto>> CreateAsync(ProductCreateDto productCreateDto);
 
         /// <summary>
         /// Ürün güncelleme işlemini yapar.
