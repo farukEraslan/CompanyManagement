@@ -71,10 +71,17 @@ namespace CompanyManagement.Business.Concrete
             return new SuccessDataResult<List<ProductDto>>(_mapper.Map<List<ProductDto>>(passiveProducts), "Pasif ürünler başarı ile listelendi.");
         }
 
-        public async Task<Byte[]> CreateQRCode(ProductQRCodeDto productQRCodeDto)
+        //public async Task<Byte[]> CreateQRCode(ProductQRCodeDto productQRCodeDto)
+        //{
+        //    var productQRCodeData = $"Seri No:{productQRCodeDto.SerialNo}\nÜrün Adı:{productQRCodeDto.Name}\nÜrün Detayı:{productQRCodeDto.Description}\nMarka:{productQRCodeDto.Brand}\nYükseklik:{productQRCodeDto.Height}\nGenişlik:{productQRCodeDto.Width}\nUzunluk:{productQRCodeDto.Lenght}";
+        //    var productQRCode = QrCodeHelper.Create(productQRCodeData);
+
+        //    return productQRCode;
+        //}
+
+        public async Task<Byte[]> CreateQRCode(Guid productId)
         {
-            var productQRCodeData = $"Seri No:{productQRCodeDto.SerialNo}\nÜrün Adı:{productQRCodeDto.Name}\nÜrün Detayı:{productQRCodeDto.Description}\nMarka:{productQRCodeDto.Brand}\nYükseklik:{productQRCodeDto.Height}\nGenişlik:{productQRCodeDto.Width}\nUzunluk:{productQRCodeDto.Lenght}";
-            var productQRCode = QrCodeHelper.Create(productQRCodeData);
+            var productQRCode = QrCodeHelper.Create(productId.ToString());
 
             return productQRCode;
         }

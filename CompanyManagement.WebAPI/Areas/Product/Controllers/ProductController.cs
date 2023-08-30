@@ -23,7 +23,7 @@
             }
 
             var result = await _productService.CreateAsync(productCreateDto);
-            var productQRCode = await _productService.CreateQRCode(_mapper.Map<ProductQRCodeDto>(result.Data));
+            var productQRCode = await _productService.CreateQRCode(result.Data.Id);
             return result.IsSuccess == true ? File(productQRCode, "image/png") : BadRequest(result);
         }
 
@@ -48,11 +48,19 @@
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("api/[controller]/GetAll")]
         public async Task<IActionResult> GetAll()
         {
             var result = await _productService.GetAllAsync();
+            return result.IsSuccess == true ? Ok(result) : BadRequest(result);
+        }
+
+        //[Authorize]
+        [HttpGet("api/[controller]/GetById")]
+        public async Task<IActionResult> GetById(Guid productId)
+        {
+            var result = await _productService.GetByIdAsync(productId);
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
 
@@ -76,7 +84,7 @@
         [HttpPost("api/[controller]/QRCodeCreate")]
         public async Task<IActionResult> QRCodeCreate(ProductQRCodeDto productQRCodeDto)
         {
-            var qrCode = await _productService.CreateQRCode(productQRCodeDto);
+            var qrCode = await _productService.CreateQRCode(productQRCodeDto.Id);
             return File(qrCode, "image/png");
         }
     }

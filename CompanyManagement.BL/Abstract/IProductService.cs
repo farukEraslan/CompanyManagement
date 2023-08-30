@@ -51,6 +51,8 @@ namespace CompanyManagement.Business.Abstract
         Task<IResult> GetPassiveAsync();
 
 
-        Task<Byte[]> CreateQRCode(ProductQRCodeDto productQRCodeDto);
+        //Task<Byte[]> CreateQRCode(ProductQRCodeDto productQRCodeDto);
+
+        Task<Byte[]> CreateQRCode(Guid productId);
     }
 }
