@@ -16,7 +16,7 @@ namespace CompanyManagement.Core.Utilities.Helpers
 
         public static byte[] Create(string data)
         {
-            data = $"https://localhost:7233/api/Product/GetById?productId={data}";
+            data = $"https://192.168.1.123:7233/api/Product/GetById?productId={data}";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
             var qrCode = new PngByteQRCode(qrCodeData);

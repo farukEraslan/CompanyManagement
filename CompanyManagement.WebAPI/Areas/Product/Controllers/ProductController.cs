@@ -82,9 +82,9 @@
 
         [Authorize]
         [HttpPost("api/[controller]/QRCodeCreate")]
-        public async Task<IActionResult> QRCodeCreate(ProductQRCodeDto productQRCodeDto)
+        public async Task<IActionResult> QRCodeCreate(Guid productId)
         {
-            var qrCode = await _productService.CreateQRCode(productQRCodeDto.Id);
+            var qrCode = await _productService.CreateQRCode(productId);
             return File(qrCode, "image/png");
         }
     }
