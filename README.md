@@ -6,6 +6,7 @@
 
 <h3>Veritabanı İlişki Diyagramı</h3>
 
-<img width="2020" alt="Company Management Stock Record Module" src="https://github.com/farukEraslan/CompanyManagement/assets/106863120/c40628ce-c691-4b77-bacc-94bebf53955d">
+<img width="2020" alt="Company Management Stock Record Module" src="https://github.com/farukEraslan/CompanyManagement/assets/106863120/8442ed1b-63f6-4a8f-a461-487ffa4d8b92">
+
 
 
