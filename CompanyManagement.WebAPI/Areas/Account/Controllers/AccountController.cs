@@ -22,7 +22,7 @@
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
             await _signInManager.SignInAsync(user, isPersistent: false);
-            return Ok("Başarı ile giriş yapıldı.");
+            return Ok(_mapper.Map<UserDto>(user));
         }
 
         [HttpPost("api/[controller]/Logout")]
