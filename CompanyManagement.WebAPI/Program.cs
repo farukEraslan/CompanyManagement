@@ -51,7 +51,23 @@ namespace CompanyManagement.WebAPI
                 config.SlidingExpiration = true;
             });
 
+            // CORS policy için frontend ekibinin host numaralarýnýn ekleneceði yer
+            var myOrigins = "_myOrigins";
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: myOrigins,
+                    policy =>
+                    {
+                        policy.WithOrigins("*")
+                        .WithMethods("GET", "POST", "PUT", "HEAD", "DELETE", "CONNECT", "OPTIONS", "PATCH", "SEARCH")
+                        .AllowAnyHeader();
+                    });
+            });
+
             var app = builder.Build();
+
+            // CORS policy aktif edildiði yer
+            app.UseCors(myOrigins);
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
