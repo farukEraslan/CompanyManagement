@@ -9,8 +9,6 @@ namespace CompanyManagement.WinForm
     {
         private readonly HttpClient _httpClient;
 
-        private const string ApiUrl = "https://localhost:7233/api/Product/Create"; // API'nin URL'si
-
         public productPageForm()
         {
             InitializeComponent();
@@ -67,7 +65,7 @@ namespace CompanyManagement.WinForm
 
         private void ürünEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var productCreateForm = new ProductCreate();
+            var productCreateForm = new ProductCreatePage();
             productCreateForm.ShowDialog();
         }
     }

@@ -13,7 +13,7 @@
             _productService = productService;
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost("api/[controller]/Create")]
         public async Task<IActionResult> Create(ProductCreateDto productCreateDto)
         {
@@ -27,7 +27,7 @@
             return result.IsSuccess == true ? File(productQRCode, "image/png") : BadRequest(result);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPut("api/[controller]/Update")]
         public async Task<IActionResult> Update(ProductUpdateDto productUpdateDto)
         {
@@ -40,7 +40,7 @@
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpDelete("api/[controller]/Delete")]
         public async Task<IActionResult> Delete(Guid productId)
         {
@@ -80,7 +80,7 @@
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost("api/[controller]/QRCodeCreate")]
         public async Task<IActionResult> QRCodeCreate(Guid productId)
         {

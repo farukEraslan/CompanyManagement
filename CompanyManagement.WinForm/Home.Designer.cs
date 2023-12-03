@@ -101,9 +101,13 @@
             productListTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             productListTable.BackgroundColor = SystemColors.Control;
             productListTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            productListTable.EditMode = DataGridViewEditMode.EditProgrammatically;
             productListTable.Location = new Point(0, 0);
+            productListTable.MultiSelect = false;
             productListTable.Name = "productListTable";
+            productListTable.ReadOnly = true;
             productListTable.RowTemplate.Height = 25;
+            productListTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             productListTable.Size = new Size(1384, 632);
             productListTable.TabIndex = 0;
             // 
