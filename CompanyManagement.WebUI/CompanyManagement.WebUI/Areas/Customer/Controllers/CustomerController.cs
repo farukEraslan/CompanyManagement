@@ -6,7 +6,7 @@ namespace CompanyManagement.WebUI.Areas.Customer.Controllers
     public class CustomerController : Controller
     {
         [Route("{area}/list")]
-        public IActionResult GetAllCustomer()
+        public async Task<IActionResult> GetAllCustomer()
         {
             return View();
         }

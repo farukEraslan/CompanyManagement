@@ -18,7 +18,8 @@ namespace CompanyManagement.WebUI.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        [Route("login")]
+        public IActionResult Login()
         {
             return View();
         }

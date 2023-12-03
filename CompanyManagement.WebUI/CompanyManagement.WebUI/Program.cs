@@ -19,13 +19,7 @@ namespace CompanyManagement.WebUI
                 app.UseHsts();
             }
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllerRoute(
-            //      name: "areas",
-            //      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-            //    );
-            //});
+            
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -37,6 +31,14 @@ namespace CompanyManagement.WebUI
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                );
+            });
 
             app.Run();
         }

@@ -47,7 +47,7 @@ namespace CompanyManagement.WebAPI.Areas.Customer.Controllers
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("api/[controller]/GetAll")]
         public async Task<IActionResult> GetAll()
         {

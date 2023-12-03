@@ -1,4 +1,7 @@
-﻿namespace CompanyManagement.WebAPI.Areas.Account.Controllers
+﻿using CompanyManagement.Dtos.Account;
+using Microsoft.AspNetCore.Authentication;
+
+namespace CompanyManagement.WebAPI.Areas.Account.Controllers
 {
     [Area("Account")]
     [ApiController]
@@ -22,7 +25,15 @@
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
             await _signInManager.SignInAsync(user, isPersistent: false);
-            return Ok(_mapper.Map<UserDto>(user));
+            var accessToken = HttpContext.Request.Cookies;
+            return Ok(accessToken);
+        }
+
+        [HttpGet("api/[controller]/GetToken")]
+        public async Task<IActionResult> GetToken()
+        {
+            var accessToken = HttpContext.Request.Cookies;
+            return Ok(accessToken);
         }
 
         [HttpPost("api/[controller]/Logout")]

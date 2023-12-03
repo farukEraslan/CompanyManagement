@@ -53,7 +53,7 @@
         public async Task<IResult> GetAllAsync()
         {
             var users = _userManager.Users.ToList();
-            return new SuccessDataResult<UserDto>(_mapper.Map<UserDto>(users),"Kullanıcılar başarı ile listelendi.");
+            return new SuccessDataResult<List<UserDto>>(_mapper.Map<List<UserDto>>(users),"Kullanıcılar başarı ile listelendi.");
         }
 
         public async Task<IResult> GetActiveAsync()
