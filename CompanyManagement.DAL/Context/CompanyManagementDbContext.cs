@@ -44,13 +44,13 @@ namespace CompanyManagement.DataAccess.Context
 
         public override int SaveChanges()
         {
-            SetBaseProperties();
+            //SetBaseProperties();
             return base.SaveChanges();
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            SetBaseProperties();
+            //SetBaseProperties();
             return base.SaveChangesAsync(cancellationToken);
         }
 

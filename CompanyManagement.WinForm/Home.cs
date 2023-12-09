@@ -26,7 +26,7 @@ namespace CompanyManagement.WinForm
         }
 
         // Ürün listesini alma
-        private async void GetProductList()
+        public async void GetProductList()
         {
             try
             {
