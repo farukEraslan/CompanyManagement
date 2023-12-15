@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            lblUsername = new Label();
-            txtUsername = new TextBox();
-            btnLogin = new Button();
-            panel2 = new Panel();
             panel3 = new Panel();
             lblPassword = new Label();
             txtPassword = new TextBox();
+            panel2 = new Panel();
+            lblUsername = new Label();
+            txtUsername = new TextBox();
+            btnLogin = new Button();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
             panel3.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -51,6 +51,41 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(560, 337);
             panel1.TabIndex = 0;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(lblPassword);
+            panel3.Controls.Add(txtPassword);
+            panel3.Location = new Point(46, 138);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(470, 50);
+            panel3.TabIndex = 4;
+            // 
+            // lblPassword
+            // 
+            lblPassword.AutoSize = true;
+            lblPassword.Location = new Point(45, 14);
+            lblPassword.Name = "lblPassword";
+            lblPassword.Size = new Size(60, 21);
+            lblPassword.TabIndex = 0;
+            lblPassword.Text = "Parola :";
+            // 
+            // txtPassword
+            // 
+            txtPassword.Location = new Point(111, 11);
+            txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
+            txtPassword.Size = new Size(356, 29);
+            txtPassword.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(lblUsername);
+            panel2.Controls.Add(txtUsername);
+            panel2.Location = new Point(46, 58);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(470, 50);
+            panel2.TabIndex = 3;
             // 
             // lblUsername
             // 
@@ -78,40 +113,6 @@
             btnLogin.UseVisualStyleBackColor = true;
             btnLogin.Click += btnLogin_Click;
             // 
-            // panel2
-            // 
-            panel2.Controls.Add(lblUsername);
-            panel2.Controls.Add(txtUsername);
-            panel2.Location = new Point(46, 58);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(470, 50);
-            panel2.TabIndex = 3;
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(lblPassword);
-            panel3.Controls.Add(txtPassword);
-            panel3.Location = new Point(46, 138);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(470, 50);
-            panel3.TabIndex = 4;
-            // 
-            // lblPassword
-            // 
-            lblPassword.AutoSize = true;
-            lblPassword.Location = new Point(45, 14);
-            lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(60, 21);
-            lblPassword.TabIndex = 0;
-            lblPassword.Text = "Parola :";
-            // 
-            // txtPassword
-            // 
-            txtPassword.Location = new Point(111, 11);
-            txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(356, 29);
-            txtPassword.TabIndex = 1;
-            // 
             // LoginPage
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
@@ -120,18 +121,19 @@
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "LoginPage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Giriş Yap";
             TopMost = true;
+            Load += LoginPage_Load;
             panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
         }
 

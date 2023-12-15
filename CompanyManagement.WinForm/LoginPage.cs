@@ -11,6 +11,11 @@ namespace CompanyManagement.WinForm
             InitializeComponent();
         }
 
+        private void LoginPage_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             var loginDto = LoginBind();
