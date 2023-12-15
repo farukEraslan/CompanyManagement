@@ -68,5 +68,11 @@ namespace CompanyManagement.WinForm
             var productCreateForm = new ProductCreatePage();
             productCreateForm.ShowDialog();
         }
+
+        private void ürünÇýkarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var productDeleteForm = new ProductDeletePage();
+            productDeleteForm.ShowDialog();
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace CompanyManagement.Business.AutoMapper
             CreateMap<UserUpdateDto, UserEntity>().ReverseMap();
             CreateMap<UserDto, UserEntity>().ReverseMap();
             CreateMap<LoginDto, UserEntity>().ReverseMap();
+            CreateMap<ProductDeleteDto, Guid>().ReverseMap();
         }
     }
 }

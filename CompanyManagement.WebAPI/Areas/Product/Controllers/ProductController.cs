@@ -42,9 +42,9 @@
 
         //[Authorize]
         [HttpDelete("api/[controller]/Delete")]
-        public async Task<IActionResult> Delete(Guid productId)
+        public async Task<IActionResult> Delete(ProductDeleteDto productDeleteDto)
         {
-            var result = await _productService.DeleteAsync(productId);
+            var result = await _productService.DeleteAsync(_mapper.Map<Guid>(productDeleteDto));
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
 

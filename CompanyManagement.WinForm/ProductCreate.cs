@@ -71,7 +71,7 @@ namespace CompanyManagement.WinForm
             productCreateDto.UnitPrice = Convert.ToDecimal(txtUnitPrice.Text.Trim());
             productCreateDto.CreatedBy = Guid.NewGuid();
             productCreateDto.ModifiedBy = Guid.NewGuid();
-            
+
             return productCreateDto;
         }
         private async Task ProductCreate(ProductCreateDto productCreateDto)
@@ -90,6 +90,7 @@ namespace CompanyManagement.WinForm
                 var home = new productPageForm();
                 home.GetProductList();
                 this.Close();
+                home.Show();
             }
             else
             {

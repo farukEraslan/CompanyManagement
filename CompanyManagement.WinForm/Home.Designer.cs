@@ -70,6 +70,7 @@
             ürünÇıkarToolStripMenuItem.Name = "ürünÇıkarToolStripMenuItem";
             ürünÇıkarToolStripMenuItem.Size = new Size(97, 25);
             ürünÇıkarToolStripMenuItem.Text = "Ürün Çıkar";
+            ürünÇıkarToolStripMenuItem.Click += ürünÇıkarToolStripMenuItem_Click;
             // 
             // ürünGüncelleToolStripMenuItem
             // 
@@ -97,6 +98,7 @@
             // 
             productListTable.AllowUserToAddRows = false;
             productListTable.AllowUserToDeleteRows = false;
+            productListTable.AllowUserToOrderColumns = true;
             productListTable.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             productListTable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             productListTable.BackgroundColor = SystemColors.Control;
@@ -107,7 +109,7 @@
             productListTable.Name = "productListTable";
             productListTable.ReadOnly = true;
             productListTable.RowTemplate.Height = 25;
-            productListTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            productListTable.SelectionMode = DataGridViewSelectionMode.CellSelect;
             productListTable.Size = new Size(1384, 632);
             productListTable.TabIndex = 0;
             // 
@@ -143,6 +145,6 @@
         private ToolStripMenuItem ürünGüncelleToolStripMenuItem;
         private ToolStripMenuItem ürünListesiniYenileToolStripMenuItem;
         private Panel pnlProductListTable;
-        private DataGridView productListTable;
+        public DataGridView productListTable;
     }
 }
