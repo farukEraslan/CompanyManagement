@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CompanyManagement.DataAccess.Migrations
 {
-    public partial class init : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -204,8 +204,8 @@ namespace CompanyManagement.DataAccess.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -249,8 +249,8 @@ namespace CompanyManagement.DataAccess.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -363,12 +363,12 @@ namespace CompanyManagement.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("8c30511d-0bd5-4c43-9102-f05ec9a79fd2"), "4f303d97-54f9-40a5-8675-3978f8ddd48c", "Operator", "OPERATOR" });
+                values: new object[] { new Guid("54da0cd0-62c3-4a64-b619-450847450920"), "8bc456c1-4f7f-48d8-a0cc-8ea361bc21e2", "Operator", "OPERATOR" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("e3ad51cf-70dd-4051-b34b-e1b0c8dcba62"), "0293758c-44ee-44ac-81ab-6391870681be", "Admin", "ADMIN" });
+                values: new object[] { new Guid("83fdd974-2aa1-42b5-89b5-7a2dbe2253ec"), "5c5af50e-0478-43e1-acba-1b79c7804812", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
