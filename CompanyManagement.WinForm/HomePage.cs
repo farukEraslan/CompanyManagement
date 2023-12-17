@@ -29,6 +29,8 @@ namespace CompanyManagement.WinForm
             //    }
             //}
 
+            UploadExcelFile.Enabled = false;
+
             GetProductList();
         }
 
@@ -83,7 +85,7 @@ namespace CompanyManagement.WinForm
             GetProductList();
         }
 
-        private void UrunCikarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UrunSilmeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var productDeleteForm = new ProductDeletePage();
             productDeleteForm.ShowDialog();
@@ -91,6 +93,27 @@ namespace CompanyManagement.WinForm
         }
 
         private void UrunGuncelleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var productUpdateForm = new ProductUpdatePage();
+            productUpdateForm.ShowDialog();
+            GetProductList();
+        }
+
+        private void btnCreate_Click(object sender, EventArgs e)
+        {
+            var productCreateForm = new ProductCreatePage();
+            productCreateForm.ShowDialog();
+            GetProductList();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var productDeleteForm = new ProductDeletePage();
+            productDeleteForm.ShowDialog();
+            GetProductList();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
             var productUpdateForm = new ProductUpdatePage();
             productUpdateForm.ShowDialog();
@@ -106,7 +129,5 @@ namespace CompanyManagement.WinForm
         {
             Application.Exit();
         }
-
-               
     }
 }

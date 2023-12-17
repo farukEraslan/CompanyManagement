@@ -32,10 +32,13 @@
             button1 = new Button();
             productPageNavbar = new MenuStrip();
             UrunEkleToolStripMenuItem = new ToolStripMenuItem();
-            UrunCikarToolStripMenuItem = new ToolStripMenuItem();
+            UrunSilmeToolStripMenuItem = new ToolStripMenuItem();
             UrunGuncelleToolStripMenuItem = new ToolStripMenuItem();
             UploadExcelFile = new ToolStripMenuItem();
             pnlProductListTable = new Panel();
+            btnCreate = new Button();
+            btnDelete = new Button();
+            btnUpdate = new Button();
             btnRefreshTable = new Button();
             productListTable = new DataGridView();
             productPageNavbar.SuspendLayout();
@@ -53,7 +56,7 @@
             // productPageNavbar
             // 
             productPageNavbar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            productPageNavbar.Items.AddRange(new ToolStripItem[] { UrunEkleToolStripMenuItem, UrunCikarToolStripMenuItem, UrunGuncelleToolStripMenuItem, UploadExcelFile });
+            productPageNavbar.Items.AddRange(new ToolStripItem[] { UrunEkleToolStripMenuItem, UrunSilmeToolStripMenuItem, UrunGuncelleToolStripMenuItem, UploadExcelFile });
             productPageNavbar.Location = new Point(0, 0);
             productPageNavbar.Name = "productPageNavbar";
             productPageNavbar.Size = new Size(1384, 29);
@@ -67,12 +70,11 @@
             UrunEkleToolStripMenuItem.Text = "Ürün Ekleme";
             UrunEkleToolStripMenuItem.Click += UrunEkleToolStripMenuItem_Click;
             // 
-            // UrunCikarToolStripMenuItem
+            // UrunSilmeToolStripMenuItem
             // 
-            UrunCikarToolStripMenuItem.Name = "UrunCikarToolStripMenuItem";
-            UrunCikarToolStripMenuItem.Size = new Size(100, 25);
-            UrunCikarToolStripMenuItem.Text = "Ürün Silme";
-            UrunCikarToolStripMenuItem.Click += UrunCikarToolStripMenuItem_Click;
+            UrunSilmeToolStripMenuItem.Name = "UrunSilmeToolStripMenuItem";
+            UrunSilmeToolStripMenuItem.Size = new Size(100, 25);
+            UrunSilmeToolStripMenuItem.Text = "Ürün Silme";
             // 
             // UrunGuncelleToolStripMenuItem
             // 
@@ -89,6 +91,9 @@
             // 
             // pnlProductListTable
             // 
+            pnlProductListTable.Controls.Add(btnCreate);
+            pnlProductListTable.Controls.Add(btnDelete);
+            pnlProductListTable.Controls.Add(btnUpdate);
             pnlProductListTable.Controls.Add(btnRefreshTable);
             pnlProductListTable.Controls.Add(productListTable);
             pnlProductListTable.Dock = DockStyle.Fill;
@@ -96,6 +101,39 @@
             pnlProductListTable.Name = "pnlProductListTable";
             pnlProductListTable.Size = new Size(1384, 632);
             pnlProductListTable.TabIndex = 1;
+            // 
+            // btnCreate
+            // 
+            btnCreate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnCreate.Image = (Image)resources.GetObject("btnCreate.Image");
+            btnCreate.Location = new Point(1154, 3);
+            btnCreate.Name = "btnCreate";
+            btnCreate.Size = new Size(50, 50);
+            btnCreate.TabIndex = 3;
+            btnCreate.UseVisualStyleBackColor = true;
+            btnCreate.Click += btnCreate_Click;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDelete.Image = (Image)resources.GetObject("btnDelete.Image");
+            btnDelete.Location = new Point(1210, 3);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(50, 50);
+            btnDelete.TabIndex = 3;
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
+            // btnUpdate
+            // 
+            btnUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnUpdate.Image = (Image)resources.GetObject("btnUpdate.Image");
+            btnUpdate.Location = new Point(1266, 3);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(50, 50);
+            btnUpdate.TabIndex = 3;
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnRefreshTable
             // 
@@ -139,6 +177,7 @@
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "HomePage";
+            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Stok Yönetim v0.1";
             FormClosing += ProductPageForm_FormClosing;
@@ -156,11 +195,14 @@
         private Button button1;
         private MenuStrip productPageNavbar;
         private ToolStripMenuItem UrunEkleToolStripMenuItem;
-        private ToolStripMenuItem UrunCikarToolStripMenuItem;
+        private ToolStripMenuItem UrunSilmeToolStripMenuItem;
         private ToolStripMenuItem UrunGuncelleToolStripMenuItem;
         private Panel pnlProductListTable;
         public DataGridView productListTable;
         private Button btnRefreshTable;
         private ToolStripMenuItem UploadExcelFile;
+        private Button btnCreate;
+        private Button btnDelete;
+        private Button btnUpdate;
     }
 }
