@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace CompanyManagement.WinForm
 {
-    public partial class productPageForm : Form
+    public partial class HomePage : Form
     {
         private readonly HttpClient _httpClient;
 
-        public productPageForm()
+        public HomePage()
         {
             InitializeComponent();
             _httpClient = new HttpClient();
@@ -18,28 +18,6 @@ namespace CompanyManagement.WinForm
         private void productPageForm_Load(object sender, EventArgs e)
         {
             GetProductList();
-        }
-
-        private void ürünListesiniYenileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GetProductList();
-        }       
-
-        private void ürünEkleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var productCreateForm = new ProductCreatePage();
-            productCreateForm.ShowDialog();
-        }
-
-        private void ürünÇýkarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var productDeleteForm = new ProductDeletePage();
-            productDeleteForm.ShowDialog();
-        }
-
-        private void productPageForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
         }
 
         // Ürün listesini alma
@@ -72,6 +50,37 @@ namespace CompanyManagement.WinForm
             {
                 MessageBox.Show("Bir hata oluþtu: " + ex.Message);
             }
+        }
+
+        private void ürünEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var productCreateForm = new ProductCreatePage();
+            productCreateForm.ShowDialog();
+            GetProductList();
+        }
+
+        private void ürünÇýkarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var productDeleteForm = new ProductDeletePage();
+            productDeleteForm.ShowDialog();
+            GetProductList();
+        }
+
+        private void productPageForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnRefreshTable_Click(object sender, EventArgs e)
+        {
+            GetProductList();
+        }
+
+        private void UrunGuncelleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var productUpdateForm = new ProductUpdatePage();
+            productUpdateForm.ShowDialog();
+            GetProductList();
         }
     }
 }

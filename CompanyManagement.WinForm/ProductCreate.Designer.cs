@@ -575,6 +575,8 @@
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(4);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "ProductCreatePage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Ürün Ekle";

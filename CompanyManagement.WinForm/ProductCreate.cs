@@ -22,10 +22,18 @@ namespace CompanyManagement.WinForm
             Clear();
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
+        private async void btnCreate_Click(object sender, EventArgs e)
         {
             var productCreateDto = ProductBind();
-            ProductCreate(productCreateDto);
+            var result = await ProductCreate(productCreateDto);
+            if (result is null)
+            {
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(result);
+            }
         }
 
         // Formu Temizleme
@@ -74,7 +82,8 @@ namespace CompanyManagement.WinForm
 
             return productCreateDto;
         }
-        private async Task ProductCreate(ProductCreateDto productCreateDto)
+
+        private async Task<string> ProductCreate(ProductCreateDto productCreateDto)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7233/api/");
@@ -86,17 +95,12 @@ namespace CompanyManagement.WinForm
 
             if (response.IsSuccessStatusCode)
             {
-                // Başarılı yanıt durumunda işlemleri gerçekleştirin
-                var home = new productPageForm();
-                home.GetProductList();
-                this.Close();
-                home.Show();
+                return null;
             }
             else
             {
-                // Hata durumunda hata mesajını işleyin
                 string errorMessage = await response.Content.ReadAsStringAsync();
-                // Hata mesajını gösterin veya işleyin
+                return errorMessage;
             }
         }
 

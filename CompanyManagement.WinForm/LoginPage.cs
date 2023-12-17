@@ -18,20 +18,25 @@ namespace CompanyManagement.WinForm
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            var loginDto = LoginBind();
-            var result = await Login(loginDto);
+            //var loginDto = LoginBind();
+            //var result = await Login(loginDto);
 
-            if (result != null)
-            {
-                MessageBox.Show(result);
-            }
-            else
-            {
-                var home = new productPageForm();
-                home.GetProductList();
-                this.Hide();
-                home.Show();
-            }            
+            //if (result != null)
+            //{
+            //    MessageBox.Show(result);
+            //}
+            //else
+            //{
+            //    var home = new productPageForm();
+            //    home.GetProductList();
+            //    this.Hide();
+            //    home.Show();
+            //}
+
+            var home = new HomePage();
+            home.GetProductList();
+            this.Hide();
+            home.Show();
         }
 
         private LoginDto LoginBind()
@@ -65,7 +70,7 @@ namespace CompanyManagement.WinForm
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
     }
 }

@@ -31,47 +31,83 @@
             label1 = new Label();
             txtProductDelete = new TextBox();
             btnDelete = new Button();
+            btnClose = new Button();
+            panel1 = new Panel();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(95, 95);
+            label1.Location = new Point(58, 79);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
+            label1.Size = new Size(86, 21);
             label1.TabIndex = 0;
-            label1.Text = "label1";
+            label1.Text = "Ürün ID'si :";
             // 
             // txtProductDelete
             // 
-            txtProductDelete.Location = new Point(254, 116);
+            txtProductDelete.Location = new Point(161, 76);
+            txtProductDelete.Margin = new Padding(4);
             txtProductDelete.Name = "txtProductDelete";
-            txtProductDelete.Size = new Size(304, 23);
+            txtProductDelete.PlaceholderText = "Silmek istediğiniz ürünün id'sini girin...";
+            txtProductDelete.Size = new Size(506, 29);
             txtProductDelete.TabIndex = 1;
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(601, 146);
+            btnDelete.Location = new Point(161, 132);
+            btnDelete.Margin = new Padding(4);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(117, 44);
+            btnDelete.Size = new Size(506, 45);
             btnDelete.TabIndex = 2;
             btnDelete.Text = "ÜRÜN SİL";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
+            // btnClose
+            // 
+            btnClose.Location = new Point(736, 296);
+            btnClose.Margin = new Padding(4);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(0, 0);
+            btnClose.TabIndex = 3;
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(btnClose);
+            panel1.Controls.Add(txtProductDelete);
+            panel1.Controls.Add(btnDelete);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(4);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(736, 296);
+            panel1.TabIndex = 4;
+            // 
             // ProductDeletePage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AcceptButton = btnDelete;
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(btnDelete);
-            Controls.Add(txtProductDelete);
-            Controls.Add(label1);
+            CancelButton = btnClose;
+            ClientSize = new Size(736, 296);
+            Controls.Add(panel1);
+            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Margin = new Padding(4);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "ProductDeletePage";
-            Text = "ProductDelete";
-            FormClosing += ProductDeletePage_FormClosing;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Ürün Sil";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -79,5 +115,7 @@
         private Label label1;
         private TextBox txtProductDelete;
         private Button btnDelete;
+        private Button btnClose;
+        private Panel panel1;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CompanyManagement.WinForm
 {
-    partial class productPageForm
+    partial class HomePage
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
             button1 = new Button();
             productPageNavbar = new MenuStrip();
-            ürünEkleToolStripMenuItem = new ToolStripMenuItem();
-            ürünÇıkarToolStripMenuItem = new ToolStripMenuItem();
-            ürünGüncelleToolStripMenuItem = new ToolStripMenuItem();
+            UrunEkleToolStripMenuItem = new ToolStripMenuItem();
+            UrunCikarToolStripMenuItem = new ToolStripMenuItem();
+            UrunGuncelleToolStripMenuItem = new ToolStripMenuItem();
             ürünListesiniYenileToolStripMenuItem = new ToolStripMenuItem();
             pnlProductListTable = new Panel();
+            btnRefreshTable = new Button();
             productListTable = new DataGridView();
             productPageNavbar.SuspendLayout();
             pnlProductListTable.SuspendLayout();
@@ -51,48 +53,59 @@
             // productPageNavbar
             // 
             productPageNavbar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            productPageNavbar.Items.AddRange(new ToolStripItem[] { ürünEkleToolStripMenuItem, ürünÇıkarToolStripMenuItem, ürünGüncelleToolStripMenuItem, ürünListesiniYenileToolStripMenuItem });
+            productPageNavbar.Items.AddRange(new ToolStripItem[] { UrunEkleToolStripMenuItem, UrunCikarToolStripMenuItem, UrunGuncelleToolStripMenuItem, ürünListesiniYenileToolStripMenuItem });
             productPageNavbar.Location = new Point(0, 0);
             productPageNavbar.Name = "productPageNavbar";
             productPageNavbar.Size = new Size(1384, 29);
-            productPageNavbar.TabIndex = 3;
+            productPageNavbar.TabIndex = 2;
             productPageNavbar.Text = "menuStrip1";
             // 
-            // ürünEkleToolStripMenuItem
+            // UrunEkleToolStripMenuItem
             // 
-            ürünEkleToolStripMenuItem.Name = "ürünEkleToolStripMenuItem";
-            ürünEkleToolStripMenuItem.Size = new Size(89, 25);
-            ürünEkleToolStripMenuItem.Text = "Ürün Ekle";
-            ürünEkleToolStripMenuItem.Click += ürünEkleToolStripMenuItem_Click;
+            UrunEkleToolStripMenuItem.Name = "UrunEkleToolStripMenuItem";
+            UrunEkleToolStripMenuItem.Size = new Size(111, 25);
+            UrunEkleToolStripMenuItem.Text = "Ürün Ekleme";
+            UrunEkleToolStripMenuItem.Click += ürünEkleToolStripMenuItem_Click;
             // 
-            // ürünÇıkarToolStripMenuItem
+            // UrunCikarToolStripMenuItem
             // 
-            ürünÇıkarToolStripMenuItem.Name = "ürünÇıkarToolStripMenuItem";
-            ürünÇıkarToolStripMenuItem.Size = new Size(97, 25);
-            ürünÇıkarToolStripMenuItem.Text = "Ürün Çıkar";
-            ürünÇıkarToolStripMenuItem.Click += ürünÇıkarToolStripMenuItem_Click;
+            UrunCikarToolStripMenuItem.Name = "UrunCikarToolStripMenuItem";
+            UrunCikarToolStripMenuItem.Size = new Size(100, 25);
+            UrunCikarToolStripMenuItem.Text = "Ürün Silme";
+            UrunCikarToolStripMenuItem.Click += ürünÇıkarToolStripMenuItem_Click;
             // 
-            // ürünGüncelleToolStripMenuItem
+            // UrunGuncelleToolStripMenuItem
             // 
-            ürünGüncelleToolStripMenuItem.Name = "ürünGüncelleToolStripMenuItem";
-            ürünGüncelleToolStripMenuItem.Size = new Size(121, 25);
-            ürünGüncelleToolStripMenuItem.Text = "Ürün Güncelle";
+            UrunGuncelleToolStripMenuItem.Name = "UrunGuncelleToolStripMenuItem";
+            UrunGuncelleToolStripMenuItem.Size = new Size(143, 25);
+            UrunGuncelleToolStripMenuItem.Text = "Ürün Güncelleme";
+            UrunGuncelleToolStripMenuItem.Click += UrunGuncelleToolStripMenuItem_Click;
             // 
             // ürünListesiniYenileToolStripMenuItem
             // 
             ürünListesiniYenileToolStripMenuItem.Name = "ürünListesiniYenileToolStripMenuItem";
-            ürünListesiniYenileToolStripMenuItem.Size = new Size(162, 25);
-            ürünListesiniYenileToolStripMenuItem.Text = "Ürün Listesini Yenile";
-            ürünListesiniYenileToolStripMenuItem.Click += ürünListesiniYenileToolStripMenuItem_Click;
+            ürünListesiniYenileToolStripMenuItem.Size = new Size(12, 25);
             // 
             // pnlProductListTable
             // 
+            pnlProductListTable.Controls.Add(btnRefreshTable);
             pnlProductListTable.Controls.Add(productListTable);
             pnlProductListTable.Dock = DockStyle.Fill;
             pnlProductListTable.Location = new Point(0, 29);
             pnlProductListTable.Name = "pnlProductListTable";
             pnlProductListTable.Size = new Size(1384, 632);
-            pnlProductListTable.TabIndex = 5;
+            pnlProductListTable.TabIndex = 1;
+            // 
+            // btnRefreshTable
+            // 
+            btnRefreshTable.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnRefreshTable.Image = (Image)resources.GetObject("btnRefreshTable.Image");
+            btnRefreshTable.Location = new Point(1322, 3);
+            btnRefreshTable.Name = "btnRefreshTable";
+            btnRefreshTable.Size = new Size(50, 50);
+            btnRefreshTable.TabIndex = 3;
+            btnRefreshTable.UseVisualStyleBackColor = true;
+            btnRefreshTable.Click += btnRefreshTable_Click;
             // 
             // productListTable
             // 
@@ -104,27 +117,27 @@
             productListTable.BackgroundColor = SystemColors.Control;
             productListTable.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             productListTable.EditMode = DataGridViewEditMode.EditProgrammatically;
-            productListTable.Location = new Point(0, 0);
+            productListTable.Location = new Point(0, 59);
             productListTable.MultiSelect = false;
             productListTable.Name = "productListTable";
             productListTable.ReadOnly = true;
             productListTable.RowTemplate.Height = 25;
             productListTable.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            productListTable.Size = new Size(1384, 632);
-            productListTable.TabIndex = 0;
+            productListTable.Size = new Size(1384, 573);
+            productListTable.TabIndex = 4;
             // 
-            // productPageForm
+            // HomePage
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             ClientSize = new Size(1384, 661);
             Controls.Add(pnlProductListTable);
             Controls.Add(productPageNavbar);
             Controls.Add(button1);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
             Margin = new Padding(4);
-            Name = "productPageForm";
+            Name = "HomePage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Stok Yönetim v0.1";
             FormClosing += productPageForm_FormClosing;
@@ -141,11 +154,12 @@
 
         private Button button1;
         private MenuStrip productPageNavbar;
-        private ToolStripMenuItem ürünEkleToolStripMenuItem;
-        private ToolStripMenuItem ürünÇıkarToolStripMenuItem;
-        private ToolStripMenuItem ürünGüncelleToolStripMenuItem;
+        private ToolStripMenuItem UrunEkleToolStripMenuItem;
+        private ToolStripMenuItem UrunCikarToolStripMenuItem;
+        private ToolStripMenuItem UrunGuncelleToolStripMenuItem;
         private ToolStripMenuItem ürünListesiniYenileToolStripMenuItem;
         private Panel pnlProductListTable;
         public DataGridView productListTable;
+        private Button btnRefreshTable;
     }
 }
