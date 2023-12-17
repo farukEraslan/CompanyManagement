@@ -99,5 +99,10 @@ namespace CompanyManagement.WinForm
                 // Hata mesajını gösterin veya işleyin
             }
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

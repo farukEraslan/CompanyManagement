@@ -77,6 +77,7 @@
             btnClear = new Button();
             btnCreate = new Button();
             pnlProductAdd = new Panel();
+            btnClose = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -121,7 +122,7 @@
             panel1.Location = new Point(10, 7);
             panel1.Name = "panel1";
             panel1.Size = new Size(520, 50);
-            panel1.TabIndex = 0;
+            panel1.TabIndex = 1;
             // 
             // panel2
             // 
@@ -130,7 +131,7 @@
             panel2.Location = new Point(10, 63);
             panel2.Name = "panel2";
             panel2.Size = new Size(520, 50);
-            panel2.TabIndex = 0;
+            panel2.TabIndex = 2;
             // 
             // lblName
             // 
@@ -139,7 +140,7 @@
             lblName.Location = new Point(3, 13);
             lblName.Name = "lblName";
             lblName.Size = new Size(79, 21);
-            lblName.TabIndex = 0;
+            lblName.TabIndex = 2;
             lblName.Text = "Ürün Adı :";
             // 
             // txtName
@@ -157,7 +158,7 @@
             panel3.Location = new Point(10, 119);
             panel3.Name = "panel3";
             panel3.Size = new Size(520, 50);
-            panel3.TabIndex = 0;
+            panel3.TabIndex = 3;
             // 
             // lblDescription
             // 
@@ -166,7 +167,7 @@
             lblDescription.Location = new Point(3, 13);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(80, 21);
-            lblDescription.TabIndex = 0;
+            lblDescription.TabIndex = 3;
             lblDescription.Text = "Açıklama :";
             // 
             // txtDescription
@@ -184,7 +185,7 @@
             panel4.Location = new Point(10, 175);
             panel4.Name = "panel4";
             panel4.Size = new Size(520, 50);
-            panel4.TabIndex = 0;
+            panel4.TabIndex = 4;
             // 
             // lblBrand
             // 
@@ -193,7 +194,7 @@
             lblBrand.Location = new Point(3, 13);
             lblBrand.Name = "lblBrand";
             lblBrand.Size = new Size(61, 21);
-            lblBrand.TabIndex = 0;
+            lblBrand.TabIndex = 4;
             lblBrand.Text = "Marka :";
             // 
             // txtBrand
@@ -211,7 +212,7 @@
             panel5.Location = new Point(10, 231);
             panel5.Name = "panel5";
             panel5.Size = new Size(520, 50);
-            panel5.TabIndex = 0;
+            panel5.TabIndex = 5;
             // 
             // lblHeight
             // 
@@ -220,7 +221,7 @@
             lblHeight.Location = new Point(3, 13);
             lblHeight.Name = "lblHeight";
             lblHeight.Size = new Size(82, 21);
-            lblHeight.TabIndex = 0;
+            lblHeight.TabIndex = 5;
             lblHeight.Text = "Yükseklik :";
             // 
             // txtHeight
@@ -238,7 +239,7 @@
             panel6.Location = new Point(10, 287);
             panel6.Name = "panel6";
             panel6.Size = new Size(520, 50);
-            panel6.TabIndex = 0;
+            panel6.TabIndex = 6;
             // 
             // lblWidth
             // 
@@ -247,7 +248,7 @@
             lblWidth.Location = new Point(3, 13);
             lblWidth.Name = "lblWidth";
             lblWidth.Size = new Size(72, 21);
-            lblWidth.TabIndex = 0;
+            lblWidth.TabIndex = 6;
             lblWidth.Text = "Genişlik :";
             // 
             // txtWidth
@@ -265,7 +266,7 @@
             panel7.Location = new Point(579, 7);
             panel7.Name = "panel7";
             panel7.Size = new Size(520, 50);
-            panel7.TabIndex = 0;
+            panel7.TabIndex = 10;
             // 
             // lblEstWeight
             // 
@@ -274,7 +275,7 @@
             lblEstWeight.Location = new Point(3, 13);
             lblEstWeight.Name = "lblEstWeight";
             lblEstWeight.Size = new Size(92, 21);
-            lblEstWeight.TabIndex = 0;
+            lblEstWeight.TabIndex = 10;
             lblEstWeight.Text = "Ort. Ağırlık :";
             // 
             // txtEstWeight
@@ -292,7 +293,7 @@
             panel8.Location = new Point(579, 63);
             panel8.Name = "panel8";
             panel8.Size = new Size(520, 50);
-            panel8.TabIndex = 0;
+            panel8.TabIndex = 11;
             // 
             // lblWeightUnit
             // 
@@ -301,7 +302,7 @@
             lblWeightUnit.Location = new Point(3, 13);
             lblWeightUnit.Name = "lblWeightUnit";
             lblWeightUnit.Size = new Size(107, 21);
-            lblWeightUnit.TabIndex = 0;
+            lblWeightUnit.TabIndex = 11;
             lblWeightUnit.Text = "Ağırlık Birimi :";
             // 
             // txtWeightUnit
@@ -319,7 +320,7 @@
             panel9.Location = new Point(579, 119);
             panel9.Name = "panel9";
             panel9.Size = new Size(520, 50);
-            panel9.TabIndex = 0;
+            panel9.TabIndex = 12;
             // 
             // dtExpiryDate
             // 
@@ -335,7 +336,7 @@
             lblExpiryDate.Location = new Point(3, 13);
             lblExpiryDate.Name = "lblExpiryDate";
             lblExpiryDate.Size = new Size(154, 21);
-            lblExpiryDate.TabIndex = 0;
+            lblExpiryDate.TabIndex = 12;
             lblExpiryDate.Text = "Son Kullanma Tarihi :";
             // 
             // panel10
@@ -345,7 +346,7 @@
             panel10.Location = new Point(579, 175);
             panel10.Name = "panel10";
             panel10.Size = new Size(520, 50);
-            panel10.TabIndex = 0;
+            panel10.TabIndex = 13;
             // 
             // lblQualityGrade
             // 
@@ -354,7 +355,7 @@
             lblQualityGrade.Location = new Point(3, 13);
             lblQualityGrade.Name = "lblQualityGrade";
             lblQualityGrade.Size = new Size(55, 21);
-            lblQualityGrade.TabIndex = 0;
+            lblQualityGrade.TabIndex = 13;
             lblQualityGrade.Text = "Kalite :";
             // 
             // txtQualityGrade
@@ -372,7 +373,7 @@
             panel11.Location = new Point(10, 343);
             panel11.Name = "panel11";
             panel11.Size = new Size(520, 50);
-            panel11.TabIndex = 0;
+            panel11.TabIndex = 7;
             // 
             // lblLength
             // 
@@ -381,7 +382,7 @@
             lblLength.Location = new Point(3, 13);
             lblLength.Name = "lblLength";
             lblLength.Size = new Size(74, 21);
-            lblLength.TabIndex = 0;
+            lblLength.TabIndex = 7;
             lblLength.Text = "Uzunluk :";
             // 
             // txtLenght
@@ -399,7 +400,7 @@
             panel12.Location = new Point(579, 231);
             panel12.Name = "panel12";
             panel12.Size = new Size(520, 50);
-            panel12.TabIndex = 0;
+            panel12.TabIndex = 14;
             // 
             // lblLastBoughtPrice
             // 
@@ -408,7 +409,7 @@
             lblLastBoughtPrice.Location = new Point(3, 13);
             lblLastBoughtPrice.Name = "lblLastBoughtPrice";
             lblLastBoughtPrice.Size = new Size(168, 21);
-            lblLastBoughtPrice.TabIndex = 0;
+            lblLastBoughtPrice.TabIndex = 14;
             lblLastBoughtPrice.Text = "Son Satın Alınan Fiyat :";
             // 
             // txtLastPrice
@@ -426,7 +427,7 @@
             panel13.Location = new Point(579, 287);
             panel13.Name = "panel13";
             panel13.Size = new Size(520, 50);
-            panel13.TabIndex = 0;
+            panel13.TabIndex = 15;
             // 
             // lblUnitPrice
             // 
@@ -435,7 +436,7 @@
             lblUnitPrice.Location = new Point(3, 13);
             lblUnitPrice.Name = "lblUnitPrice";
             lblUnitPrice.Size = new Size(102, 21);
-            lblUnitPrice.TabIndex = 0;
+            lblUnitPrice.TabIndex = 15;
             lblUnitPrice.Text = "Güncel Fiyat :";
             // 
             // txtUnitPrice
@@ -453,7 +454,7 @@
             panel14.Location = new Point(10, 399);
             panel14.Name = "panel14";
             panel14.Size = new Size(520, 50);
-            panel14.TabIndex = 0;
+            panel14.TabIndex = 8;
             // 
             // lblQuantity
             // 
@@ -462,7 +463,7 @@
             lblQuantity.Location = new Point(3, 13);
             lblQuantity.Name = "lblQuantity";
             lblQuantity.Size = new Size(62, 21);
-            lblQuantity.TabIndex = 0;
+            lblQuantity.TabIndex = 8;
             lblQuantity.Text = "Miktar :";
             // 
             // txtQuantity
@@ -480,7 +481,7 @@
             panel15.Location = new Point(10, 455);
             panel15.Name = "panel15";
             panel15.Size = new Size(520, 50);
-            panel15.TabIndex = 0;
+            panel15.TabIndex = 9;
             // 
             // lblQuantityUnit
             // 
@@ -489,7 +490,7 @@
             lblQuantityUnit.Location = new Point(3, 13);
             lblQuantityUnit.Name = "lblQuantityUnit";
             lblQuantityUnit.Size = new Size(107, 21);
-            lblQuantityUnit.TabIndex = 0;
+            lblQuantityUnit.TabIndex = 9;
             lblQuantityUnit.Text = "Miktar Birimi :";
             // 
             // txtQuantityUnit
@@ -507,7 +508,7 @@
             panel16.Location = new Point(579, 343);
             panel16.Name = "panel16";
             panel16.Size = new Size(520, 162);
-            panel16.TabIndex = 0;
+            panel16.TabIndex = 16;
             // 
             // btnClear
             // 
@@ -531,6 +532,7 @@
             // 
             // pnlProductAdd
             // 
+            pnlProductAdd.Controls.Add(btnClose);
             pnlProductAdd.Controls.Add(panel1);
             pnlProductAdd.Controls.Add(panel16);
             pnlProductAdd.Controls.Add(panel11);
@@ -551,13 +553,23 @@
             pnlProductAdd.Location = new Point(0, 0);
             pnlProductAdd.Name = "pnlProductAdd";
             pnlProductAdd.Size = new Size(1134, 561);
-            pnlProductAdd.TabIndex = 0;
+            pnlProductAdd.TabIndex = 1;
+            // 
+            // btnClose
+            // 
+            btnClose.Location = new Point(1134, 561);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(0, 0);
+            btnClose.TabIndex = 1;
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
             // ProductCreatePage
             // 
             AcceptButton = btnCreate;
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnClose;
             ClientSize = new Size(1134, 561);
             Controls.Add(pnlProductAdd);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -656,5 +668,6 @@
         private Panel pnlProductAdd;
         private TextBox txtQualityGrade;
         private TextBox txtLastPrice;
+        private Button btnClose;
     }
 }
