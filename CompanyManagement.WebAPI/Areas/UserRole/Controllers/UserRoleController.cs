@@ -22,5 +22,12 @@ namespace CompanyManagement.WebAPI.Areas.UserRole.Controllers
             var result = await _userRoleManager.CreateAsync(userRoleCreateDto);
             return result.IsSuccess == true ? Ok(result) : BadRequest(result);
         }
+
+        [HttpGet("api/[controller]/GetRole")]
+        public async Task<IActionResult> GetUserRole(Guid userId)
+        {
+            var result = await _userRoleManager.GetByIdAsync(userId);
+            return result is not null ? Ok(result) : BadRequest(result);
+        }
     }
 }

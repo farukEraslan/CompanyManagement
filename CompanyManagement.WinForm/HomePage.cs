@@ -1,7 +1,5 @@
-using CompanyManagement.Dtos.Product;
 using CompanyManagement.WinForm.DTOs.ProductDtoSeriliaze;
 using Newtonsoft.Json;
-using System.Windows.Forms;
 
 namespace CompanyManagement.WinForm
 {
@@ -15,9 +13,35 @@ namespace CompanyManagement.WinForm
             _httpClient = new HttpClient();
         }
 
-        private void ProductPageForm_Load(object sender, EventArgs e)
+        private async void ProductPageForm_Load(object sender, EventArgs e)
         {
+            //var userRole = await GetUserRole(this.Tag.ToString());
+            //if (userRole is null)
+            //{
+            //    MessageBox.Show("Programa giriþ yetkiniz bulunmamakta!");
+            //    return;
+            //}
+            //else
+            //{
+            //    if (userRole == "Admin")
+            //    {
+            //        UploadExcelFile.Enabled = false;
+            //    }
+            //}
+
             GetProductList();
+        }
+
+        private async Task<string> GetUserRole(string tag)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:7233/api/");
+
+            var response = await client.GetAsync($"UserRole/GetRole?userId={tag}");
+
+            string apiResponse = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<string>(apiResponse);
+            return result;
         }
 
         // Ürün listesini alma metodu

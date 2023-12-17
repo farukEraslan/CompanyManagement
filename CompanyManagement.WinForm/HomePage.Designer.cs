@@ -34,7 +34,7 @@
             UrunEkleToolStripMenuItem = new ToolStripMenuItem();
             UrunCikarToolStripMenuItem = new ToolStripMenuItem();
             UrunGuncelleToolStripMenuItem = new ToolStripMenuItem();
-            ürünListesiniYenileToolStripMenuItem = new ToolStripMenuItem();
+            UploadExcelFile = new ToolStripMenuItem();
             pnlProductListTable = new Panel();
             btnRefreshTable = new Button();
             productListTable = new DataGridView();
@@ -53,7 +53,7 @@
             // productPageNavbar
             // 
             productPageNavbar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            productPageNavbar.Items.AddRange(new ToolStripItem[] { UrunEkleToolStripMenuItem, UrunCikarToolStripMenuItem, UrunGuncelleToolStripMenuItem, ürünListesiniYenileToolStripMenuItem });
+            productPageNavbar.Items.AddRange(new ToolStripItem[] { UrunEkleToolStripMenuItem, UrunCikarToolStripMenuItem, UrunGuncelleToolStripMenuItem, UploadExcelFile });
             productPageNavbar.Location = new Point(0, 0);
             productPageNavbar.Name = "productPageNavbar";
             productPageNavbar.Size = new Size(1384, 29);
@@ -81,10 +81,11 @@
             UrunGuncelleToolStripMenuItem.Text = "Ürün Güncelleme";
             UrunGuncelleToolStripMenuItem.Click += UrunGuncelleToolStripMenuItem_Click;
             // 
-            // ürünListesiniYenileToolStripMenuItem
+            // UploadExcelFile
             // 
-            ürünListesiniYenileToolStripMenuItem.Name = "ürünListesiniYenileToolStripMenuItem";
-            ürünListesiniYenileToolStripMenuItem.Size = new Size(12, 25);
+            UploadExcelFile.Name = "UploadExcelFile";
+            UploadExcelFile.Size = new Size(178, 25);
+            UploadExcelFile.Text = "Excel Dosyası Yükleme";
             // 
             // pnlProductListTable
             // 
@@ -157,9 +158,9 @@
         private ToolStripMenuItem UrunEkleToolStripMenuItem;
         private ToolStripMenuItem UrunCikarToolStripMenuItem;
         private ToolStripMenuItem UrunGuncelleToolStripMenuItem;
-        private ToolStripMenuItem ürünListesiniYenileToolStripMenuItem;
         private Panel pnlProductListTable;
         public DataGridView productListTable;
         private Button btnRefreshTable;
+        private ToolStripMenuItem UploadExcelFile;
     }
 }

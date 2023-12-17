@@ -1,4 +1,6 @@
-﻿namespace CompanyManagement.Business.Concrete
+﻿using CompanyManagement.Dtos.UserRole;
+
+namespace CompanyManagement.Business.Concrete
 {
     public class UserRoleManager : IUserRoleService
     {
@@ -52,9 +54,19 @@
             throw new NotImplementedException();
         }
 
-        public Task<IResult> GetByIdAsync(Guid userRoleId)
+        public async Task<IList<string>> GetByIdAsync(Guid userId)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+            {
+                //return new ErrorResult("Kullanıcı bulunamadı.");
+                return null;
+            }
+            else
+            {
+                var userRole = await _userManager.GetRolesAsync(user);
+                return userRole;
+            }
         }
 
         public Task<IResult> GetAllAsync()

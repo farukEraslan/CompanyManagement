@@ -1,4 +1,6 @@
 ﻿using CompanyManagement.Dtos.Account;
+using CompanyManagement.Dtos.UserDto;
+using CompanyManagement.WinForm.DTOs.ProductDtoSeriliaze;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -18,25 +20,19 @@ namespace CompanyManagement.WinForm
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            //var loginDto = LoginBind();
-            //var result = await Login(loginDto);
+            var loginDto = LoginBind();
+            var result = await Login(loginDto);
 
-            //if (result != null)
-            //{
-            //    MessageBox.Show(result);
-            //}
-            //else
-            //{
-            //    var home = new productPageForm();
-            //    home.GetProductList();
-            //    this.Hide();
-            //    home.Show();
-            //}
-
-            var home = new HomePage();
-            home.GetProductList();
-            this.Hide();
-            home.Show();
+            if (result != null)
+            {
+                MessageBox.Show(result);
+            }
+            else
+            {
+                var homePage = new HomePage();
+                this.Hide();
+                homePage.Show();
+            }
         }
 
         private LoginDto LoginBind()
@@ -59,6 +55,8 @@ namespace CompanyManagement.WinForm
 
             if (response.IsSuccessStatusCode)
             {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<UserDto>(apiResponse);
                 return null;
             }
             else

@@ -26,7 +26,7 @@ namespace CompanyManagement.WebAPI.Areas.Account.Controllers
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
             await _signInManager.SignInAsync(user, isPersistent: false);
             var accessToken = HttpContext.Request.Cookies;
-            return Ok(accessToken);
+            return Ok(_mapper.Map<UserDto>(user));
         }
 
         [HttpGet("api/[controller]/GetToken")]

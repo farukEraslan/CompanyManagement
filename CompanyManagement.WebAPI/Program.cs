@@ -34,6 +34,8 @@ namespace CompanyManagement.WebAPI
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<DbContext, CompanyManagementDbContext>();
+            builder.Services.AddTransient<UserRoleManager>();
+
 
             // Identity
             builder.Services.AddDefaultIdentity<UserEntity>(options =>

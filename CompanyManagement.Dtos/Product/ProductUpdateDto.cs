@@ -18,5 +18,9 @@
         public string? QualityGrade { get; set; }
         public decimal? LastBoughtPrice { get; set; }
         public decimal? UnitPrice { get; set; }
+        public Guid? CreatedBy { get; set; }
+        public DateTime? CreatedDate { get; set; } = DateTime.Now;
+        public Guid? ModifiedBy { get; set; }
+        public DateTime? modifiedDate { get; set; } = DateTime.Now;
     }
 }

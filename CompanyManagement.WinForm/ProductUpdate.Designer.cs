@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            button2 = new Button();
+            btnUpdate = new Button();
             btnClose = new Button();
-            button1 = new Button();
+            btnClear = new Button();
             btnGetById = new Button();
             panel13 = new Panel();
             dtExpiryDate = new DateTimePicker();
@@ -57,6 +57,9 @@
             panel9 = new Panel();
             label7 = new Label();
             txtQuantity = new TextBox();
+            panel17 = new Panel();
+            label15 = new Label();
+            txtLenght = new TextBox();
             panel8 = new Panel();
             label6 = new Label();
             txtWidth = new TextBox();
@@ -87,6 +90,7 @@
             panel11.SuspendLayout();
             panel10.SuspendLayout();
             panel9.SuspendLayout();
+            panel17.SuspendLayout();
             panel8.SuspendLayout();
             panel7.SuspendLayout();
             panel6.SuspendLayout();
@@ -98,9 +102,9 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(btnUpdate);
             panel1.Controls.Add(btnClose);
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(btnClear);
             panel1.Controls.Add(btnGetById);
             panel1.Controls.Add(panel13);
             panel1.Controls.Add(panel16);
@@ -110,6 +114,7 @@
             panel1.Controls.Add(panel11);
             panel1.Controls.Add(panel10);
             panel1.Controls.Add(panel9);
+            panel1.Controls.Add(panel17);
             panel1.Controls.Add(panel8);
             panel1.Controls.Add(panel7);
             panel1.Controls.Add(panel6);
@@ -124,14 +129,15 @@
             panel1.Size = new Size(1095, 536);
             panel1.TabIndex = 1;
             // 
-            // button2
+            // btnUpdate
             // 
-            button2.Location = new Point(764, 468);
-            button2.Name = "button2";
-            button2.Size = new Size(157, 43);
-            button2.TabIndex = 16;
-            button2.Text = "Güncelle";
-            button2.UseVisualStyleBackColor = true;
+            btnUpdate.Location = new Point(764, 468);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(157, 43);
+            btnUpdate.TabIndex = 16;
+            btnUpdate.Text = "Güncelle";
+            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnClose
             // 
@@ -142,14 +148,15 @@
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += btnClose_Click;
             // 
-            // button1
+            // btnClear
             // 
-            button1.Location = new Point(927, 468);
-            button1.Name = "button1";
-            button1.Size = new Size(157, 43);
-            button1.TabIndex = 16;
-            button1.Text = "Temizle";
-            button1.UseVisualStyleBackColor = true;
+            btnClear.Location = new Point(927, 468);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(157, 43);
+            btnClear.TabIndex = 16;
+            btnClear.Text = "Temizle";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
             // 
             // btnGetById
             // 
@@ -376,6 +383,33 @@
             txtQuantity.Size = new Size(394, 29);
             txtQuantity.TabIndex = 8;
             // 
+            // panel17
+            // 
+            panel17.Controls.Add(label15);
+            panel17.Controls.Add(txtLenght);
+            panel17.Location = new Point(10, 455);
+            panel17.Name = "panel17";
+            panel17.Size = new Size(520, 50);
+            panel17.TabIndex = 7;
+            // 
+            // label15
+            // 
+            label15.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            label15.AutoSize = true;
+            label15.Location = new Point(3, 13);
+            label15.Name = "label15";
+            label15.Size = new Size(72, 21);
+            label15.TabIndex = 7;
+            label15.Text = "Genişlik :";
+            // 
+            // txtLenght
+            // 
+            txtLenght.Anchor = AnchorStyles.Right;
+            txtLenght.Location = new Point(123, 10);
+            txtLenght.Name = "txtLenght";
+            txtLenght.Size = new Size(394, 29);
+            txtLenght.TabIndex = 7;
+            // 
             // panel8
             // 
             panel8.Controls.Add(label6);
@@ -568,8 +602,10 @@
             // 
             // ProductUpdatePage
             // 
+            AcceptButton = btnUpdate;
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnClose;
             ClientSize = new Size(1095, 536);
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -597,6 +633,8 @@
             panel10.PerformLayout();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
+            panel17.ResumeLayout(false);
+            panel17.PerformLayout();
             panel8.ResumeLayout(false);
             panel8.PerformLayout();
             panel7.ResumeLayout(false);
@@ -663,8 +701,11 @@
         private Label label10;
         private TextBox txtWeightUnit;
         private Button btnGetById;
-        private Button button2;
-        private Button button1;
+        private Button btnUpdate;
+        private Button btnClear;
         private Button btnClose;
+        private Panel panel17;
+        private Label label15;
+        private TextBox txtLenght;
     }
 }

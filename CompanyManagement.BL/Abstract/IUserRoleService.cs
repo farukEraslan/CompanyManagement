@@ -12,7 +12,7 @@ namespace CompanyManagement.Business.Abstract
         Task<IResult> CreateAsync(UserRoleCreateDto userRoleCreateDto);
         Task<IResult> UpdateAsync(UserRoleUpdateDto userRoleUpdateDto);
         Task<IResult> DeleteAsync(Guid userRoleId);
-        Task<IResult> GetByIdAsync(Guid userRoleId);
+        Task<IList<string>> GetByIdAsync(Guid userId);
         Task<IResult> GetAllAsync();
         Task<IResult> GetActiveAsync();
         Task<IResult> GetPassiveAsync();
