@@ -23,6 +23,23 @@ namespace CompanyManagement.WinForm
         private void ürünListesiniYenileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GetProductList();
+        }       
+
+        private void ürünEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var productCreateForm = new ProductCreatePage();
+            productCreateForm.ShowDialog();
+        }
+
+        private void ürünÇýkarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var productDeleteForm = new ProductDeletePage();
+            productDeleteForm.ShowDialog();
+        }
+
+        private void productPageForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
 
         // Ürün listesini alma
@@ -30,13 +47,10 @@ namespace CompanyManagement.WinForm
         {
             try
             {
-                // API'den veri al
                 HttpResponseMessage response = await _httpClient.GetAsync("https://localhost:7233/api/Product/GetAll");
 
-                // Baþarýlý yanýtý kontrol et
                 if (response.IsSuccessStatusCode)
                 {
-                    // JSON veriyi çözümle
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     var result = JsonConvert.DeserializeObject<ProductDtoSeriliaze>(apiResponse);
 
@@ -49,30 +63,15 @@ namespace CompanyManagement.WinForm
                         MessageBox.Show("API'den hata mesajý alýndý: " + result.Message);
                     }
                 }
-
                 else
                 {
                     MessageBox.Show("API'den veri alýnamadý. Hata kodu: " + response.StatusCode);
                 }
-
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Bir hata oluþtu: " + ex.Message);
             }
-        }
-
-        private void ürünEkleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var productCreateForm = new ProductCreatePage();
-            productCreateForm.ShowDialog();
-        }
-
-        private void ürünÇýkarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var productDeleteForm = new ProductDeletePage();
-            productDeleteForm.ShowDialog();
         }
     }
 }

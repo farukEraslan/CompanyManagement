@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnClose = new Button();
             panel3 = new Panel();
             lblPassword = new Label();
             txtPassword = new TextBox();
@@ -44,6 +45,7 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(btnClose);
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(btnLogin);
@@ -51,6 +53,15 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(560, 337);
             panel1.TabIndex = 0;
+            // 
+            // btnClose
+            // 
+            btnClose.Location = new Point(560, 337);
+            btnClose.Name = "btnClose";
+            btnClose.Size = new Size(0, 0);
+            btnClose.TabIndex = 5;
+            btnClose.UseVisualStyleBackColor = true;
+            btnClose.Click += btnClose_Click;
             // 
             // panel3
             // 
@@ -115,8 +126,10 @@
             // 
             // LoginPage
             // 
+            AcceptButton = btnLogin;
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnClose;
             ClientSize = new Size(584, 361);
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -147,5 +160,6 @@
         private Panel panel3;
         private Label lblPassword;
         private TextBox txtPassword;
+        private Button btnClose;
     }
 }

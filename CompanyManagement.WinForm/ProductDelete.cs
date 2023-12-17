@@ -14,7 +14,7 @@ namespace CompanyManagement.WinForm
         private async void btnDelete_Click(object sender, EventArgs e)
         {
             var productDeleteDto = ProductBind();
-            ProductDelete(productDeleteDto);
+            await ProductDelete(productDeleteDto);
         }
 
         private ProductDeleteDto ProductBind()
@@ -33,8 +33,8 @@ namespace CompanyManagement.WinForm
 
             //var jsonData = JsonConvert.SerializeObject(productDeleteDto);
             //var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-
-            var response = await client.DeleteAsync($"Product/Delete/{productDeleteDto.ProductId}");
+            var deleteUri = new Uri($"https://localhost:7233/api/Product/Delete/{productDeleteDto.ProductId}");
+            var response = await client.DeleteAsync(deleteUri);
 
             if (response.IsSuccessStatusCode)
             {

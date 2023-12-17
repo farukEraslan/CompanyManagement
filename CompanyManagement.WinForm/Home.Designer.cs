@@ -127,6 +127,7 @@
             Name = "productPageForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Stok Yönetim v0.1";
+            FormClosing += productPageForm_FormClosing;
             Load += productPageForm_Load;
             productPageNavbar.ResumeLayout(false);
             productPageNavbar.PerformLayout();

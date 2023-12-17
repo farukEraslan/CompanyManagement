@@ -16,10 +16,22 @@ namespace CompanyManagement.WinForm
 
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
             var loginDto = LoginBind();
-            Login(loginDto);
+            var result = await Login(loginDto);
+
+            if (result != null)
+            {
+                MessageBox.Show(result);
+            }
+            else
+            {
+                var home = new productPageForm();
+                home.GetProductList();
+                this.Hide();
+                home.Show();
+            }            
         }
 
         private LoginDto LoginBind()
@@ -30,7 +42,7 @@ namespace CompanyManagement.WinForm
             return loginDto;
         }
 
-        private async void Login(LoginDto loginDto)
+        private async Task<string> Login(LoginDto loginDto)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:7233/api/");
@@ -42,18 +54,18 @@ namespace CompanyManagement.WinForm
 
             if (response.IsSuccessStatusCode)
             {
-                // Başarılı yanıt durumunda işlemleri gerçekleştirin
-                var home = new productPageForm();
-                home.GetProductList();
-                this.Hide();
-                home.Show();
+                return null;
             }
             else
             {
-                // Hata durumunda hata mesajını işleyin
                 string errorMessage = await response.Content.ReadAsStringAsync();
-                // Hata mesajını gösterin veya işleyin
+                return errorMessage;                
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
