@@ -18,21 +18,30 @@ namespace CompanyManagement.WinForm
 
         }
 
+        private bool buttonClicked = false;
+
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            var loginDto = LoginBind();
-            var result = await Login(loginDto);
+            if (buttonClicked is false)
+            {
+                buttonClicked = true;
 
-            if (result != null)
-            {
-                MessageBox.Show(result);
+                var loginDto = LoginBind();
+                var result = await Login(loginDto);
+
+                if (result != null)
+                {
+                    MessageBox.Show(result);
+                    buttonClicked = false;
+                }
+                else
+                {
+                    var homePage = new HomePage();
+                    this.Hide();
+                    homePage.Show();
+                }
             }
-            else
-            {
-                var homePage = new HomePage();
-                this.Hide();
-                homePage.Show();
-            }
+            
         }
 
         private LoginDto LoginBind()
