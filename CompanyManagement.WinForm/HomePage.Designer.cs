@@ -65,14 +65,14 @@
             UrunEkleToolStripMenuItem.Name = "UrunEkleToolStripMenuItem";
             UrunEkleToolStripMenuItem.Size = new Size(111, 25);
             UrunEkleToolStripMenuItem.Text = "Ürün Ekleme";
-            UrunEkleToolStripMenuItem.Click += ürünEkleToolStripMenuItem_Click;
+            UrunEkleToolStripMenuItem.Click += UrunEkleToolStripMenuItem_Click;
             // 
             // UrunCikarToolStripMenuItem
             // 
             UrunCikarToolStripMenuItem.Name = "UrunCikarToolStripMenuItem";
             UrunCikarToolStripMenuItem.Size = new Size(100, 25);
             UrunCikarToolStripMenuItem.Text = "Ürün Silme";
-            UrunCikarToolStripMenuItem.Click += ürünÇıkarToolStripMenuItem_Click;
+            UrunCikarToolStripMenuItem.Click += UrunCikarToolStripMenuItem_Click;
             // 
             // UrunGuncelleToolStripMenuItem
             // 
@@ -140,8 +140,8 @@
             Name = "HomePage";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Stok Yönetim v0.1";
-            FormClosing += productPageForm_FormClosing;
-            Load += productPageForm_Load;
+            FormClosing += ProductPageForm_FormClosing;
+            Load += ProductPageForm_Load;
             productPageNavbar.ResumeLayout(false);
             productPageNavbar.PerformLayout();
             pnlProductListTable.ResumeLayout(false);

@@ -15,12 +15,12 @@ namespace CompanyManagement.WinForm
             _httpClient = new HttpClient();
         }
 
-        private void productPageForm_Load(object sender, EventArgs e)
+        private void ProductPageForm_Load(object sender, EventArgs e)
         {
             GetProductList();
         }
 
-        // Ürün listesini alma
+        // Ürün listesini alma metodu
         public async void GetProductList()
         {
             try
@@ -52,27 +52,17 @@ namespace CompanyManagement.WinForm
             }
         }
 
-        private void ürünEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UrunEkleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var productCreateForm = new ProductCreatePage();
             productCreateForm.ShowDialog();
             GetProductList();
         }
 
-        private void ürünÇýkarToolStripMenuItem_Click(object sender, EventArgs e)
+        private void UrunCikarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var productDeleteForm = new ProductDeletePage();
             productDeleteForm.ShowDialog();
-            GetProductList();
-        }
-
-        private void productPageForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btnRefreshTable_Click(object sender, EventArgs e)
-        {
             GetProductList();
         }
 
@@ -82,5 +72,17 @@ namespace CompanyManagement.WinForm
             productUpdateForm.ShowDialog();
             GetProductList();
         }
+
+        private void btnRefreshTable_Click(object sender, EventArgs e)
+        {
+            GetProductList();
+        }
+
+        private void ProductPageForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
+               
     }
 }
