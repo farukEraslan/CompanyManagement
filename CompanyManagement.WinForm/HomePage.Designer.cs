@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
             button1 = new Button();
             productPageNavbar = new MenuStrip();
@@ -41,6 +42,7 @@
             btnUpdate = new Button();
             btnRefreshTable = new Button();
             productListTable = new DataGridView();
+            btnTips = new ToolTip(components);
             productPageNavbar.SuspendLayout();
             pnlProductListTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)productListTable).BeginInit();
@@ -110,6 +112,7 @@
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(50, 50);
             btnCreate.TabIndex = 3;
+            btnTips.SetToolTip(btnCreate, "Ürün Ekle");
             btnCreate.UseVisualStyleBackColor = true;
             btnCreate.Click += btnCreate_Click;
             // 
@@ -121,6 +124,7 @@
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(50, 50);
             btnDelete.TabIndex = 3;
+            btnTips.SetToolTip(btnDelete, "Ürün Sil");
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
             // 
@@ -132,6 +136,7 @@
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(50, 50);
             btnUpdate.TabIndex = 3;
+            btnTips.SetToolTip(btnUpdate, "Ürün Güncelle");
             btnUpdate.UseVisualStyleBackColor = true;
             btnUpdate.Click += btnUpdate_Click;
             // 
@@ -143,6 +148,7 @@
             btnRefreshTable.Name = "btnRefreshTable";
             btnRefreshTable.Size = new Size(50, 50);
             btnRefreshTable.TabIndex = 3;
+            btnTips.SetToolTip(btnRefreshTable, "Listeyi Yenile");
             btnRefreshTable.UseVisualStyleBackColor = true;
             btnRefreshTable.Click += btnRefreshTable_Click;
             // 
@@ -180,6 +186,7 @@
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Stok Yönetim v0.1";
+            btnTips.SetToolTip(this, "Ürün Ekle");
             FormClosing += ProductPageForm_FormClosing;
             Load += ProductPageForm_Load;
             productPageNavbar.ResumeLayout(false);
@@ -204,5 +211,6 @@
         private Button btnCreate;
         private Button btnDelete;
         private Button btnUpdate;
+        private ToolTip btnTips;
     }
 }
