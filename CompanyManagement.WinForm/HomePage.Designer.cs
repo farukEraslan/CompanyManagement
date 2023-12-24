@@ -77,6 +77,7 @@
             UrunSilmeToolStripMenuItem.Name = "UrunSilmeToolStripMenuItem";
             UrunSilmeToolStripMenuItem.Size = new Size(100, 25);
             UrunSilmeToolStripMenuItem.Text = "Ürün Silme";
+            UrunSilmeToolStripMenuItem.Click += UrunSilmeToolStripMenuItem_Click;
             // 
             // UrunGuncelleToolStripMenuItem
             // 
