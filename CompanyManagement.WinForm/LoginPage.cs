@@ -24,21 +24,28 @@ namespace CompanyManagement.WinForm
         {
             if (buttonClicked is false)
             {
-                buttonClicked = true;
-
-                var loginDto = LoginBind();
-                var result = await Login(loginDto);
-
-                if (result != null)
+                if (txtUsername.Text.Trim() == "" || txtPassword.Text.Trim() == "")
                 {
-                    MessageBox.Show(result);
-                    buttonClicked = false;
+                    MessageBox.Show("Kullanıcı adı veya Şifre alanları boş bırakılamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    var homePage = new HomePage();
-                    this.Hide();
-                    homePage.Show();
+                    buttonClicked = true;
+
+                    var loginDto = LoginBind();
+                    var result = await Login(loginDto);
+
+                    if (result != null)
+                    {
+                        MessageBox.Show(result);
+                        buttonClicked = false;
+                    }
+                    else
+                    {
+                        var homePage = new HomePage();
+                        this.Hide();
+                        homePage.Show();
+                    }
                 }
             }
             
