@@ -220,6 +220,7 @@
             txtUnitPrice.Name = "txtUnitPrice";
             txtUnitPrice.Size = new Size(340, 29);
             txtUnitPrice.TabIndex = 15;
+            txtUnitPrice.KeyPress += txtUnitPrice_KeyPress;
             // 
             // panel15
             // 
@@ -247,6 +248,7 @@
             txtLastPrice.Name = "txtLastPrice";
             txtLastPrice.Size = new Size(340, 29);
             txtLastPrice.TabIndex = 14;
+            txtLastPrice.KeyPress += txtLastPrice_KeyPress;
             // 
             // panel14
             // 
@@ -328,6 +330,7 @@
             txtEstWeight.Name = "txtEstWeight";
             txtEstWeight.Size = new Size(394, 29);
             txtEstWeight.TabIndex = 10;
+            txtEstWeight.KeyPress += txtEstWeight_KeyPress;
             // 
             // panel10
             // 
@@ -382,6 +385,7 @@
             txtQuantity.Name = "txtQuantity";
             txtQuantity.Size = new Size(394, 29);
             txtQuantity.TabIndex = 8;
+            txtQuantity.KeyPress += txtQuantity_KeyPress;
             // 
             // panel17
             // 
@@ -409,6 +413,7 @@
             txtLenght.Name = "txtLenght";
             txtLenght.Size = new Size(394, 29);
             txtLenght.TabIndex = 7;
+            txtLenght.KeyPress += txtLenght_KeyPress;
             // 
             // panel8
             // 
@@ -436,6 +441,7 @@
             txtWidth.Name = "txtWidth";
             txtWidth.Size = new Size(394, 29);
             txtWidth.TabIndex = 7;
+            txtWidth.KeyPress += txtWidth_KeyPress;
             // 
             // panel7
             // 
@@ -463,6 +469,7 @@
             txtHeight.Name = "txtHeight";
             txtHeight.Size = new Size(394, 29);
             txtHeight.TabIndex = 6;
+            txtHeight.KeyPress += txtHeight_KeyPress;
             // 
             // panel6
             // 

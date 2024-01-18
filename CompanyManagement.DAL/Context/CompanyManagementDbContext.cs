@@ -25,7 +25,7 @@ namespace CompanyManagement.DataAccess.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server = ISTN36002\\SQLEXPRESS; Database = CompanyManagement; uid = sa; pwd = 123;");
+            optionsBuilder.UseSqlServer("Server = FARUKERASLAN; Database = CompanyManagement; uid = sa; pwd = 123;");
             base.OnConfiguring(optionsBuilder);
         }
 

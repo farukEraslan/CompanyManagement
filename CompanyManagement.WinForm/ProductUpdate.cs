@@ -157,5 +157,45 @@ namespace CompanyManagement.WinForm
                 return errorMessage;
             }
         }
+
+        private void TextBoxNumberInputControl(KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void txtHeight_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBoxNumberInputControl(e);
+        }
+
+        private void txtWidth_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBoxNumberInputControl(e);
+        }
+
+        private void txtLenght_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBoxNumberInputControl(e);
+        }
+
+        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBoxNumberInputControl(e);
+        }
+
+        private void txtEstWeight_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBoxNumberInputControl(e);
+        }
+
+        private void txtLastPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBoxNumberInputControl(e);
+        }
+
+        private void txtUnitPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBoxNumberInputControl(e);
+        }
     }
 }
