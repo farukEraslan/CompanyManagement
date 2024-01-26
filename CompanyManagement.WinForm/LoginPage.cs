@@ -48,7 +48,7 @@ namespace CompanyManagement.WinForm
                     }
                 }
             }
-            
+
         }
 
         private LoginDto LoginBind()
@@ -69,6 +69,20 @@ namespace CompanyManagement.WinForm
 
             var response = await client.PostAsync("Account/Login", content);
 
+            //var headers = response.Headers;
+
+            //// Cookie başlıklarına ulaşın
+            //if (headers.Contains("Set-Cookie"))
+            //{
+            //    var cookies = headers.GetValues("Set-Cookie");
+
+            //    foreach (var cookie in cookies)
+            //    {
+            //        // Cookie değerlerini kullanabilirsiniz
+            //        MessageBox.Show($"Set-Cookie: {cookie}");
+            //    }
+            //}
+
             if (response.IsSuccessStatusCode)
             {
                 string apiResponse = await response.Content.ReadAsStringAsync();
@@ -78,7 +92,7 @@ namespace CompanyManagement.WinForm
             else
             {
                 string errorMessage = await response.Content.ReadAsStringAsync();
-                return errorMessage;                
+                return errorMessage;
             }
         }
 
