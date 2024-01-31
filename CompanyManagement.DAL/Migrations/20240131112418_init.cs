@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CompanyManagement.DataAccess.Migrations
 {
-    public partial class initialCreate : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -363,12 +363,12 @@ namespace CompanyManagement.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("54da0cd0-62c3-4a64-b619-450847450920"), "8bc456c1-4f7f-48d8-a0cc-8ea361bc21e2", "Operator", "OPERATOR" });
+                values: new object[] { new Guid("9882f98c-1164-4f7b-926b-a491945463c5"), "aecdffff-3cf9-4e02-9fb6-6fe3b7a31ee6", "Operator", "OPERATOR" });
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { new Guid("83fdd974-2aa1-42b5-89b5-7a2dbe2253ec"), "5c5af50e-0478-43e1-acba-1b79c7804812", "Admin", "ADMIN" });
+                values: new object[] { new Guid("df660c1f-c8b4-4d26-88b7-299fca18490a"), "1d2def2a-dcf6-4a0e-baa1-eb33f506d80b", "Admin", "ADMIN" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

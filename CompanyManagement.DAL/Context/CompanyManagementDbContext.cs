@@ -10,6 +10,11 @@ namespace CompanyManagement.DataAccess.Context
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 
+        public CompanyManagementDbContext()
+        {
+                
+        }
+
         public CompanyManagementDbContext(DbContextOptions<CompanyManagementDbContext> options, IHttpContextAccessor httpContextAccessor) : base(options)
         {
             _httpContextAccessor = httpContextAccessor;

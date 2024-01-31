@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CompanyManagement.DataAccess.Migrations
 {
     [DbContext(typeof(CompanyManagementDbContext))]
-    [Migration("20230821083115_initialCreate")]
-    partial class initialCreate
+    [Migration("20240131112418_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -339,15 +339,15 @@ namespace CompanyManagement.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("83fdd974-2aa1-42b5-89b5-7a2dbe2253ec"),
-                            ConcurrencyStamp = "5c5af50e-0478-43e1-acba-1b79c7804812",
+                            Id = new Guid("df660c1f-c8b4-4d26-88b7-299fca18490a"),
+                            ConcurrencyStamp = "1d2def2a-dcf6-4a0e-baa1-eb33f506d80b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("54da0cd0-62c3-4a64-b619-450847450920"),
-                            ConcurrencyStamp = "8bc456c1-4f7f-48d8-a0cc-8ea361bc21e2",
+                            Id = new Guid("9882f98c-1164-4f7b-926b-a491945463c5"),
+                            ConcurrencyStamp = "aecdffff-3cf9-4e02-9fb6-6fe3b7a31ee6",
                             Name = "Operator",
                             NormalizedName = "OPERATOR"
                         });
