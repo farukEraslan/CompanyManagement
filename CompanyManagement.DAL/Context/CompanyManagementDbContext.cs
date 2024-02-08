@@ -1,4 +1,6 @@
-﻿namespace CompanyManagement.DataAccess.Context
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace CompanyManagement.DataAccess.Context
 {
     public class CompanyManagementDbContext : IdentityDbContext<UserEntity, RoleEntity, Guid>
     {
@@ -22,7 +24,7 @@
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // QNAP MariaDB Connection String
-            optionsBuilder.UseSqlServer("Server = 192.168.1.116; Database = CompanyManagement; uid = admin; pwd = q1w2e3r4;");
+            optionsBuilder.UseMySql("Server=192.168.1.116;Port=3307;Database=CompanyManagement;Uid=admin;Pwd=q1w2e3r4;", new MariaDbServerVersion(new Version(10, 5, 08)));
 
             // Microsoft SQL Connection String
             //optionsBuilder.UseSqlServer("Server = FARUKERASLAN; Database = CompanyManagement; uid = sa; pwd = 123;");
