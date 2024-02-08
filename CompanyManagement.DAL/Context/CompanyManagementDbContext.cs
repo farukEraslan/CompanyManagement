@@ -23,11 +23,17 @@ namespace CompanyManagement.DataAccess.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // QNAP MariaDB Connection String
-            optionsBuilder.UseMySql("Server=192.168.1.116;Port=3307;Database=CompanyManagement;Uid=admin;Pwd=q1w2e3r4;", new MariaDbServerVersion(new Version(10, 5, 08)));
+            #region QNAP MariaDB Connection String
+            var mariaDbConStr = "Server=192.168.1.116; Port=3307; Uid=admin; Pwd=q1w2e3r4; Database=CompanyManagement;";
+            var mariaDbServerVersion = new MariaDbServerVersion(new Version(10, 5, 08));
+            optionsBuilder.UseMySql(mariaDbConStr, mariaDbServerVersion);
+            #endregion
 
-            // Microsoft SQL Connection String
-            //optionsBuilder.UseSqlServer("Server = FARUKERASLAN; Database = CompanyManagement; uid = sa; pwd = 123;");
+            #region Microsoft SQL Connection String
+            var msSqlConStr = "Server = .; Database = CompanyManagement; uid = sa; pwd = 123;";
+            //optionsBuilder.UseSqlServer(msSqlConStr);
+            #endregion
+
             base.OnConfiguring(optionsBuilder);
         }
 
