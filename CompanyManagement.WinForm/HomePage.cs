@@ -1,3 +1,4 @@
+using CompanyManagement.Business.Helpers;
 using CompanyManagement.WinForm.DTOs.ProductDtoSeriliaze;
 using Newtonsoft.Json;
 
@@ -28,8 +29,6 @@ namespace CompanyManagement.WinForm
             //        UploadExcelFile.Enabled = false;
             //    }
             //}
-
-            UploadExcelFile.Enabled = false;
 
             GetProductList();
         }
@@ -150,6 +149,21 @@ namespace CompanyManagement.WinForm
         private void ProductPageForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void UploadExcelFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+            openFileDialog.FilterIndex = 1;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string selectedFilePath = openFileDialog.FileName;
+
+                var result = ExcelToDatabase.ProcessExcelFile(selectedFilePath);
+            }
         }
     }
 }

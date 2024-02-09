@@ -12,25 +12,18 @@
 
         }
 
-        public  readonly DbSet<Customer> Customers;
-        public  readonly DbSet<CustomerProject> CustomerProjects;
-        public  readonly DbSet<Product> Products;
-        public  readonly DbSet<Project> Projects;
-        public  readonly DbSet<ProjectProduct> ProjectProducts;
-        public  readonly DbSet<Supplier> Suppliers;
-        public  readonly DbSet<SupplierProduct> SupplierProducts;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             #region MariaDB Connection String
             var mariaDbConStr = "Server=192.168.1.116; Port=3307; Uid=admin; Pwd=q1w2e3r4; Database=CompanyManagement;";
             var mariaDbServerVersion = new MariaDbServerVersion(new Version(10, 5, 08));
-            optionsBuilder.UseMySql(mariaDbConStr, mariaDbServerVersion);
+            //optionsBuilder.UseMySql(mariaDbConStr, mariaDbServerVersion);
             #endregion
 
             #region Microsoft SQL Connection String
-            var msSqlConStr = "Server = .; Database = CompanyManagement; uid = sa; pwd = 123;";
-            //optionsBuilder.UseSqlServer(msSqlConStr);
+            var msSqlConStr = "Server = ISTN36002\\SQLEXPRESS; Database = CompanyManagement; uid = sa; pwd = 123;";
+            optionsBuilder.UseSqlServer(msSqlConStr);
             #endregion
 
             base.OnConfiguring(optionsBuilder);
@@ -41,5 +34,13 @@
             builder.ApplyConfigurationsFromAssembly(typeof(IEntityTypeConfiguration).Assembly);
             base.OnModelCreating(builder);
         }
+
+        public readonly DbSet<Customer> Customers;
+        public readonly DbSet<CustomerProject> CustomerProjects;
+        public readonly DbSet<Product> Products;
+        public readonly DbSet<Project> Projects;
+        public readonly DbSet<ProjectProduct> ProjectProducts;
+        public readonly DbSet<Supplier> Suppliers;
+        public readonly DbSet<SupplierProduct> SupplierProducts;
     }
 }

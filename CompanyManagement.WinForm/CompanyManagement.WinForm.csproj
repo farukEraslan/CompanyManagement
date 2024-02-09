@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CompanyManagement.BL\CompanyManagement.Business.csproj" />
     <ProjectReference Include="..\CompanyManagement.Dtos\CompanyManagement.Dtos.csproj" />
   </ItemGroup>
 

@@ -4,6 +4,7 @@ using CompanyManagement.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CompanyManagement.DataAccess.Migrations
 {
     [DbContext(typeof(CompanyManagementDbContext))]
-    partial class CompanyManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240209211123_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,6 +157,7 @@ namespace CompanyManagement.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("EstWeight")
@@ -181,15 +184,17 @@ namespace CompanyManagement.DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("QualityGrade")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Quantity")
+                    b.Property<double>("Quantity")
                         .HasColumnType("float");
 
                     b.Property<string>("QuantityUnit")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SerialNo")
@@ -334,15 +339,15 @@ namespace CompanyManagement.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("dbf5a3bf-2fcf-4936-8ba0-081d3316a54f"),
-                            ConcurrencyStamp = "5f000a7e-ef39-4e4c-afe0-171687a98994",
+                            Id = new Guid("9eab4888-991b-47fa-8fbd-e269e9b4a519"),
+                            ConcurrencyStamp = "9b4e48c1-84b0-4a97-8677-1d8f8d1e4f2e",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("5e93fc94-5f62-4ed6-89f1-53d8e0f09ffc"),
-                            ConcurrencyStamp = "8dff74ea-9277-4dd4-81db-6befd2433e90",
+                            Id = new Guid("c49ba8dd-27e8-444f-8d3c-be590e1162d5"),
+                            ConcurrencyStamp = "babb811b-5448-4b2c-8fda-2957278f07f5",
                             Name = "Operator",
                             NormalizedName = "OPERATOR"
                         });

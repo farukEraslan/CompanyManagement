@@ -91,6 +91,7 @@
             UploadExcelFile.Name = "UploadExcelFile";
             UploadExcelFile.Size = new Size(178, 25);
             UploadExcelFile.Text = "Excel Dosyası Yükleme";
+            UploadExcelFile.Click += UploadExcelFile_Click;
             // 
             // pnlProductListTable
             // 
