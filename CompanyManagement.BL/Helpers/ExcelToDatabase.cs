@@ -14,6 +14,7 @@
                 {
                     int rowCount = worksheet.Dimension.Rows;
                     int colCount = worksheet.Dimension.Columns;
+                    var list = new List<Product>();
 
                     var context = new CompanyManagementDbContext();
 
@@ -44,9 +45,12 @@
                         // Diğer özellikler için gerekli okuma işlemlerini yapın
 
                         // Veritabanına ekle
-                        var products = context.Products.Add(newData);
+                        //context.Products.Add(newData);
+                        list.Add(newData);
                     }
 
+                    
+                    context.AddRange(list);
                     // Değişiklikleri kaydet
                     context.SaveChanges();
 
