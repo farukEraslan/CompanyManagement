@@ -21,7 +21,7 @@ namespace CompanyManagement.WebAPI.Areas.Account.Controllers
         }
         
         [HttpPost("api/[controller]/Login")]
-        public async Task<IActionResult> Login(LoginDto loginDto)
+        public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             var user = await _userManager.FindByEmailAsync(loginDto.Email);
             await _signInManager.SignInAsync(user, isPersistent: false);

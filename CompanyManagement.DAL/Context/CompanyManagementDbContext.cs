@@ -22,7 +22,7 @@
             #endregion
 
             #region Microsoft SQL Connection String
-            var msSqlConStr = "Server = ISTN36002\\SQLEXPRESS; Database = CompanyManagement; uid = sa; pwd = 123;";
+            var msSqlConStr = "Server = FARUKERASLAN; Database = CompanyManagement; uid = sa; pwd = 123;";
             optionsBuilder.UseSqlServer(msSqlConStr);
             #endregion
 
@@ -37,7 +37,7 @@
 
         public readonly DbSet<Customer> Customers;
         public readonly DbSet<CustomerProject> CustomerProjects;
-        public readonly DbSet<Product> Products;
+        public DbSet<Product> Product { get; set; }
         public readonly DbSet<Project> Projects;
         public readonly DbSet<ProjectProduct> ProjectProducts;
         public readonly DbSet<Supplier> Suppliers;

@@ -1,15 +1,16 @@
-﻿using CompanyManagement.Dtos.Account;
-using CompanyManagement.Dtos.UserDto;
-using CompanyManagement.WinForm.DTOs.ProductDtoSeriliaze;
-using Newtonsoft.Json;
-using System.Text;
+﻿using CompanyManagement.WinForm.DTOs.Request;
+using CompanyManagement.WinForm.DTOs.Response;
+using CompanyManagement.WinForm.Services.IServices;
+using CompanyManagement.WinForm.Utility;
 
 namespace CompanyManagement.WinForm
 {
     public partial class LoginPage : Form
     {
-        public LoginPage()
+        private readonly IBaseService _baseService;
+        public LoginPage(IBaseService baseService)
         {
+            _baseService = baseService;
             InitializeComponent();
         }
 
@@ -24,7 +25,13 @@ namespace CompanyManagement.WinForm
         {
             if (buttonClicked is false)
             {
-                if (txtUsername.Text.Trim() == "" || txtPassword.Text.Trim() == "")
+                LoginRequestDto loginRequestDto = new()
+                {
+                    UserName = txtUsername.Text.Trim(),
+                    Password = txtPassword.Text.Trim()
+                };
+
+                if (loginRequestDto.UserName == "" || loginRequestDto.Password == "")
                 {
                     MessageBox.Show("Kullanıcı adı veya Şifre alanları boş bırakılamaz!", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -32,12 +39,16 @@ namespace CompanyManagement.WinForm
                 {
                     buttonClicked = true;
 
-                    var loginDto = LoginBind();
-                    var result = await Login(loginDto);
-
-                    if (result != null)
+                    ResponseDto result = await _baseService.SendAsync(new RequestDto
                     {
-                        MessageBox.Show(result);
+                        ApiType = SD.ApiType.POST,
+                        Data = loginRequestDto,
+                        Url = SD.AuthAPIBase + "api/Account/Login"
+                    });
+
+                    if (!result.IsSuccess)
+                    {
+                        MessageBox.Show(result.Message);
                         buttonClicked = false;
                     }
                     else
@@ -49,51 +60,6 @@ namespace CompanyManagement.WinForm
                 }
             }
 
-        }
-
-        private LoginDto LoginBind()
-        {
-            var loginDto = new LoginDto();
-            loginDto.Email = txtUsername.Text;
-            loginDto.Password = txtPassword.Text;
-            return loginDto;
-        }
-
-        private async Task<string> Login(LoginDto loginDto)
-        {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:7233/api/");
-
-            var jsonData = JsonConvert.SerializeObject(loginDto);
-            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-
-            var response = await client.PostAsync("Account/Login", content);
-
-            //var headers = response.Headers;
-
-            //// Cookie başlıklarına ulaşın
-            //if (headers.Contains("Set-Cookie"))
-            //{
-            //    var cookies = headers.GetValues("Set-Cookie");
-
-            //    foreach (var cookie in cookies)
-            //    {
-            //        // Cookie değerlerini kullanabilirsiniz
-            //        MessageBox.Show($"Set-Cookie: {cookie}");
-            //    }
-            //}
-
-            if (response.IsSuccessStatusCode)
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<UserDto>(apiResponse);
-                return null;
-            }
-            else
-            {
-                string errorMessage = await response.Content.ReadAsStringAsync();
-                return errorMessage;
-            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)

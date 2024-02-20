@@ -1,4 +1,7 @@
-﻿using CompanyManagement.Dtos.Product;
+﻿using CompanyManagement.Core.Utilities.Results;
+using CompanyManagement.DataAccess.Context;
+using CompanyManagement.Dtos.Product;
+using CompanyManagement.Entities.Concrete;
 using CompanyManagement.WinForm.DTOs;
 using Newtonsoft.Json;
 using System.Text;
@@ -24,15 +27,16 @@ namespace CompanyManagement.WinForm
 
         private async void btnCreate_Click(object sender, EventArgs e)
         {
-            var productCreateDto = ProductBind();
-            var result = await ProductCreate(productCreateDto);
-            if (result is null)
+            try
             {
+                var productCreateDto = ProductBind();
+                var result = await ProductCreate(productCreateDto);
+                MessageBox.Show(result, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(result);
+                MessageBox.Show("Tüm alanları doldurunuz!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -56,9 +60,9 @@ namespace CompanyManagement.WinForm
         }
 
         // Ürün Oluşturma
-        private ProductCreateDto ProductBind()
+        private Product ProductBind()
         {
-            var productCreateDto = new ProductCreateDto();
+            var productCreateDto = new Product();
 
             productCreateDto.SerialNo = txtSerialNo.Text.Trim();
             productCreateDto.Name = txtName.Text.Trim();
@@ -77,31 +81,45 @@ namespace CompanyManagement.WinForm
             productCreateDto.QualityGrade = txtQualityGrade.Text.Trim();
             productCreateDto.LastBoughtPrice = Convert.ToDecimal(txtLastPrice.Text.Trim());
             productCreateDto.UnitPrice = Convert.ToDecimal(txtUnitPrice.Text.Trim());
-            productCreateDto.CreatedBy = Guid.NewGuid();
-            productCreateDto.ModifiedBy = Guid.NewGuid();
+            productCreateDto.CreatedBy = "GURTAS";
+            productCreateDto.CreatedDate = DateTime.Now;
+            productCreateDto.ModifiedBy = "GURTAS";
+            productCreateDto.ModifiedDate = DateTime.Now;
 
             return productCreateDto;
         }
 
-        private async Task<string> ProductCreate(ProductCreateDto productCreateDto)
+        private async Task<string> ProductCreate(Product productCreateDto)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:7233/api/");
-
-            var jsonData = JsonConvert.SerializeObject(productCreateDto);
-            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-
-            var response = await client.PostAsync("Product/Create", content);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                return null;
+                CompanyManagementDbContext database = new CompanyManagementDbContext();
+                database.Product.Add(productCreateDto);
+                database.SaveChanges();
+                return "Ürün başarı ile kaydedildi.";
             }
-            else
+            catch (Exception ex)
             {
-                string errorMessage = await response.Content.ReadAsStringAsync();
-                return errorMessage;
+                return ex.Message;
             }
+
+            //HttpClient client = new HttpClient();
+            //client.BaseAddress = new Uri("https://localhost:7233/api/");
+
+            //var jsonData = JsonConvert.SerializeObject(productCreateDto);
+            //var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            //var response = await client.PostAsync("Product/Create", content);
+
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    return null;
+            //}
+            //else
+            //{
+            //    string errorMessage = await response.Content.ReadAsStringAsync();
+            //    return errorMessage;
+            //}
         }
 
         private void btnClose_Click(object sender, EventArgs e)

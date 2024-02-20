@@ -1,5 +1,5 @@
 using CompanyManagement.Business.Helpers;
-using CompanyManagement.WinForm.DTOs.ProductDtoSeriliaze;
+using CompanyManagement.DataAccess.Context;
 using Newtonsoft.Json;
 
 namespace CompanyManagement.WinForm
@@ -16,20 +16,6 @@ namespace CompanyManagement.WinForm
 
         private async void ProductPageForm_Load(object sender, EventArgs e)
         {
-            //var userRole = await GetUserRole(this.Tag.ToString());
-            //if (userRole is null)
-            //{
-            //    MessageBox.Show("Programa giriþ yetkiniz bulunmamakta!");
-            //    return;
-            //}
-            //else
-            //{
-            //    if (userRole == "Admin")
-            //    {
-            //        UploadExcelFile.Enabled = false;
-            //    }
-            //}
-
             GetProductList();
         }
 
@@ -68,35 +54,58 @@ namespace CompanyManagement.WinForm
         // Ürün listesini alma metodu
         public async void GetProductList()
         {
-            try
+            CompanyManagementDbContext database = new CompanyManagementDbContext();
+
+            productListTable.DataSource = database.Product.Select(col => new
             {
-                HttpResponseMessage response = await _httpClient.GetAsync("https://localhost:7233/api/Product/GetAll");
+                col.Id,
+                col.SerialNo,
+                col.Name,
+                col.Description,
+                col.Brand,
+                col.Height,
+                col.Width,
+                col.Lenght,
+                col.Quantity,
+                col.QuantityUnit,
+                col.EstWeight,
+                col.WeightUnit,
+                col.ExpiryDate,
+                col.QualityGrade,
+                col.LastBoughtPrice,
+                col.UnitPrice
+            }).ToList();
+            ProductTableHeaderBind();
 
-                if (response.IsSuccessStatusCode)
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    var result = JsonConvert.DeserializeObject<ProductDtoSeriliaze>(apiResponse);
+            //try
+            //{
+            //    HttpResponseMessage response = await _httpClient.GetAsync("https://localhost:7233/api/Product/GetAll");
 
-                    if (result.IsSuccess)
-                    {
-                        productListTable.DataSource = result.Data;
-                        ProductTableHeaderBind();
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        string apiResponse = await response.Content.ReadAsStringAsync();
+            //        var result = JsonConvert.DeserializeObject<ProductDtoSeriliaze>(apiResponse);
 
-                    }
-                    else
-                    {
-                        MessageBox.Show("API'den hata mesajý alýndý: " + result.Message);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("API'den veri alýnamadý. Hata kodu: " + response.StatusCode);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Bir hata oluþtu: " + ex.Message);
-            }
+            //        if (result.IsSuccess)
+            //        {
+            //            productListTable.DataSource = result.Data;
+            //            ProductTableHeaderBind();
+
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("API'den hata mesajý alýndý: " + result.Message);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("API'den veri alýnamadý. Hata kodu: " + response.StatusCode);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Bir hata oluþtu: " + ex.Message);
+            //}
         }
 
         private void UrunEkleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -153,16 +162,25 @@ namespace CompanyManagement.WinForm
 
         private void UploadExcelFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-
-            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
-            openFileDialog.FilterIndex = 1;
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                string selectedFilePath = openFileDialog.FileName;
+                OpenFileDialog openFileDialog = new OpenFileDialog();
 
-                var result = ExcelToDatabase.ProcessExcelFile(selectedFilePath);
+                openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+                openFileDialog.FilterIndex = 1;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedFilePath = openFileDialog.FileName;
+
+                    var result = ExcelToDatabase.ProcessExcelFile(selectedFilePath);
+                    MessageBox.Show(result, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    GetProductList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Excel dosyasýný kontrol ediniz!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

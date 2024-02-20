@@ -1,4 +1,8 @@
-﻿using CompanyManagement.Dtos.Product;
+﻿using CompanyManagement.Core.Utilities.Results;
+using CompanyManagement.DataAccess.Context;
+using CompanyManagement.Dtos.Product;
+using CompanyManagement.Dtos.Project;
+using CompanyManagement.Entities.Concrete;
 using CompanyManagement.WinForm.DTOs.ProductDtoSeriliaze;
 using Newtonsoft.Json;
 using System.Text;
@@ -17,42 +21,47 @@ namespace CompanyManagement.WinForm
             this.Close();
         }
 
-        private async void btnGetById_Click(object sender, EventArgs e)
+        private void btnGetById_Click(object sender, EventArgs e)
         {
-            var product = await ProductGetById(Guid.Parse(txtProductId.Text.Trim()));
+            ProductGetById(Guid.Parse(txtProductId.Text.Trim()));
         }
 
-        private async Task<ProductDto> ProductGetById(Guid productId)
+        private void ProductGetById(Guid productId)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:7233/api/");
+            CompanyManagementDbContext database = new CompanyManagementDbContext();
+            var product = database.Product.Where(product => product.Id == productId).ToList();
+            ProductGetByIdBind(product.First());
 
-            HttpResponseMessage response = await client.GetAsync($"Product/GetById?productId={productId}");
 
-            if (response.IsSuccessStatusCode)
-            {
-                string apiResponse = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<ProductGetByIdSeriliaze>(apiResponse);
+            //HttpClient client = new HttpClient();
+            //client.BaseAddress = new Uri("https://localhost:7233/api/");
 
-                if (result.IsSuccess)
-                {
-                    ProductGetByIdBind(result.Data);
-                    return result.Data;
-                }
-                else
-                {
-                    MessageBox.Show("API'den hata mesajı alındı: " + result.Message);
-                    return null;
-                }
-            }
-            else
-            {
-                MessageBox.Show("API'den veri alınamadı. Hata kodu: " + response.StatusCode);
-                return null;
-            }
+            //HttpResponseMessage response = await client.GetAsync($"Product/GetById?productId={productId}");
+
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    string apiResponse = await response.Content.ReadAsStringAsync();
+            //    var result = JsonConvert.DeserializeObject<ProductGetByIdSeriliaze>(apiResponse);
+
+            //    if (result.IsSuccess)
+            //    {
+            //        ProductGetByIdBind(result.Data);
+            //        return result.Data;
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("API'den hata mesajı alındı: " + result.Message);
+            //        return null;
+            //    }
+            //}
+            //else
+            //{
+            //    MessageBox.Show("API'den veri alınamadı. Hata kodu: " + response.StatusCode);
+            //    return null;
+            //}
         }
 
-        private void ProductGetByIdBind(ProductDto data)
+        private void ProductGetByIdBind(Product data)
         {
             txtSerialNo.Text = data.SerialNo;
             txtProductName.Text = data.Name;
@@ -97,21 +106,24 @@ namespace CompanyManagement.WinForm
 
         private async void btnUpdate_Click(object sender, EventArgs e)
         {
-            var product = ProductUpdateBind();
-            var result = await ProductUpdate(product);
-            if (result != null)
+            try
             {
-                MessageBox.Show(result);
-            }
-            else
-            {
+                var product = ProductUpdateBind(Guid.Parse(txtProductId.Text.Trim()));
+                var result = await ProductUpdate(product);
+                MessageBox.Show(result, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Tüm alanları doldurunuz!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw;
             }
         }
 
-        private ProductUpdateDto ProductUpdateBind()
+        private Product ProductUpdateBind(Guid productId)
         {
-            var productUpdateDto = new ProductUpdateDto();
+            CompanyManagementDbContext database = new CompanyManagementDbContext();
+            var productUpdateDto = database.Product.Where(product => product.Id == productId).ToList().First();
 
             productUpdateDto.Id = Guid.Parse(txtProductId.Text.Trim());
             productUpdateDto.SerialNo = txtSerialNo.Text.Trim();
@@ -131,31 +143,44 @@ namespace CompanyManagement.WinForm
             productUpdateDto.QualityGrade = txtQualityGrade.Text.Trim();
             productUpdateDto.LastBoughtPrice = Convert.ToDecimal(txtLastPrice.Text.Trim());
             productUpdateDto.UnitPrice = Convert.ToDecimal(txtUnitPrice.Text.Trim());
-            productUpdateDto.CreatedBy = Guid.NewGuid();
-            productUpdateDto.ModifiedBy = Guid.NewGuid();
+            productUpdateDto.ModifiedBy = "GURTAS";
+            productUpdateDto.ModifiedDate = DateTime.Now;
 
             return productUpdateDto;
         }
 
-        private async Task<string> ProductUpdate(ProductUpdateDto productUpdateDto)
+        private async Task<string> ProductUpdate(Product productUpdateDto)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:7233/api/");
-
-            var jsonData = JsonConvert.SerializeObject(productUpdateDto);
-            var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-
-            var response = await client.PutAsync("Product/Update", content);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                return null;
+                CompanyManagementDbContext database = new CompanyManagementDbContext();
+                database.Product.Update(productUpdateDto);
+                database.SaveChanges();
+                return "Ürün başarı ile güncellendi.";
             }
-            else
+            catch (Exception ex)
             {
-                string errorMessage = await response.Content.ReadAsStringAsync();
-                return errorMessage;
+                return ex.Message;
             }
+
+
+            //HttpClient client = new HttpClient();
+            //client.BaseAddress = new Uri("https://localhost:7233/api/");
+
+            //var jsonData = JsonConvert.SerializeObject(productUpdateDto);
+            //var content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+            //var response = await client.PutAsync("Product/Update", content);
+
+            //if (response.IsSuccessStatusCode)
+            //{
+            //    return null;
+            //}
+            //else
+            //{
+            //    string errorMessage = await response.Content.ReadAsStringAsync();
+            //    return errorMessage;
+            //}
         }
 
         private void TextBoxNumberInputControl(KeyPressEventArgs e)
