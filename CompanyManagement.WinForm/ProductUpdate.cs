@@ -154,6 +154,15 @@ namespace CompanyManagement.WinForm
             try
             {
                 CompanyManagementDbContext database = new CompanyManagementDbContext();
+                var hasProduct = database.Product.Select(p => p.SerialNo == productUpdateDto.SerialNo).First();
+                if (hasProduct)
+                {
+                    return "Ürün zaten var!";
+                }
+                else if (productUpdateDto.SerialNo == "" || productUpdateDto.Name == "")
+                {
+                    return "Seri numarası ya da ürün adı girmelisiniz!";
+                }
                 database.Product.Update(productUpdateDto);
                 database.SaveChanges();
                 return "Ürün başarı ile güncellendi.";

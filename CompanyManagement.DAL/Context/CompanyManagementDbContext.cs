@@ -16,14 +16,14 @@
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             #region MariaDB Connection String
-            var mariaDbConStr = "Server=192.168.1.116; Port=3307; Uid=admin; Pwd=q1w2e3r4; Database=CompanyManagement;";
-            var mariaDbServerVersion = new MariaDbServerVersion(new Version(10, 5, 08));
-            //optionsBuilder.UseMySql(mariaDbConStr, mariaDbServerVersion);
+            var mariaDbConStr = "Server=localhost; Uid=farukEraslan; Pwd=123; Database=deneme;";
+            var mariaDbServerVersion = ServerVersion.AutoDetect(mariaDbConStr);
+            optionsBuilder.UseMySql(mariaDbConStr, mariaDbServerVersion);
             #endregion
 
             #region Microsoft SQL Connection String
             var msSqlConStr = "Server = FARUKERASLAN; Database = CompanyManagement; uid = sa; pwd = 123;";
-            optionsBuilder.UseSqlServer(msSqlConStr);
+            //optionsBuilder.UseSqlServer(msSqlConStr);
             #endregion
 
             base.OnConfiguring(optionsBuilder);

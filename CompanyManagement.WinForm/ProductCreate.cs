@@ -94,9 +94,21 @@ namespace CompanyManagement.WinForm
             try
             {
                 CompanyManagementDbContext database = new CompanyManagementDbContext();
-                database.Product.Add(productCreateDto);
-                database.SaveChanges();
-                return "Ürün başarı ile kaydedildi.";
+                bool hasProduct = database.Product.Select(p=>p.SerialNo == productCreateDto.SerialNo).FirstOrDefault();
+                if (hasProduct)
+                {
+                    return "Ürün zaten var!";
+                }
+                else if (productCreateDto.SerialNo == "" || productCreateDto.Name == "")
+                {
+                    return "Seri numarası ya da ürün adı girmelisiniz!";
+                }
+                else
+                {
+                    database.Product.Add(productCreateDto);
+                    database.SaveChanges();
+                    return "Ürün başarı ile kaydedildi.";
+                }
             }
             catch (Exception ex)
             {
