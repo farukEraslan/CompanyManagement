@@ -10,4 +10,3 @@ global using CompanyManagement.DataAccess.Context;
 global using CompanyManagement.DataAccess.Interfaces;
 global using CompanyManagement.DataAccess.Repository;
 global using Microsoft.Extensions.DependencyInjection;
-global using Microsoft.EntityFrameworkCore;
